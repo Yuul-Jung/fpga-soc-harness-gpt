@@ -113,9 +113,12 @@ def review(offline=False, now=None):
     older = {r["reference"].lower(): r for r in prior.get("reviews", [])}
     items = catalog.get("results", [])
     # Check remote heads of the most recently discovered/least-audited candidates.
+    # Fair rotation: revisit the repositories checked longest ago first.
     ordered = sorted(items, key=lambda x: (
-        bool(older.get(x["repository"].lower())), -x.get("score", 0)))
+        older.get(x["repository"].lower(), {}).get("upstream_verified_at") or "",
+        -x.get("score", 0), x["repository"].lower()))
     remote_states = {}
+    remote_checked = set()
     remote_errors = []
     if not offline:
         for item in ordered[:min(8, len(ordered))]:
@@ -128,6 +131,7 @@ def review(offline=False, now=None):
                 remote_states[repo.lower()] = (
                     "upstream_changed" if tree.get("sha") != item.get("source_tree_sha")
                     else "source_tree_sha_confirmed")
+                remote_checked.add(repo.lower())
             except (urllib.error.URLError, ValueError, KeyError) as exc:
                 remote_states[repo.lower()] = "verification_unavailable"
                 remote_errors.append({"repository": repo, "error": type(exc).__name__})
@@ -135,7 +139,11 @@ def review(offline=False, now=None):
     for item in items:
         key = item["repository"].lower()
         state = remote_states.get(key, older.get(key, {}).get("remote_tree_status", "not_checked"))
-        reviews.append(audit(item, remote_status=state, now=now))
+        entry = audit(item, remote_status=state, now=now)
+        entry["upstream_verified_at"] = (
+            now.isoformat() if key in remote_checked
+            else older.get(key, {}).get("upstream_verified_at"))
+        reviews.append(entry)
     reviews.sort(key=lambda x: (-x["quality_score"], x["reference"].lower()))
     audits = {"schema_version": 1, "generated_at": now.isoformat(),
               "metadata_only": True, "remote_audit_errors": remote_errors,
