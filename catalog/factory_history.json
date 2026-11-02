@@ -11,6 +11,17 @@
         "smart_fan"
       ],
       "notes": []
+    },
+    {
+      "timestamp": "2026-11-02T23:38:04.025228+00:00",
+      "new_projects": [],
+      "reviewed_existing": [
+        "instrument_pulse_counter",
+        "smart_fan"
+      ],
+      "notes": [
+        "Template already exists: regenerate and regress existing project"
+      ]
     }
   ]
 }
