@@ -142,7 +142,13 @@ def run(now=None):
                 encoding="utf-8")
             created.append(TEMPLATE_ID)
         else:
-            needs_research.append("No eligible independently reviewed instrumentation candidate")
+            near = [{"name": r["reference"], "category": r.get("category"),
+                     "readiness": r.get("readiness"), "license": r.get("reuse_policy"),
+                     "score": r.get("quality_score")}
+                    for r in reviews if "oscillo" in r["reference"].lower()
+                    or r.get("category") == "instrument"]
+            needs_research.append("No eligible candidate; review gates: " +
+                                  json.dumps(near[:5], ensure_ascii=False))
     else:
         # Preserve reviewed RTL/design and do not overwrite existing implementation.
         needs_research.append("Template already exists: regenerate and regress existing project")
