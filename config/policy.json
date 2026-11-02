@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "repo_limit": 24,
+  "per_query": 4,
+  "tree_path_limit": 1500,
+  "max_catalog_entries": 120,
+  "request_delay_seconds": 0.3,
+  "permissive_licenses": [
+    "MIT",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "Apache-2.0",
+    "ISC",
+    "CC0-1.0",
+    "Unlicense"
+  ],
+  "scan_extensions": [
+    ".v",
+    ".sv",
+    ".vhd",
+    ".vhdl"
+  ],
+  "evidence_patterns": [
+    ".xdc",
+    ".qsf",
+    ".lpf",
+    ".pcf",
+    ".tcl",
+    "testbench",
+    "_tb.",
+    "tb_",
+    "README",
+    "Makefile",
+    "report"
+  ]
+}
