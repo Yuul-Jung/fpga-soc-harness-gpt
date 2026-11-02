@@ -1,0 +1,34 @@
+[
+  {
+    "q": "fpga verilog ultrasonic pwm motor project",
+    "category": "motor"
+  },
+  {
+    "q": "fpga basys3 sensor uart fifo verilog",
+    "category": "sensor"
+  },
+  {
+    "q": "fpga sobel camera vga verilog",
+    "category": "video"
+  },
+  {
+    "q": "fpga logic analyzer verilog",
+    "category": "instrument"
+  },
+  {
+    "q": "fpga axi peripheral spi i2c verilog",
+    "category": "communication"
+  },
+  {
+    "q": "fpga aes accelerator uart verilog",
+    "category": "security"
+  },
+  {
+    "q": "fpga de10 lite peripheral stepper verilog",
+    "category": "motor"
+  },
+  {
+    "q": "lattice ec5 peripheral camera verilog",
+    "category": "video"
+  }
+]

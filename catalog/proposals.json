@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02",
+  "proposals": [
+    {
+      "id": "shubhayu-das--vl504-project",
+      "reference": "Shubhayu-Das/VL504-project",
+      "source_url": "https://github.com/Shubhayu-Das/VL504-project",
+      "source_tree_sha": "49ef56894501d2b3313bda5897c770ca753bdd64",
+      "license_spdx": "BSD-3-Clause",
+      "reuse_policy": "review_for_reuse",
+      "profile": "video",
+      "suggested_ip": [
+        "camera_capture",
+        "frame_buffer",
+        "filter_pipeline",
+        "video_output"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "meiniki--logip",
+      "reference": "meiniKi/logIP",
+      "source_url": "https://github.com/meiniKi/logIP",
+      "source_tree_sha": "d605ad54193c56a2857e27225a16144851acbad6",
+      "license_spdx": "GPL-3.0",
+      "reuse_policy": "reference_only",
+      "profile": "instrument",
+      "suggested_ip": [
+        "signal_sampler",
+        "trigger",
+        "capture_ram",
+        "uart_readout"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "rsoleym--fpga-camera-pipeline",
+      "reference": "RSoleym/fpga-camera-pipeline",
+      "source_url": "https://github.com/RSoleym/fpga-camera-pipeline",
+      "source_tree_sha": "bce328efa309b11fba0687fd2b137ac86846576e",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "profile": "video",
+      "suggested_ip": [
+        "camera_capture",
+        "frame_buffer",
+        "filter_pipeline",
+        "video_output"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "taeseong-dev--axi4-lite-custom-peripherals",
+      "reference": "taeseong-dev/axi4-lite-custom-peripherals",
+      "source_url": "https://github.com/taeseong-dev/axi4-lite-custom-peripherals",
+      "source_tree_sha": "54ffdafd138ec594500b5c33f5f6cede2558bc4a",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "profile": "communication",
+      "suggested_ip": [
+        "uart_spi_i2c_controller",
+        "register_bank",
+        "interrupt_status"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "angelojacobo--ulx3s_fpga_sobel_edge_detection_ov7670",
+      "reference": "AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+      "source_url": "https://github.com/AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+      "source_tree_sha": "693dacba2f8450417d9944f1803255a44c842042",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "profile": "video",
+      "suggested_ip": [
+        "camera_capture",
+        "frame_buffer",
+        "filter_pipeline",
+        "video_output"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "jagumiel--guitar-pedal-effects-on-fpga",
+      "reference": "jagumiel/Guitar-Pedal-Effects-on-FPGA",
+      "source_url": "https://github.com/jagumiel/Guitar-Pedal-Effects-on-FPGA",
+      "source_tree_sha": "9db82033030dd05d46316c18b819e9b066f9eb56",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "profile": "instrument",
+      "suggested_ip": [
+        "signal_sampler",
+        "trigger",
+        "capture_ram",
+        "uart_readout"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "akifmohamed--aes-crypto-soc",
+      "reference": "akifmohamed/AES-Crypto-SoC",
+      "source_url": "https://github.com/akifmohamed/AES-Crypto-SoC",
+      "source_tree_sha": "b7a0002bf507ebb5921085198481dab6e3c1d427",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "profile": "security",
+      "suggested_ip": [
+        "byte_stream",
+        "crypto_accelerator",
+        "result_register"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "mert137--an-fpga-based-oscilloscope",
+      "reference": "mert137/An-FPGA-Based-Oscilloscope",
+      "source_url": "https://github.com/mert137/An-FPGA-Based-Oscilloscope",
+      "source_tree_sha": "67da0cd616e5bca8295d47b97c81a768ece69aab",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "profile": "instrument",
+      "suggested_ip": [
+        "signal_sampler",
+        "trigger",
+        "capture_ram",
+        "uart_readout"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "yifeistarwang-coder--robomotion-fpga",
+      "reference": "yifeistarwang-coder/RoboMotion-FPGA",
+      "source_url": "https://github.com/yifeistarwang-coder/RoboMotion-FPGA",
+      "source_tree_sha": "4b47a68aefca3c9d8b02c1cd4f0398830418058d",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "profile": "motor",
+      "suggested_ip": [
+        "sensor_input",
+        "motor_pwm",
+        "encoder_counter",
+        "control_fsm"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "jssaucedo--fpga-elevator-controller",
+      "reference": "JSSaucedo/FPGA-Elevator-Controller",
+      "source_url": "https://github.com/JSSaucedo/FPGA-Elevator-Controller",
+      "source_tree_sha": "5a385440cdebbac140fad7bb6aedb302b99b1eb9",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "profile": "motor",
+      "suggested_ip": [
+        "sensor_input",
+        "motor_pwm",
+        "encoder_counter",
+        "control_fsm"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    },
+    {
+      "id": "frobino--de1-soc",
+      "reference": "frobino/de1-soc",
+      "source_url": "https://github.com/frobino/de1-soc",
+      "source_tree_sha": "af886dd1b5056bc7807e852e2b7248ee5e135df0",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "profile": "communication",
+      "suggested_ip": [
+        "uart_spi_i2c_controller",
+        "register_bank",
+        "interrupt_status"
+      ],
+      "target_board": "UNASSIGNED",
+      "approval_state": "pending_review",
+      "rtl_source_status": "not_ported",
+      "design_basis": "metadata_heuristic_only",
+      "must_check": [
+        "IO voltage and wiring",
+        "pin constraints",
+        "clock/reset",
+        "protocol timing",
+        "RTL license",
+        "module testbench",
+        "synthesis/implementation/board evidence"
+      ]
+    }
+  ]
+}

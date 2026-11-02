@@ -1,0 +1,37 @@
+name: Update committed HTML artifacts
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fpga-capstone-site-update
+  cancel-in-progress: false
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install RTL simulator
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate and verify HTML / SVG / source bundle
+        run: |
+          python -m harness.generate
+          python -m harness.validate
+          python -m unittest discover -s tests -v
+      - name: Commit generated site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: publish generated capstone HTML, diagrams and verification"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
