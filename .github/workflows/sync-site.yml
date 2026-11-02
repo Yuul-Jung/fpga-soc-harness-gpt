@@ -25,6 +25,7 @@ jobs:
         run: |
           python -m harness.generate
           python -m harness.validate
+          python -m harness.generate  # embed fresh RTL/C result into each HTML manual
           python -m unittest discover -s tests -v
       - name: Commit generated site
         run: |

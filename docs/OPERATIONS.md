@@ -15,3 +15,7 @@
 GitHub Pages: Settings → Pages → Source GitHub Actions, Actions Variables에 `ENABLE_PAGES=true`. 별도로 설정하지 않으면 HTML은 저장소 `site/`에서 확인 가능합니다.
 
 자세한 설명은 [SCHEDULED_PIPELINE.md](SCHEDULED_PIPELINE.md).
+
+## HTML 확인
+
+[전체 자료실 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/index.html)에서 캡스톤 목록을 선택합니다. 각 과제는 `site/capstones/<id>/index.html`이며 전체 소스 ZIP과 구조도 SVG, BOM, 검증 결과를 포함합니다. GitHub Pages 설정: Settings → Pages → GitHub Actions, Actions Variables에서 `ENABLE_PAGES=true`로 설정하면 정식 URL을 사용할 수 있습니다. 정식 사이트 배포 성공은 GitHub Actions 결과에서 확인하십시오.
