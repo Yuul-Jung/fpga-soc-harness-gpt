@@ -1,0 +1,39 @@
+name: Verify capstone harness
+on:
+  push:
+    branches: [main, feature/capstone-harness-v1]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install RTL simulator
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Offline Python unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Generate structured capstone site
+        run: python -m harness.generate
+      - name: Validate source and simulate first-party RTL
+        run: |
+          python -m harness.validate
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('site/capstones/smart_fan/verification.json').read_text())
+          assert report['rtl_simulation']=='pass', report
+          assert report['software_test']=='pass', report
+          assert report['board_test']=='not_run', report
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fpga-soc-capstone-html-and-evidence
+          path: site/
