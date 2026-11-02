@@ -86,7 +86,6 @@ class HarnessTests(unittest.TestCase):
         design = instrument_design(r)
         self.assertEqual(design["id"], "instrument_pulse_counter")
         self.assertEqual(design["test_spec"]["rtl_top"], "tb_pulse_event_meter")
-        self.assertIn("not", design["verification_notice"].lower()) if False else None
 
 
 
