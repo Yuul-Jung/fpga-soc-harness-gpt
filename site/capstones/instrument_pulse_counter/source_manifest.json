@@ -1,0 +1,25 @@
+{
+  "design_id": "instrument_pulse_counter",
+  "source_files": [
+    {
+      "path": "rtl/pulse_event_meter.v",
+      "sha256": "656acc14a5b6e505fd978ddb2068871095e4828d9d0d8106e89e776cae5aad31",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "tb/tb_pulse_event_meter.v",
+      "sha256": "0682b224d96ee89e7f2fa6c79c9c67cec30e9abcae861a775b222dba8d8736a0",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "sw/pulse_meter_mmio.c",
+      "sha256": "dd5c379642a990a6c6259ddfca3b1ac25f4d059f91a53732d6c5907021eb088f",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "519c9729b895e85b6b450384e7d6dc25b02bd758e701b1247d7df6c632b0b44f",
+      "origin": "first_party_local"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FPGA SoC 캡스톤 — 펄스·회전수 계측 주변장치</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fa;color:#192e45;font-size:15px;line-height:1.7}
+a{color:#12639f;text-decoration:none}a:hover{text-decoration:underline}
+header{background:#183b58;color:#fff;padding:13px 20px;position:sticky;top:0;z-index:5}
+header a{color:#fff;font-weight:700}header small{font-weight:400;color:#cfdfec;margin-left:14px}
+.shell{display:grid;grid-template-columns:208px minmax(0,1fr);max-width:1300px;margin:auto}
+aside{border-right:1px solid #e0e7ef;padding:26px 14px;position:sticky;top:51px;align-self:start;max-height:calc(100vh - 52px);overflow:auto}
+aside strong{display:block;font-size:13px;color:#5b7186;margin:0 10px 12px}
+aside a{display:block;padding:7px 10px;border-radius:6px;font-size:13px;color:#34516b;overflow-wrap:anywhere}
+aside a:hover{background:#e7eff7;text-decoration:none}
+main{min-width:0;max-width:1050px;padding:28px 28px 90px;width:100%}
+h1{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.35;margin:0 0 12px}
+h2{font-size:1.2rem;margin:0 0 16px}h3{font-size:1rem;margin:0 0 10px}
+section{background:#fff;border:1px solid #dce6ee;border-radius:10px;padding:22px;margin:20px 0}
+.hero{padding:25px;border:1px solid #dbe5ee;background:#fff;border-radius:12px;margin-bottom:20px}
+.hero p{margin:8px 0 0}.muted,small{color:#5c7185}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;color:#486c8c;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.tile{border:1px solid #d9e4ed;border-radius:9px;padding:16px;background:#fff;display:block;color:inherit}
+.tile:hover{border-color:#6c98bb;text-decoration:none}
+.tile strong{display:block;font-size:15px;color:#24577f;overflow-wrap:anywhere}
+.tile span{font-size:12px;color:#64798b}.tile p{font-size:13px;line-height:1.5;margin:6px 0 0}
+.metric{font-size:27px;font-weight:750;line-height:1.2;color:#214f78}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:10px;margin:16px 0}
+.stats .tile{padding:12px 14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid #dce4ed;padding:9px 10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{background:#eff4f8}.scroll{overflow-x:auto}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+p code,td code{background:#edf3f8;padding:2px 5px;border-radius:4px}
+pre{white-space:pre;overflow:auto;max-height:650px;background:#f4f6f8;border:1px solid #d7e0e8;border-radius:7px;padding:14px;font-size:12px;line-height:1.55;color:#18354c}
+pre code{font-size:inherit}details{margin:10px 0;border:1px solid #dce5ed;border-radius:8px;padding:11px 13px}
+summary{font-weight:650;cursor:pointer;overflow-wrap:anywhere}
+img,svg{max-width:100%;height:auto}img.diagram{display:block;width:100%;max-width:780px;margin:auto;border:1px solid #e3e9ef;border-radius:8px;background:white}
+.notice{border-left:3px solid #c18b34;padding:10px 13px;background:#fff8ed;color:#684b20;margin:12px 0}
+.meta{font-size:13px;color:#566d82}
+.links{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}.links a{border:1px solid #bfd1df;background:#f6fafd;padding:6px 11px;border-radius:6px;font-size:13px}
+footer{margin-top:26px;color:#718194;font-size:12px}
+@media(max-width:780px){.shell{display:block}aside{position:static;max-height:none;border:0;border-bottom:1px solid #dfe6ee;padding:10px 14px;display:flex;flex-wrap:wrap;gap:2px}aside strong{width:100%;margin:0 8px 3px}aside a{padding:5px 8px}main{padding:18px 13px 65px}section{padding:15px}header small{display:none}}
+</style></head><body><header><a href="../../index.html">FPGA SoC CAPSTONE</a><small>RTL · 주변장치 · 실습자료</small></header><div class="shell"><aside><strong>자료 탐색</strong><a href="../../index.html">전체 자료실</a><a href="../index.html">모든 캡스톤</a><a href="#overview">과제 개요</a><a href="#diagram">시스템 구조도</a><a href="#signals">신호 연결표</a><a href="#hardware">하드웨어·부품</a><a href="#source">전체 실행 소스</a><a href="#verification">검증 결과</a><a href="#provenance">출처·유의사항</a></aside><main><div class="hero" id="overview"><div class="eyebrow">CAPSTONE / instrument_pulse_counter</div><h1>FPGA SoC 캡스톤 — 펄스·회전수 계측 주변장치</h1><p>Basys3 100MHz 클럭에서 2-FF 동기화 및 1초 이벤트 계측을 수행하는 독립 RTL. MicroBlaze V + AXI GPIO 읽기 포트로 확장하는 SoC 설계안이며 Vivado Block Design과 보드 실험은 미완료입니다.</p><p class="meta"><strong>대상:</strong> Basys3, 100MHz, 3.3V I/O · <strong>단계:</strong> original RTL + testbench implemented; MicroBlaze V connection proposed</p></div><div class="links"><a href="source_bundle.zip" download>전체 실행소스 ZIP</a><a href="system.svg">구조도 SVG</a><a href="connections.json">연결정보 JSON</a><a href="design.json">Design IR</a><a href="verification.json">검증 원본 JSON</a></div><section id="diagram"><h2>1. 전체 시스템 구조도</h2><p class="muted">모듈·신호의 논리적 연결을 표시합니다. FPGA 외부 전기회로도나 실제 보드 핀 배선도는 아닙니다.</p><a href="system.svg" title="원본 구조도 보기"><img class="diagram" src="system.svg" alt="캡스톤 디지털 시스템 연결 구조도"></a><h3>모듈별 입출력</h3><div class="scroll"><table><thead><tr><th>모듈 ID</th><th>모듈명</th><th>입력</th><th>출력</th></tr></thead><tbody><tr><td>clk_src</td><td>basys3_clock_reset</td><td></td><td>clk, rst</td></tr><tr><td>cpu</td><td>microblaze_v</td><td>clk, reset</td><td>m_axi</td></tr><tr><td>axi_gpio</td><td>axi_gpio_status</td><td>s_axi, gpio_io_i</td><td></td></tr><tr><td>event_meter</td><td>pulse_event_meter</td><td>clk, rst, pulse_in</td><td>event_count, sample_valid</td></tr><tr><td>input_stage</td><td>external_3v3_pulse_interface</td><td></td><td>pulse_out</td></tr></tbody></table></div></section><section id="signals"><h2>2. 신호 연결표</h2><div class="scroll"><table><thead><tr><th>송신 포트</th><th>수신 포트</th><th>설계 및 검증 조건</th></tr></thead><tbody><tr><td>clk_src.clk</td><td>cpu.clk</td><td>Conceptual 100MHz clock, IP/clocking not yet built</td></tr><tr><td>clk_src.rst</td><td>cpu.reset</td><td>Actual reset polarity must match CPU IP</td></tr><tr><td>clk_src.clk</td><td>event_meter.clk</td><td>Single domain</td></tr><tr><td>clk_src.rst</td><td>event_meter.rst</td><td>Synchronous active-high reset</td></tr><tr><td>cpu.m_axi</td><td>axi_gpio.s_axi</td><td>AXI interconnect omitted in this conceptual view</td></tr><tr><td>event_meter.event_count</td><td>axi_gpio.gpio_io_i</td><td>32-bit GPIO input; AXI address from Vitis BSP, not guessed</td></tr><tr><td>input_stage.pulse_out</td><td>event_meter.pulse_in</td><td>3.3V-conditioned asynchronous pulse, synchronized internally</td></tr></tbody></table></div><p><a href="connections.json">구조화된 신호 연결정보 다운로드</a></p></section><section id="hardware"><h2>3. 하드웨어 구성·부품</h2><div class="scroll"><table><thead><tr><th>부품</th><th>수량</th><th>신호·전원</th><th>확인 사항</th></tr></thead><tbody><tr><td>Basys3</td><td>1</td><td>3.3V I/O 100MHz</td><td>Official XDC must be checked</td></tr><tr><td>3.3V pulse generator or isolated conditioned sensor</td><td>1</td><td>digital pulse</td><td>No direct 5V/12V connection</td></tr></tbody></table></div><p><a href="bom.csv">BOM.csv 다운로드</a></p></section><section id="source"><h2>4. 실행소스 전체 보기</h2><p>코드 원본은 보존합니다. 아래에서 펼쳐 읽거나 파일별로 열 수 있습니다. <a href="source_bundle.zip" download>전체 소스 ZIP 받기</a></p><details open><summary>rtl/pulse_event_meter.v</summary><p><a href="source/rtl/pulse_event_meter.v" download>개별 원본 파일 받기</a></p><pre><code>// Original reusable RTL: count synchronized rising edges per window.
+// For FPGA use, pulse_in must be electrically level conditioned to 3.3V.
+// Outputs update only on posedge clk; sample_valid is a one-clock strobe.
+module pulse_event_meter #(
+    parameter integer WINDOW_CYCLES = 100_000_000
+)(
+    input wire clk,
+    input wire rst,
+    input wire pulse_in,
+    output reg [31:0] event_count,
+    output reg sample_valid
+);
+    localparam integer CW = WINDOW_CYCLES &gt; 1 ? $clog2(WINDOW_CYCLES) : 1;
+    reg [CW-1:0] timer;
+    reg [31:0] accum;
+    reg sync0, sync1, sync_prev;
+    wire pulse_rise = sync1 &amp;&amp; !sync_prev;
+    always @(posedge clk) begin
+        if (rst) begin
+            timer &lt;= 0;
+            accum &lt;= 0;
+            event_count &lt;= 0;
+            sample_valid &lt;= 0;
+            sync0 &lt;= 0;
+            sync1 &lt;= 0;
+            sync_prev &lt;= 0;
+        end else begin
+            sync0 &lt;= pulse_in;
+            sync1 &lt;= sync0;
+            sync_prev &lt;= sync1;
+            sample_valid &lt;= 0;
+            if (timer == WINDOW_CYCLES - 1) begin
+                timer &lt;= 0;
+                // Include the sample arriving on the snapshot boundary.
+                event_count &lt;= accum + pulse_rise;
+                accum &lt;= 0;
+                sample_valid &lt;= 1;
+            end else begin
+                timer &lt;= timer + 1&#x27;b1;
+                if (pulse_rise) accum &lt;= accum + 1&#x27;b1;
+            end
+        end
+    end
+endmodule
+</code></pre></details><details><summary>tb/tb_pulse_event_meter.v</summary><p><a href="source/tb/tb_pulse_event_meter.v" download>개별 원본 파일 받기</a></p><pre><code>`timescale 1ns/1ps
+// Simulation-only self-checking testbench. 64 cycles is one test window.
+module tb_pulse_event_meter;
+    reg clk=0;
+    always #5 clk=~clk;
+    reg rst=1;
+    reg pulse_in=0;
+    wire [31:0] event_count;
+    wire sample_valid;
+    pulse_event_meter #(.WINDOW_CYCLES(64)) dut (
+        .clk(clk), .rst(rst), .pulse_in(pulse_in),
+        .event_count(event_count), .sample_valid(sample_valid)
+    );
+    task send_pulse;
+        begin
+            @(negedge clk); pulse_in=1;
+            repeat (4) @(negedge clk);
+            pulse_in=0;
+            repeat (5) @(negedge clk);
+        end
+    endtask
+    initial begin
+        repeat (4) @(negedge clk);
+        rst=0;
+        send_pulse();
+        send_pulse();
+        wait (sample_valid === 1&#x27;b1);
+        if (event_count !== 32&#x27;d2)
+            $fatal(1, &quot;Expected 2 events, got %0d&quot;, event_count);
+        repeat (2) @(negedge clk);
+        $display(&quot;PASS pulse_event_meter&quot;);
+        $finish;
+    end
+    initial begin
+        #20000;
+        $fatal(1, &quot;test timeout&quot;);
+    end
+endmodule
+</code></pre></details><details><summary>sw/pulse_meter_mmio.c</summary><p><a href="source/sw/pulse_meter_mmio.c" download>개별 원본 파일 받기</a></p><pre><code>/* First-party AXI GPIO read helper. Platform/BSP provides DATA address.
+ * Native self-test:
+ * cc -std=c11 -DPULSE_METER_SELFTEST pulse_meter_mmio.c -o /tmp/pulse_test
+ */
+#include &lt;stdint.h&gt;
+
+uint32_t pulse_meter_read(volatile const uint32_t *gpio_data)
+{
+    return *gpio_data;
+}
+#ifdef PULSE_METER_SELFTEST
+#include &lt;assert.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+    volatile uint32_t mock_data = 123;
+    assert(pulse_meter_read(&amp;mock_data) == 123u);
+    puts(&quot;PASS pulse_meter_mmio self-test&quot;);
+    return 0;
+}
+#endif
+</code></pre></details><details><summary>INTEGRATION.md</summary><p><a href="source/INTEGRATION.md" download>개별 원본 파일 받기</a></p><pre><code># FPGA SoC pulse counter — first-party starter
+
+Architecture: synchronized external pulse -&gt; 32-bit counter snapshot -&gt; AXI GPIO
+input -&gt; MicroBlaze V application reads DATA register. The AXI GPIO, CPU,
+clock/reset and board pins are **conceptual only** until a reproducible
+Vivado/Vitis design and XDC are added.
+
+## Files
+- rtl/pulse_event_meter.v — synthesizable counter, one-second window at 100MHz
+- tb/tb_pulse_event_meter.v — Icarus Verilog self-checking simulation
+- sw/pulse_meter_mmio.c — application helper, with native C self-test
+
+## Timing
+WINDOW_CYCLES=100000000 at 100 MHz means one update per 1 second.
+At WINDOW_CYCLES=64 in simulation, a 64-clock test window is used.
+event_count is a pulse count per window, not necessarily RPM.
+For a sensor producing P pulses per revolution, RPM is
+event_count * 60 / P, if the window is one second.
+
+## Physical constraints
+FPGA I/O is 3.3V. Route external pulses through a compatible conditioned
+driver. Physical pin assignments, interrupt registration and real address map
+must come from a tested board design; no invented address or XDC.
+
+## Run in repository root
+```bash
+iverilog -g2012 -s tb_pulse_event_meter -o /tmp/counter.vvp   capstones/instrument_pulse_counter/rtl/pulse_event_meter.v   capstones/instrument_pulse_counter/tb/tb_pulse_event_meter.v
+vvp /tmp/counter.vvp
+cc -std=c11 -DPULSE_METER_SELFTEST   capstones/instrument_pulse_counter/sw/pulse_meter_mmio.c -o /tmp/counter_sw
+/tmp/counter_sw
+```
+</code></pre></details></section><section id="verification"><h2>5. 검증 결과</h2><p class="notice">초기 자동 생성 시 독립 RTL만 테스트합니다. Vivado·MicroBlaze V·AXI 실물 프로젝트, 실제 핀, 합성·보드 검증 없음.</p><div class="scroll"><table><thead><tr><th>검증 항목</th><th>현재 기록</th></tr></thead><tbody><tr><td>설계 구조·연결 검사</td><td>통과</td></tr><tr><td>Verilog RTL 시뮬레이션</td><td>통과</td></tr><tr><td>C 프로그램 자체 테스트</td><td>통과</td></tr><tr><td>RTL 합성</td><td>미실시</td></tr><tr><td>FPGA 구현</td><td>미실시</td></tr><tr><td>타이밍 검사</td><td>미실시</td></tr><tr><td>실제 FPGA 보드 테스트</td><td>미실시</td></tr></tbody></table></div><p class="meta">검증 상태는 실행 기록에 근거하며, 시뮬레이션 통과가 보드에서의 동작을 보증하지 않습니다.</p><p><a href="verification.json">검증 로그·명령 및 증거 확인</a></p></section><section id="provenance"><h2>6. 출처·연결 안전</h2><h3>참고 및 작성 근거</h3><p>Original first-party module; the referenced repository is metadata-only inspiration: https://github.com/mert137/An-FPGA-Based-Oscilloscope at 67da0cd616e5bca8295d47b97c81a768ece69aab</p><h3>전기적 안전·제약</h3><p class="notice">5V/12V 신호·모터전원·유도성 부하는 Basys3 FPGA 핀에 직접 연결 금지. 전압 변환, 풀업, 전류 제한, 접지 또는 절연을 검증하세요.</p><p><a href="source_manifest.json">소스 파일 해시·작성 근거</a></p></section><p><a href="../index.html">← 전체 캡스톤 목차로</a></p><footer>설계 구상과 실제 FPGA 보드 검증은 구분됩니다. 출처·소스·검증 결과를 반드시 확인하세요.</footer></main></div></body></html>

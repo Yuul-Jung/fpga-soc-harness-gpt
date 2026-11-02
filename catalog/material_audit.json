@@ -1,13 +1,34 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-02T12:29:44.657772+00:00",
-  "existing_capstones_rechecked": 1,
-  "pages_and_diagrams_checked": 28,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-02T12:40:52.344217+00:00",
+  "existing_capstones_rechecked": 2,
+  "pages_and_diagrams_checked": 31,
+  "generated_outputs_regenerated": 13,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/instrument_pulse_counter/connections.json",
+    "capstones/instrument_pulse_counter/source_manifest.json",
+    "capstones/instrument_pulse_counter/system.svg",
+    "capstones/instrument_pulse_counter/bom.csv",
+    "capstones/instrument_pulse_counter/source_bundle.zip",
+    "capstones/instrument_pulse_counter/design.json",
+    "capstones/instrument_pulse_counter/index.html",
+    "capstones/instrument_pulse_counter/source/INTEGRATION.md",
+    "capstones/instrument_pulse_counter/source/tb/tb_pulse_event_meter.v",
+    "capstones/instrument_pulse_counter/source/sw/pulse_meter_mmio.c",
+    "capstones/instrument_pulse_counter/source/rtl/pulse_event_meter.v"
+  ],
   "source_rtl_modified": false,
   "capstones": [
+    {
+      "id": "instrument_pulse_counter",
+      "rtl": "pass",
+      "software": "pass",
+      "board": "not_run",
+      "result": "pass"
+    },
     {
       "id": "smart_fan",
       "rtl": "pass",

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "instrument_pulse_counter",
+  "title": "FPGA SoC 캡스톤 — 펄스·회전수 계측 주변장치",
+  "summary": "Basys3 100MHz 클럭에서 2-FF 동기화 및 1초 이벤트 계측을 수행하는 독립 RTL. MicroBlaze V + AXI GPIO 읽기 포트로 확장하는 SoC 설계안이며 Vivado Block Design과 보드 실험은 미완료입니다.",
+  "board": "Basys3, 100MHz, 3.3V I/O",
+  "status": "original RTL + testbench implemented; MicroBlaze V connection proposed",
+  "modules": [
+    {
+      "id": "clk_src",
+      "name": "basys3_clock_reset",
+      "inputs": [],
+      "outputs": [
+        "clk",
+        "rst"
+      ]
+    },
+    {
+      "id": "cpu",
+      "name": "microblaze_v",
+      "inputs": [
+        "clk",
+        "reset"
+      ],
+      "outputs": [
+        "m_axi"
+      ]
+    },
+    {
+      "id": "axi_gpio",
+      "name": "axi_gpio_status",
+      "inputs": [
+        "s_axi",
+        "gpio_io_i"
+      ],
+      "outputs": []
+    },
+    {
+      "id": "event_meter",
+      "name": "pulse_event_meter",
+      "inputs": [
+        "clk",
+        "rst",
+        "pulse_in"
+      ],
+      "outputs": [
+        "event_count",
+        "sample_valid"
+      ]
+    },
+    {
+      "id": "input_stage",
+      "name": "external_3v3_pulse_interface",
+      "inputs": [],
+      "outputs": [
+        "pulse_out"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "clk_src.clk",
+      "to": "cpu.clk",
+      "note": "Conceptual 100MHz clock, IP/clocking not yet built"
+    },
+    {
+      "from": "clk_src.rst",
+      "to": "cpu.reset",
+      "note": "Actual reset polarity must match CPU IP"
+    },
+    {
+      "from": "clk_src.clk",
+      "to": "event_meter.clk",
+      "note": "Single domain"
+    },
+    {
+      "from": "clk_src.rst",
+      "to": "event_meter.rst",
+      "note": "Synchronous active-high reset"
+    },
+    {
+      "from": "cpu.m_axi",
+      "to": "axi_gpio.s_axi",
+      "note": "AXI interconnect omitted in this conceptual view"
+    },
+    {
+      "from": "event_meter.event_count",
+      "to": "axi_gpio.gpio_io_i",
+      "note": "32-bit GPIO input; AXI address from Vitis BSP, not guessed"
+    },
+    {
+      "from": "input_stage.pulse_out",
+      "to": "event_meter.pulse_in",
+      "note": "3.3V-conditioned asynchronous pulse, synchronized internally"
+    }
+  ],
+  "source_files": [
+    "rtl/pulse_event_meter.v",
+    "tb/tb_pulse_event_meter.v",
+    "sw/pulse_meter_mmio.c",
+    "INTEGRATION.md"
+  ],
+  "bom": [
+    {
+      "part": "Basys3",
+      "quantity": "1",
+      "interface": "3.3V I/O 100MHz",
+      "notes": "Official XDC must be checked"
+    },
+    {
+      "part": "3.3V pulse generator or isolated conditioned sensor",
+      "quantity": "1",
+      "interface": "digital pulse",
+      "notes": "No direct 5V/12V connection"
+    }
+  ],
+  "verification_notice": "초기 자동 생성 시 독립 RTL만 테스트합니다. Vivado·MicroBlaze V·AXI 실물 프로젝트, 실제 핀, 합성·보드 검증 없음.",
+  "safety_notice": "5V/12V 신호·모터전원·유도성 부하는 Basys3 FPGA 핀에 직접 연결 금지. 전압 변환, 풀업, 전류 제한, 접지 또는 절연을 검증하세요.",
+  "provenance": "Original first-party module; the referenced repository is metadata-only inspiration: https://github.com/mert137/An-FPGA-Based-Oscilloscope at 67da0cd616e5bca8295d47b97c81a768ece69aab",
+  "test_spec": {
+    "rtl_top": "tb_pulse_event_meter",
+    "rtl_files": [
+      "rtl/pulse_event_meter.v",
+      "tb/tb_pulse_event_meter.v"
+    ],
+    "rtl_success": "PASS pulse_event_meter",
+    "c_file": "sw/pulse_meter_mmio.c",
+    "c_define": "PULSE_METER_SELFTEST",
+    "c_success": "PASS pulse_meter_mmio self-test"
+  }
+}

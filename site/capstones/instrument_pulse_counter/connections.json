@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "id": "clk_src",
+      "name": "basys3_clock_reset",
+      "inputs": [],
+      "outputs": [
+        "clk",
+        "rst"
+      ]
+    },
+    {
+      "id": "cpu",
+      "name": "microblaze_v",
+      "inputs": [
+        "clk",
+        "reset"
+      ],
+      "outputs": [
+        "m_axi"
+      ]
+    },
+    {
+      "id": "axi_gpio",
+      "name": "axi_gpio_status",
+      "inputs": [
+        "s_axi",
+        "gpio_io_i"
+      ],
+      "outputs": []
+    },
+    {
+      "id": "event_meter",
+      "name": "pulse_event_meter",
+      "inputs": [
+        "clk",
+        "rst",
+        "pulse_in"
+      ],
+      "outputs": [
+        "event_count",
+        "sample_valid"
+      ]
+    },
+    {
+      "id": "input_stage",
+      "name": "external_3v3_pulse_interface",
+      "inputs": [],
+      "outputs": [
+        "pulse_out"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "clk_src.clk",
+      "to": "cpu.clk",
+      "note": "Conceptual 100MHz clock, IP/clocking not yet built"
+    },
+    {
+      "from": "clk_src.rst",
+      "to": "cpu.reset",
+      "note": "Actual reset polarity must match CPU IP"
+    },
+    {
+      "from": "clk_src.clk",
+      "to": "event_meter.clk",
+      "note": "Single domain"
+    },
+    {
+      "from": "clk_src.rst",
+      "to": "event_meter.rst",
+      "note": "Synchronous active-high reset"
+    },
+    {
+      "from": "cpu.m_axi",
+      "to": "axi_gpio.s_axi",
+      "note": "AXI interconnect omitted in this conceptual view"
+    },
+    {
+      "from": "event_meter.event_count",
+      "to": "axi_gpio.gpio_io_i",
+      "note": "32-bit GPIO input; AXI address from Vitis BSP, not guessed"
+    },
+    {
+      "from": "input_stage.pulse_out",
+      "to": "event_meter.pulse_in",
+      "note": "3.3V-conditioned asynchronous pulse, synchronized internally"
+    }
+  ]
+}

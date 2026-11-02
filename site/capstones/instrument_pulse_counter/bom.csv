@@ -1,0 +1,3 @@
+part,quantity,interface,notes
+Basys3,1,3.3V I/O 100MHz,Official XDC must be checked
+3.3V pulse generator or isolated conditioned sensor,1,digital pulse,No direct 5V/12V connection

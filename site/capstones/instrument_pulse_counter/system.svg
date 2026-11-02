@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 402" role="img" aria-label="Structured SoC block diagram">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#6b8197"/></marker></defs>
+<line x1="160" y1="49" x2="480" y2="49" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clk_src.clk → cpu.clk</title></line>
+<line x1="160" y1="49" x2="480" y2="49" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clk_src.rst → cpu.reset</title></line>
+<line x1="160" y1="49" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clk_src.clk → event_meter.clk</title></line>
+<line x1="160" y1="49" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clk_src.rst → event_meter.rst</title></line>
+<line x1="480" y1="49" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>cpu.m_axi → axi_gpio.s_axi</title></line>
+<line x1="480" y1="167" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>event_meter.event_count → axi_gpio.gpio_io_i</title></line>
+<line x1="160" y1="285" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>input_stage.pulse_out → event_meter.pulse_in</title></line>
+<rect x="20" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="46" fill="#173b58" font-size="14" font-weight="600">basys3_clock_reset</text>
+<text x="32" y="64" fill="#47657c" font-size="11">clk_src</text>
+<rect x="340" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="46" fill="#173b58" font-size="14" font-weight="600">microblaze_v</text>
+<text x="352" y="64" fill="#47657c" font-size="11">cpu</text>
+<rect x="20" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="164" fill="#173b58" font-size="14" font-weight="600">axi_gpio_status</text>
+<text x="32" y="182" fill="#47657c" font-size="11">axi_gpio</text>
+<rect x="340" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="164" fill="#173b58" font-size="14" font-weight="600">pulse_event_meter</text>
+<text x="352" y="182" fill="#47657c" font-size="11">event_meter</text>
+<rect x="20" y="260" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="282" fill="#173b58" font-size="14" font-weight="600">external_3v3_pulse_interface</text>
+<text x="32" y="300" fill="#47657c" font-size="11">input_stage</text>
+</svg>
