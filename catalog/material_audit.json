@@ -1,1 +1,26 @@
-{"schema_version":1,"timestamp":null,"existing_capstones_rechecked":0,"errors":[],"status":"NOT_RUN"}
+{
+  "schema_version": 1,
+  "stage": "research",
+  "timestamp": "2026-11-02T10:51:20.951480+00:00",
+  "existing_capstones_rechecked": 1,
+  "pages_and_diagrams_checked": 28,
+  "generated_outputs_regenerated": 0,
+  "changed_generated_paths": [],
+  "source_rtl_modified": false,
+  "capstones": [
+    {
+      "id": "smart_fan",
+      "rtl": "pass",
+      "software": "pass",
+      "board": "not_run",
+      "result": "pass"
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "next_improvements": [
+    "Verify real hardware pin maps and IO voltage before board experiment",
+    "Add board-specific Vivado/Quartus/Radiant synthesis evidence",
+    "Do not change first-party RTL without a reviewed PR"
+  ]
+}
