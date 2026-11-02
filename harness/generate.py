@@ -128,15 +128,50 @@ def svg_diagram(design):
     return "\n".join(parts)
 
 
+def source_archive(folder, design, dest):
+    """Deterministic, offline runnable bundle of explicitly listed local files."""
+    out = dest / "source_bundle.zip"
+    prefix = design["id"] + "/"
+    def put(z, name, data):
+        info = zipfile.ZipInfo(prefix + name, date_time=(2020, 1, 1, 0, 0, 0))
+        info.compress_type = zipfile.ZIP_DEFLATED
+        info.external_attr = 0o644 << 16
+        z.writestr(info, data)
+    with zipfile.ZipFile(out, "w") as z:
+        put(z, "design.json", (folder / "design.json").read_bytes())
+        for rel in design["source_files"]:
+            put(z, rel, safe_local(folder, rel).read_bytes())
+    return out
+
+
+def verification_rows(status):
+    labels = [
+        ("static_design", "설계 구조·연결 검사"),
+        ("rtl_simulation", "Verilog RTL 시뮬레이션"),
+        ("software_test", "C 프로그램 자체 테스트"),
+        ("synthesis", "RTL 합성"),
+        ("implementation", "FPGA 구현"),
+        ("timing", "타이밍 검사"),
+        ("board_test", "실제 FPGA 보드 테스트"),
+    ]
+    meaning = {"pass": "통과", "fail": "실패", "not_run": "미실시",
+               "generated": "산출물 생성", "skip": "건너뜀"}
+    return [[esc(korean), esc(meaning.get(status.get(key, "not_run"),
+            status.get(key, "not_run")))] for key, korean in labels]
+
+
 def render_capstone(folder):
     design = json.loads((folder / "design.json").read_text(encoding="utf-8"))
     validate_design(design, folder)
     dest = SITE / "capstones" / design["id"]
     dest.mkdir(parents=True, exist_ok=True)
+    (dest / "design.json").write_text(
+        json.dumps(design, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (dest / "system.svg").write_text(svg_diagram(design), encoding="utf-8")
     (dest / "connections.json").write_text(json.dumps(
         {"schema_version": 1, "modules": design["modules"],
-         "connections": design["connections"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+         "connections": design["connections"]},
+        ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     with (dest / "bom.csv").open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["part", "quantity", "interface", "notes"])
         writer.writeheader()
@@ -148,37 +183,95 @@ def render_capstone(folder):
         out = dest / "source" / relative
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, out)
-        sources.append({"path": relative, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        sources.append({"path": relative,
+                        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                         "origin": "first_party_local"})
     (dest / "source_manifest.json").write_text(json.dumps(
-        {"design_id": design["id"], "source_files": sources}, indent=2) + "\n", encoding="utf-8")
+        {"design_id": design["id"], "source_files": sources},
+        indent=2) + "\n", encoding="utf-8")
+    source_archive(folder, design, dest)
     status_path = dest / "verification.json"
-    # Do not erase a real test result when regenerating documentation.
     if not status_path.exists():
         status_path.write_text(json.dumps({
             "static_design": "generated", "rtl_simulation": "not_run",
-            "synthesis": "not_run", "implementation": "not_run", "board_test": "not_run",
-            "evidence": []}, indent=2) + "\n", encoding="utf-8")
-    module_rows = [[esc(m["id"]), esc(m["name"]), esc(", ".join(m["inputs"])),
-                    esc(", ".join(m["outputs"]))] for m in design["modules"]]
+            "software_test": "not_run", "synthesis": "not_run",
+            "implementation": "not_run", "timing": "not_run",
+            "board_test": "not_run", "evidence": []},
+            indent=2) + "\n", encoding="utf-8")
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+
+    module_rows = [[esc(m["id"]), esc(m["name"]),
+                    esc(", ".join(m["inputs"])), esc(", ".join(m["outputs"]))]
+                   for m in design["modules"]]
     net_rows = [[esc(n["from"]), esc(n["to"]), esc(n.get("note", ""))]
                 for n in design["connections"]]
-    file_rows = [[f'<a href="source/{esc(p)}">{esc(p)}</a>'] for p in design["source_files"]]
-    bom_rows = [[esc(p.get(k, "")) for k in ("part", "quantity", "interface", "notes")]
+    bom_rows = [[esc(p.get(k, "")) for k in
+                 ("part", "quantity", "interface", "notes")]
                 for p in design.get("bom", [])]
-    content = "<h1>" + esc(design["title"]) + "</h1><p>" + esc(design["summary"]) + "</p>"
-    content += '<section><h2>구조도 · 실제 포트명 기준</h2><img src="system.svg" alt="SoC block diagram">'
-    content += '<p><a href="connections.json">기계 판독 가능한 접속 계통도 JSON</a></p>'
-    content += table(["모듈 ID", "코드 모듈 / IP", "입력", "출력"], module_rows) + "</section>"
-    content += "<section><h2>신호 연결표</h2>" + table(["출발", "도착", "연결 유의"], net_rows) + "</section>"
-    content += "<section><h2>실행소스</h2>" + table(["파일"], file_rows) + "</section>"
-    content += "<section><h2>하드웨어 / BOM</h2>" + table(
-        ["부품", "수량", "인터페이스", "설명"], bom_rows) + '<p><a href="bom.csv">BOM.csv 다운로드</a></p></section>'
-    content += '<section><h2>검증 및 제약</h2><p class="warning">' + esc(
-        design["verification_notice"]) + '</p><p><a href="verification.json">현재 검증 결과 보기</a></p>'
-    content += "<p>" + esc(design["safety_notice"]) + "</p></section>"
-    content += '<section><h2>참고 출처</h2><p>' + esc(design["provenance"]) + "</p></section>"
-    (dest / "index.html").write_text(page(design["title"], content, "../../index.html"), encoding="utf-8")
+    nav = [
+        ("전체 자료실", "../../index.html"),
+        ("모든 캡스톤", "../index.html"),
+        ("과제 개요", "#overview"),
+        ("시스템 구조도", "#diagram"),
+        ("신호 연결표", "#signals"),
+        ("하드웨어·부품", "#hardware"),
+        ("전체 실행 소스", "#source"),
+        ("검증 결과", "#verification"),
+        ("출처·유의사항", "#provenance"),
+    ]
+    content = ('<div class="hero" id="overview"><div class="eyebrow">CAPSTONE / '
+               + esc(design["id"]) + '</div><h1>' + esc(design["title"])
+               + '</h1><p>' + esc(design["summary"]) + '</p>'
+               + '<p class="meta"><strong>대상:</strong> ' + esc(design["board"])
+               + ' · <strong>단계:</strong> ' + esc(design["status"]) + '</p></div>')
+    content += ('<div class="links"><a href="source_bundle.zip" download>전체 실행소스 ZIP</a>'
+                '<a href="system.svg">구조도 SVG</a>'
+                '<a href="connections.json">연결정보 JSON</a>'
+                '<a href="design.json">Design IR</a>'
+                '<a href="verification.json">검증 원본 JSON</a></div>')
+    content += ('<section id="diagram"><h2>1. 전체 시스템 구조도</h2>'
+                '<p class="muted">모듈·신호의 논리적 연결을 표시합니다. '
+                'FPGA 외부 전기회로도나 실제 보드 핀 배선도는 아닙니다.</p>'
+                '<a href="system.svg" title="원본 구조도 보기">'
+                '<img class="diagram" src="system.svg" alt="캡스톤 디지털 시스템 연결 구조도"></a>'
+                '<h3>모듈별 입출력</h3>'
+                + table(["모듈 ID", "모듈명", "입력", "출력"], module_rows) + '</section>')
+    content += ('<section id="signals"><h2>2. 신호 연결표</h2>'
+                + table(["송신 포트", "수신 포트", "설계 및 검증 조건"], net_rows)
+                + '<p><a href="connections.json">구조화된 신호 연결정보 다운로드</a></p></section>')
+    content += ('<section id="hardware"><h2>3. 하드웨어 구성·부품</h2>'
+                + table(["부품", "수량", "신호·전원", "확인 사항"], bom_rows)
+                + '<p><a href="bom.csv">BOM.csv 다운로드</a></p></section>')
+    content += ('<section id="source"><h2>4. 실행소스 전체 보기</h2>'
+                '<p>코드 원본은 보존합니다. 아래에서 펼쳐 읽거나 파일별로 열 수 있습니다. '
+                '<a href="source_bundle.zip" download>전체 소스 ZIP 받기</a></p>')
+    for i, relative in enumerate(design["source_files"]):
+        path = safe_local(folder, relative)
+        view = '<p>파일 내용 미리보기를 지원하지 않습니다. 원본 파일을 여세요.</p>'
+        if path.stat().st_size <= 250_000 and path.suffix.lower() in (
+                ".v", ".sv", ".vhd", ".vhdl", ".c", ".h", ".md", ".txt", ".tcl"):
+            code = esc(path.read_text(encoding="utf-8"))
+            view = '<pre><code>' + code + '</code></pre>'
+        content += ('<details' + (' open' if i == 0 else '') + '><summary>'
+                    + esc(relative) + '</summary>'
+                    + '<p><a href="source/' + esc(relative)
+                    + '" download>개별 원본 파일 받기</a></p>'
+                    + view + '</details>')
+    content += '</section>'
+    content += ('<section id="verification"><h2>5. 검증 결과</h2>'
+                '<p class="notice">' + esc(design["verification_notice"]) + '</p>'
+                + table(["검증 항목", "현재 기록"], verification_rows(status))
+                + '<p class="meta">검증 상태는 실행 기록에 근거하며, '
+                '시뮬레이션 통과가 보드에서의 동작을 보증하지 않습니다.</p>'
+                + '<p><a href="verification.json">검증 로그·명령 및 증거 확인</a></p></section>')
+    content += ('<section id="provenance"><h2>6. 출처·연결 안전</h2>'
+                '<h3>참고 및 작성 근거</h3><p>' + esc(design["provenance"])
+                + '</p><h3>전기적 안전·제약</h3><p class="notice">'
+                + esc(design["safety_notice"]) + '</p>'
+                '<p><a href="source_manifest.json">소스 파일 해시·작성 근거</a></p></section>')
+    content += '<p><a href="../index.html">← 전체 캡스톤 목차로</a></p>'
+    (dest / "index.html").write_text(
+        page(design["title"], content, "../../index.html", nav), encoding="utf-8")
     return design
 
 
