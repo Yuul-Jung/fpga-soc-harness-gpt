@@ -27,7 +27,7 @@ th,td{border:1px solid #dce4ed;padding:8px;text-align:left;vertical-align:top}
 th{background:#edf3f7}.scroll{overflow-x:auto}a{color:#1263a1}
 small,.muted{color:#607086}svg{max-width:100%;height:auto}code{background:#eef2f7;padding:2px 5px}
 .warning{border-left:4px solid #a36b1f;padding-left:12px}
-</style></head><body><header><a href="""" + esc(relative_home) + """">FPGA SoC Capstone Harness</a></header>
+</style></head><body><header><a href='""" + esc(relative_home) + """'>FPGA SoC Capstone Harness</a></header>
 <main>""" + content + "</main></body></html>"
 
 
