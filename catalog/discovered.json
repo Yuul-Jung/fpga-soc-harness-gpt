@@ -1,1 +1,369 @@
-{"schema_version":1,"generated_at":null,"results":[],"errors":[]}
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02",
+  "results": [
+    {
+      "id": "shubhayu-das--vl504-project",
+      "repository": "Shubhayu-Das/VL504-project",
+      "url": "https://github.com/Shubhayu-Das/VL504-project",
+      "description": "Basys3 OV7670 camera VGA/UART interface",
+      "vendor_hint": "video",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "BSD-3-Clause",
+      "reuse_policy": "review_for_reuse",
+      "default_branch": "main",
+      "source_tree_sha": "49ef56894501d2b3313bda5897c770ca753bdd64",
+      "last_upstream_update": "2025-12-09T13:56:03Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 15,
+        "hdl_examples": [
+          "src/our-sccb/sccb_configuration.v",
+          "src/ov7670_with_vga/ov7670/OV7670_configuration.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "constraints/ov7670_constraints.xdc",
+          "constraints/vga_over_uart_constraints.xdc",
+          "simulation/sccb/sccb_configuration_tb.v"
+        ],
+        "has_constraints": true,
+        "has_testbench": true
+      },
+      "score": 62,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "meiniki--logip",
+      "repository": "meiniKi/logIP",
+      "url": "https://github.com/meiniKi/logIP",
+      "description": "FPGA logic analyzer IP, Basys3 demo and simulation",
+      "vendor_hint": "instrument",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "GPL-3.0",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "d605ad54193c56a2857e27225a16144851acbad6",
+      "last_upstream_update": "2026-02-07T20:06:17Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 59,
+        "hdl_examples": [
+          "demo/basys3/src/top.sv",
+          "src/core.sv"
+        ],
+        "evidence_files": [
+          "README.md",
+          "demo/basys3/constr/main.xdc",
+          "tb/core/core_tb.sv",
+          "scripts/sim_create.tcl"
+        ],
+        "has_constraints": true,
+        "has_testbench": true
+      },
+      "score": 52,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "rsoleym--fpga-camera-pipeline",
+      "repository": "RSoleym/fpga-camera-pipeline",
+      "url": "https://github.com/RSoleym/fpga-camera-pipeline",
+      "description": "Basys3 OV7670 async FIFO CDC RGB/VGA and UVM testing",
+      "vendor_hint": "video",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "bce328efa309b11fba0687fd2b137ac86846576e",
+      "last_upstream_update": "2026-05-11T00:38:34Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 68,
+        "hdl_examples": [
+          "rtl/fifo_to_frame_buffer/async_fifo.sv",
+          "rtl/fifo_to_frame_buffer/camera_stream_packager.sv"
+        ],
+        "evidence_files": [
+          "README.md",
+          "constraints/Basys-3-Master.xdc",
+          "sim/tb/async_fifo_test/async_fifo_tb.sv",
+          "sim/uvm/tb_vs_buffer_top.sv"
+        ],
+        "has_constraints": true,
+        "has_testbench": true
+      },
+      "score": 52,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "taeseong-dev--axi4-lite-custom-peripherals",
+      "repository": "taeseong-dev/axi4-lite-custom-peripherals",
+      "url": "https://github.com/taeseong-dev/axi4-lite-custom-peripherals",
+      "description": "Basys3 MicroBlaze AXI4-Lite I2C/SPI peripherals",
+      "vendor_hint": "communication",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "54ffdafd138ec594500b5c33f5f6cede2558bc4a",
+      "last_upstream_update": "2026-10-03T18:23:32Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 12,
+        "hdl_examples": [
+          "src/i2c/rtl/axi_i2c_v1_0.v",
+          "src/i2c/rtl/axi_i2c_v1_0_S00_AXI.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "src/i2c/fpga/Master/basys3_i2c_master.xdc",
+          "src/i2c/fpga/Master/design_1_bd.tcl",
+          "src/i2c/tb/tb_axi_i2c.sv"
+        ],
+        "has_constraints": true,
+        "has_testbench": true
+      },
+      "score": 52,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "angelojacobo--ulx3s_fpga_sobel_edge_detection_ov7670",
+      "repository": "AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+      "url": "https://github.com/AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+      "description": "OV7670 camera Sobel edge detection on ULX3S",
+      "vendor_hint": "video",
+      "vendor_family": "Lattice",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "default_branch": "main",
+      "source_tree_sha": "693dacba2f8450417d9944f1803255a44c842042",
+      "last_upstream_update": "2026-09-21T13:50:46Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 15,
+        "hdl_examples": [
+          "src/asyn_fifo.v",
+          "src/camera_interface.v",
+          "src/hdmi_device.v",
+          "src/i2c_top.v"
+        ],
+        "evidence_files": [
+          "Makefile",
+          "README.md",
+          "constraint/ulx3s_v20.lpf"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 48,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "jagumiel--guitar-pedal-effects-on-fpga",
+      "repository": "jagumiel/Guitar-Pedal-Effects-on-FPGA",
+      "url": "https://github.com/jagumiel/Guitar-Pedal-Effects-on-FPGA",
+      "description": "DE1-SoC audio effects, VHDL and Nios II/C",
+      "vendor_hint": "instrument",
+      "vendor_family": "Intel/Altera",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "default_branch": "master",
+      "source_tree_sha": "9db82033030dd05d46316c18b819e9b066f9eb56",
+      "last_upstream_update": "2026-07-22T19:56:21Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 65,
+        "hdl_examples": [
+          "FPGA-Stompbox/TFG_Stompbox/AD7928_cyclic.vhd",
+          "FPGA-Stompbox/TFG_Stompbox/au_in.vhd",
+          "FPGA-Stompbox/TFG_Stompbox/au_out.vhd"
+        ],
+        "evidence_files": [
+          "README.md",
+          "FPGA-Stompbox/TFG_Stompbox/pin_assign/DE1_SoC_pins.qsf"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 46,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "akifmohamed--aes-crypto-soc",
+      "repository": "akifmohamed/AES-Crypto-SoC",
+      "url": "https://github.com/akifmohamed/AES-Crypto-SoC",
+      "description": "AES-128 accelerator, Basys3 RTL and physical design",
+      "vendor_hint": "security",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "b7a0002bf507ebb5921085198481dab6e3c1d427",
+      "last_upstream_update": "2026-08-24T14:44:18Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 39,
+        "hdl_examples": [
+          "fpga/aes_soc_fpga.v",
+          "pnr/src/aes_core.v",
+          "pnr/src/aes_enc_round.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "fpga/basys3.xdc",
+          "dft/scan_probe.tcl"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 38,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "mert137--an-fpga-based-oscilloscope",
+      "repository": "mert137/An-FPGA-Based-Oscilloscope",
+      "url": "https://github.com/mert137/An-FPGA-Based-Oscilloscope",
+      "description": "DE1-SoC FPGA oscilloscope: ADC, RAM, VGA",
+      "vendor_hint": "instrument",
+      "vendor_family": "Intel/Altera",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "default_branch": "master",
+      "source_tree_sha": "67da0cd616e5bca8295d47b97c81a768ece69aab",
+      "last_upstream_update": "2024-10-13T03:22:11Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 6,
+        "hdl_examples": [
+          "adc.v",
+          "computation.v",
+          "ram.v",
+          "top.v",
+          "vga.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "oscilloscope.qsf"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 38,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "yifeistarwang-coder--robomotion-fpga",
+      "repository": "yifeistarwang-coder/RoboMotion-FPGA",
+      "url": "https://github.com/yifeistarwang-coder/RoboMotion-FPGA",
+      "description": "Multi-module FPGA mobile robot/robot arm controller",
+      "vendor_hint": "motor",
+      "vendor_family": "AMD/Xilinx",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "4b47a68aefca3c9d8b02c1cd4f0398830418058d",
+      "last_upstream_update": "2026-10-26T10:15:22Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 56,
+        "hdl_examples": [
+          "verilog/rtl/comm/uart_arm_ble.v",
+          "verilog/rtl/comm/uart_ble.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "constrain/robot_top_constrain.xdc"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 36,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "jssaucedo--fpga-elevator-controller",
+      "repository": "JSSaucedo/FPGA-Elevator-Controller",
+      "url": "https://github.com/JSSaucedo/FPGA-Elevator-Controller",
+      "description": "3-floor elevator: stepper, IR sensors, FSM, seven-segment",
+      "vendor_hint": "motor",
+      "vendor_family": "Intel/Altera",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "MIT",
+      "reuse_policy": "review_for_reuse",
+      "default_branch": "main",
+      "source_tree_sha": "5a385440cdebbac140fad7bb6aedb302b99b1eb9",
+      "last_upstream_update": "2026-05-21T16:01:03Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 4,
+        "hdl_examples": [
+          "elevador_top.v",
+          "maquina_estados_elevador.v",
+          "piso_display.v",
+          "stepper_driver.v"
+        ],
+        "evidence_files": [
+          "ELEVADOR.qsf",
+          "README.md"
+        ],
+        "has_constraints": true,
+        "has_testbench": false
+      },
+      "score": 34,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    },
+    {
+      "id": "frobino--de1-soc",
+      "repository": "frobino/de1-soc",
+      "url": "https://github.com/frobino/de1-soc",
+      "description": "DE1-SoC custom peripheral with ARM Linux device driver",
+      "vendor_hint": "communication",
+      "vendor_family": "Intel/Altera",
+      "classification_method": "manual_seed_verified_tree_2026-11-02",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "master",
+      "source_tree_sha": "af886dd1b5056bc7807e852e2b7248ee5e135df0",
+      "last_upstream_update": "2025-07-26T14:58:41Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 4,
+        "hdl_examples": [
+          "rtl/blinker.v",
+          "rtl/delay_ctrl.v",
+          "rtl/oneshot.v",
+          "rtl/sockit_test.v"
+        ],
+        "evidence_files": [
+          "README.md",
+          "linux_software/README"
+        ],
+        "has_constraints": false,
+        "has_testbench": false
+      },
+      "score": 12,
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02"
+    }
+  ],
+  "errors": []
+}
