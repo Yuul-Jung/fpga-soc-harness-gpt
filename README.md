@@ -2,6 +2,21 @@
 
 AMD/Xilinx · Intel/Altera · Lattice의 **CPU 외 주변장치·캡스톤 자료**를 자동 조사하고, 축적한 결과를 반복 검증하여 구조화된 캡스톤을 만드는 하네스입니다.
 
+## HTML 온라인 교재 열람
+
+**전체 메인 HTML:** [종합 자료실 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/index.html) · [원본 index.html](site/index.html)
+
+**캡스톤 목록:** [과제별 HTML 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/capstones/index.html) · [원본 목록](site/capstones/index.html)
+
+**예제: 스마트 팬·PWM:** [상세 HTML 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/capstones/smart_fan/index.html) · [원본](site/capstones/smart_fan/index.html)
+
+위 미리보기는 **공개 파일을 제3자 프리뷰 서비스로 가져오는 임시 방법**입니다. 공개 저장소 외 민감한 문서를 입력하지 마세요. 정식 사이트는 GitHub Pages를 활성화하면 `https://yuul-jung.github.io/fpga-soc-harness-gpt/`가 됩니다. **Pages가 활성화되었다는 확인 전까지 해당 주소를 운영 중이라고 단정하지 않습니다.**
+
+- 모든 `capstones/<id>/design.json`에서 `site/index.html`, `site/capstones/index.html`, `site/capstones/<id>/index.html`을 생성합니다.
+- 과제별 HTML에 전체 RTL·C 소스, 모듈 계통도 SVG, 신호 연결표, BOM, 검증 결과, `source_bundle.zip`을 수록합니다.
+- GitHub Actions 1h/2h/4h 실행 때 해당 HTML과 과거 자료를 다시 생성·검증합니다.
+- 실사용 웹사이트 활성화: 저장소 **Settings → Pages → Source: GitHub Actions**, **Settings → Secrets and variables → Actions → Variables → ENABLE_PAGES=true** 설정.
+
 ## 1h → 2h → 4h 자동 순환
 
 | 단계 | 실행 주기 | 주요 결과 |

@@ -90,9 +90,7 @@ def perform(stage="review", now=None):
     # Safe repair: regenerate *only* HTML/SVG/JSON/BOM and first-party copies
     # using approved local design.json, without touching source RTL/design.
     regenerate()
-    after = surface_manifest()
-    repaired_or_updated = [p for p in after if before.get(p) != after[p]]
-    problems, html_svg_items = inspect_site()
+    problems = []
     capstone_results = []
     for path in sorted((ROOT / "capstones").glob("*/design.json")):
         try:
@@ -106,6 +104,13 @@ def perform(stage="review", now=None):
         except (OSError, ValueError, KeyError, RuntimeError) as exc:
             problems.append("capstone " + path.parent.name + ": " + str(exc))
             capstone_results.append({"id": path.parent.name, "result": "fail"})
+    # Regenerate the human-readable HTML *after* the latest RTL/C verification,
+    # so users see the evidence from this cycle rather than a stale prior run.
+    regenerate()
+    after = surface_manifest()
+    repaired_or_updated = [p for p in after if before.get(p) != after[p]]
+    link_errors, html_svg_items = inspect_site()
+    problems.extend(link_errors)
     report = {
         "schema_version": 1, "stage": stage, "timestamp": now.isoformat(),
         "existing_capstones_rechecked": len(capstone_results),
