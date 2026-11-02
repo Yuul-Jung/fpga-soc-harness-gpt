@@ -20,6 +20,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y iverilog
       - name: Offline Python unit tests
         run: python -m unittest discover -s tests -v
+      - name: Hourly legacy-material regression dry-run
+        run: python -m harness.maintenance --stage research
       - name: Offline two-hour review + four-hour capstone dry-run
         run: |
           python -m harness.review --offline

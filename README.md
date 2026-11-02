@@ -6,7 +6,7 @@ AMD/Xilinx · Intel/Altera · Lattice의 **CPU 외 주변장치·캡스톤 자�
 
 | 단계 | 실행 주기 | 주요 결과 |
 |---|---|---|
-| Creative Research | 매시간 | 보드/응용/프로토콜/검증 증거를 조합한 새 GitHub 자료 검색, 중복 제거, SHA·라이선스 이력 |
+| Creative Research | 매시간 | 새로운 GitHub 자료 검색·중복 제거, SHA·라이선스 이력, **기존 자료 전체 회귀검증 및 파생 문서 자동 보수** |
 | Review & Improve | 2시간마다 | 과거 자료 전체 재검토, 소스·제약·테스트벤치/라이선스 평가, 기존 HTML/구조도/소스 회귀 검증 및 안전한 문서 수정 |
 | Capstone Factory | 4시간마다 | 검증된 내부 IP 템플릿 기반 과제화; **기존 과제 전체도 항상 재검증·개선** |
 
