@@ -5,7 +5,7 @@ GitHub Actions `continuous-pipeline.yml` is the sole scheduled orchestrator.
 
 | Schedule | UTC cron | KST time (UTC+9) | Stage |
 |---|---|---|---|
-| Every hour | `7 * * * *` | every hour :07 | New source exploration |
+| Every hour | `7 * * * *` | every hour :07 | New source exploration **and full existing-material regression/repair** |
 | Every 2 hours | `17 */2 * * *` | 09:17, 11:17, 13:17, ... | Verify discoveries and **all prior courseware** |
 | Every 4 hours | `27 */4 * * *` | 09:27, 13:27, 17:27, ... | Make/review capstone deliverables and recheck **all older projects** |
 
@@ -15,6 +15,8 @@ Schedules are GitHub-hosted, may execute late or skip during GitHub outages, and
 The search intentionally rotates four complementary lenses: implementation, capstone, integration, and evidence; it combines board/FPGA vendor + application + interfaces and periodically uses board-agnostic anchor queries. It prioritizes underrepresented project categories, retains known projects, deduplicates by repository and tracks source tree SHA. Search results are untrusted; contents of external repositories are never executed.
 
 `catalog/research_history.json` contains each query set, counts and search errors. `config/research_matrix.json` is expandable.
+
+Every hourly research run also executes the existing capstone HTML/SVG/source regression and safely regenerates all derived artifacts. The 2h stage additionally evaluates and improves all collected references and proposals.
 
 ## Every 2 hours: verification + safe improvement of old work
 1. Audit **every** known reference for source inventory, license, board, application and evidence.

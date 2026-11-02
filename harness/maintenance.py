@@ -139,7 +139,7 @@ def perform(stage="review", now=None):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["review", "factory"], default="review")
+    parser.add_argument("--stage", choices=["research", "review", "factory"], default="review")
     args = parser.parse_args()
     report = perform(stage=args.stage)
     print("MAINTENANCE", report["status"], "capstones:",
