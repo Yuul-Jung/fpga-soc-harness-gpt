@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-02",
+  "generated_at": "2026-11-02T12:29:44.547942+00:00",
   "proposals": [
     {
       "id": "shubhayu-das--vl504-project",
@@ -28,7 +28,18 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "video",
+      "quality_score": 100,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "meiniki--logip",
@@ -56,7 +67,19 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "instrument",
+      "quality_score": 90,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "rsoleym--fpga-camera-pipeline",
@@ -84,7 +107,19 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "video",
+      "quality_score": 90,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "taeseong-dev--axi4-lite-custom-peripherals",
@@ -111,7 +146,19 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "communication",
+      "quality_score": 90,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "angelojacobo--ulx3s_fpga_sobel_edge_detection_ov7670",
@@ -139,7 +186,19 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "video",
+      "quality_score": 80,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "ULX3S",
+      "vendor_family": "Lattice",
+      "metadata_verified_only": true
     },
     {
       "id": "jagumiel--guitar-pedal-effects-on-fpga",
@@ -167,7 +226,20 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "instrument",
+      "quality_score": 65,
+      "audit_readiness": "needs_research",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Check application/CPU-centric classification by reading actual files",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "DE1-SoC",
+      "vendor_family": "Intel/Altera",
+      "metadata_verified_only": true
     },
     {
       "id": "akifmohamed--aes-crypto-soc",
@@ -194,7 +266,20 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "security",
+      "quality_score": 70,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "mert137--an-fpga-based-oscilloscope",
@@ -222,7 +307,19 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "instrument",
+      "quality_score": 72,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "DE1-SoC",
+      "vendor_family": "Intel/Altera",
+      "metadata_verified_only": true
     },
     {
       "id": "yifeistarwang-coder--robomotion-fpga",
@@ -250,7 +347,21 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "motor",
+      "quality_score": 70,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Confirm exact FPGA board, clock and IO voltage",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "UNSPECIFIED",
+      "vendor_family": "AMD/Xilinx",
+      "metadata_verified_only": true
     },
     {
       "id": "jssaucedo--fpga-elevator-controller",
@@ -278,7 +389,20 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "motor",
+      "quality_score": 68,
+      "audit_readiness": "metadata_reviewed_for_design_proposal",
+      "improvements": [
+        "Create first-party self-checking simulation tests",
+        "Confirm exact FPGA board, clock and IO voltage",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "UNSPECIFIED",
+      "vendor_family": "Intel/Altera",
+      "metadata_verified_only": true
     },
     {
       "id": "frobino--de1-soc",
@@ -305,7 +429,22 @@
         "RTL license",
         "module testbench",
         "synthesis/implementation/board evidence"
-      ]
+      ],
+      "reviewed_category": "communication",
+      "quality_score": 23,
+      "audit_readiness": "needs_research",
+      "improvements": [
+        "Find trustworthy board master pin constraints; do not invent pins",
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Check application/CPU-centric classification by reading actual files",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ],
+      "reviewed_at": "2026-11-02T12:29:42.054425+00:00",
+      "board_hint": "DE1-SoC",
+      "vendor_family": "Intel/Altera",
+      "metadata_verified_only": true
     }
   ]
 }

@@ -1,1 +1,123 @@
-{"schema_version":1,"generated_at":null,"actions":[]}
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02T12:29:42.054425+00:00",
+  "actions": [
+    {
+      "reference": "Shubhayu-Das/VL504-project",
+      "quality_score": 100,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "meiniKi/logIP",
+      "quality_score": 90,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "RSoleym/fpga-camera-pipeline",
+      "quality_score": 90,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "taeseong-dev/axi4-lite-custom-peripherals",
+      "quality_score": 90,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+      "quality_score": 80,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "mert137/An-FPGA-Based-Oscilloscope",
+      "quality_score": 72,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "akifmohamed/AES-Crypto-SoC",
+      "quality_score": 70,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "yifeistarwang-coder/RoboMotion-FPGA",
+      "quality_score": 70,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Confirm exact FPGA board, clock and IO voltage",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "JSSaucedo/FPGA-Elevator-Controller",
+      "quality_score": 68,
+      "readiness": "metadata_reviewed_for_design_proposal",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Confirm exact FPGA board, clock and IO voltage",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "jagumiel/Guitar-Pedal-Effects-on-FPGA",
+      "quality_score": 65,
+      "readiness": "needs_research",
+      "tasks": [
+        "Create first-party self-checking simulation tests",
+        "Check application/CPU-centric classification by reading actual files",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    },
+    {
+      "reference": "frobino/de1-soc",
+      "quality_score": 23,
+      "readiness": "needs_research",
+      "tasks": [
+        "Find trustworthy board master pin constraints; do not invent pins",
+        "Create first-party self-checking simulation tests",
+        "Keep upstream as reference-only until SPDX/redistribution review",
+        "Check application/CPU-centric classification by reading actual files",
+        "Extract port widths and reset polarity before RTL adaptation",
+        "Separate RTL simulation, synthesis, timing and physical board evidence"
+      ]
+    }
+  ]
+}
