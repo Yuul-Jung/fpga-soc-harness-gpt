@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "id": "clock_reset",
+      "name": "basys3_clock_reset",
+      "inputs": [],
+      "outputs": [
+        "clk",
+        "rst"
+      ]
+    },
+    {
+      "id": "cpu",
+      "name": "microblaze_v",
+      "inputs": [
+        "clk",
+        "reset"
+      ],
+      "outputs": [
+        "m_axi"
+      ]
+    },
+    {
+      "id": "interconnect",
+      "name": "axi_interconnect",
+      "inputs": [
+        "s_axi"
+      ],
+      "outputs": [
+        "m_axi_ctrl",
+        "m_axi_status"
+      ]
+    },
+    {
+      "id": "gpio_ctrl",
+      "name": "axi_gpio_ctrl",
+      "inputs": [
+        "s_axi"
+      ],
+      "outputs": [
+        "gpio_io_o"
+      ]
+    },
+    {
+      "id": "gpio_status",
+      "name": "axi_gpio_status",
+      "inputs": [
+        "s_axi",
+        "gpio_io_i"
+      ],
+      "outputs": []
+    },
+    {
+      "id": "peripheral",
+      "name": "smart_fan_peripheral",
+      "inputs": [
+        "clk",
+        "rst",
+        "duty",
+        "enable",
+        "tach_in"
+      ],
+      "outputs": [
+        "pwm_out",
+        "tach_pulses_per_sec"
+      ]
+    },
+    {
+      "id": "external",
+      "name": "external_fan_interface",
+      "inputs": [
+        "pwm_in"
+      ],
+      "outputs": [
+        "tach_out"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "clock_reset.clk",
+      "to": "cpu.clk",
+      "note": "100 MHz 보드 클럭; 실제 연결은 Vivado Clock Wizard/Reset 구성에 따라 확인"
+    },
+    {
+      "from": "clock_reset.rst",
+      "to": "cpu.reset",
+      "note": "리셋 극성은 CPU/RTL별 맞춤 필요"
+    },
+    {
+      "from": "clock_reset.clk",
+      "to": "peripheral.clk",
+      "note": "단일 클럭 도메인"
+    },
+    {
+      "from": "clock_reset.rst",
+      "to": "peripheral.rst",
+      "note": "동기 active-high reset"
+    },
+    {
+      "from": "cpu.m_axi",
+      "to": "interconnect.s_axi",
+      "note": "AXI 연결 개념; CPU/Interconnect 구성 확인"
+    },
+    {
+      "from": "interconnect.m_axi_ctrl",
+      "to": "gpio_ctrl.s_axi",
+      "note": "AXI GPIO 9-bit OUTPUT"
+    },
+    {
+      "from": "interconnect.m_axi_status",
+      "to": "gpio_status.s_axi",
+      "note": "AXI GPIO 32-bit INPUT"
+    },
+    {
+      "from": "gpio_ctrl.gpio_io_o",
+      "to": "peripheral.duty",
+      "note": "gpio_io_o[7:0] → duty[7:0]; Top 비트 선택만 사용"
+    },
+    {
+      "from": "gpio_ctrl.gpio_io_o",
+      "to": "peripheral.enable",
+      "note": "gpio_io_o[8] → enable"
+    },
+    {
+      "from": "peripheral.tach_pulses_per_sec",
+      "to": "gpio_status.gpio_io_i",
+      "note": "32-bit pulse count snapshot, 1-second interval"
+    },
+    {
+      "from": "peripheral.pwm_out",
+      "to": "external.pwm_in",
+      "note": "3.3V logic to compatible driver/isolated interface, not motor power"
+    },
+    {
+      "from": "external.tach_out",
+      "to": "peripheral.tach_in",
+      "note": "3.3V conditioned tach input; 2-FF synchronizer"
+    }
+  ]
+}

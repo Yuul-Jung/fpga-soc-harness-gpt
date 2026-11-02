@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "yifeistarwang-coder--robomotion-fpga",
+  "source_url": "https://github.com/yifeistarwang-coder/RoboMotion-FPGA",
+  "source_tree_sha": "4b47a68aefca3c9d8b02c1cd4f0398830418058d",
+  "license_spdx": "UNKNOWN",
+  "reuse_policy": "reference_only",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "sensor_input",
+      "name": "sensor_input",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "motor_pwm",
+      "name": "motor_pwm",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "encoder_counter",
+      "name": "encoder_counter",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "control_fsm",
+      "name": "control_fsm",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "sensor_input.out_data",
+      "to": "motor_pwm.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "motor_pwm.out_data",
+      "to": "encoder_counter.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "encoder_counter.out_data",
+      "to": "control_fsm.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}

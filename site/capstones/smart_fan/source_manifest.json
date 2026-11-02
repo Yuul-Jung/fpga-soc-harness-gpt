@@ -1,0 +1,25 @@
+{
+  "design_id": "smart_fan",
+  "source_files": [
+    {
+      "path": "rtl/smart_fan_peripheral.v",
+      "sha256": "0246e4fa14393675168896f9e4ac986346cb3a058e5989eb786352a6498a683f",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "tb/tb_smart_fan_peripheral.v",
+      "sha256": "13295e69542183c0bab56d5168a996cee1bc0c16e658259e5762b68a95badbf6",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "sw/fan_mmio.c",
+      "sha256": "54b3bdf6d53ef94630a60bf6ed4662f8863f5fc8a95d597e8b392004322f5965",
+      "origin": "first_party_local"
+    },
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "5b5550e8c9bf19edf84f38ff597baea0ff0ca83323cc96205c5ebba2da9583bb",
+      "origin": "first_party_local"
+    }
+  ]
+}

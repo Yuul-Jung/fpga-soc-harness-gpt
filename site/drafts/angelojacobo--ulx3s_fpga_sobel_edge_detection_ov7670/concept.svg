@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 284" role="img" aria-label="Structured SoC block diagram">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#6b8197"/></marker></defs>
+<line x1="160" y1="49" x2="480" y2="49" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>camera_capture.out_data → frame_buffer.in_data</title></line>
+<line x1="480" y1="49" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>frame_buffer.out_data → filter_pipeline.in_data</title></line>
+<line x1="160" y1="167" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>filter_pipeline.out_data → video_output.in_data</title></line>
+<rect x="20" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="46" fill="#173b58" font-size="14" font-weight="600">camera_capture</text>
+<text x="32" y="64" fill="#47657c" font-size="11">camera_capture</text>
+<rect x="340" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="46" fill="#173b58" font-size="14" font-weight="600">frame_buffer</text>
+<text x="352" y="64" fill="#47657c" font-size="11">frame_buffer</text>
+<rect x="20" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="164" fill="#173b58" font-size="14" font-weight="600">filter_pipeline</text>
+<text x="32" y="182" fill="#47657c" font-size="11">filter_pipeline</text>
+<rect x="340" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="164" fill="#173b58" font-size="14" font-weight="600">video_output</text>
+<text x="352" y="182" fill="#47657c" font-size="11">video_output</text>
+</svg>

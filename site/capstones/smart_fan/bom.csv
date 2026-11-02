@@ -1,0 +1,5 @@
+part,quantity,interface,notes
+Digilent Basys3,1,100MHz clock / 3.3V I/O,실제 핀은 XDC 검증 후 배정
+3.3V-compatible external PWM driver / fan interface,1,PWM output,12V 모터/팬 직접 연결 금지
+3.3V-conditioned tach output or logic pulse generator,1,tach input,5V/12V 신호 직접 연결 금지
+External motor/fan power supply,as required,external,"FPGA I/O 전원과 별도, 접지·절연 설계 확인"

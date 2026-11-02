@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "jagumiel--guitar-pedal-effects-on-fpga",
+  "source_url": "https://github.com/jagumiel/Guitar-Pedal-Effects-on-FPGA",
+  "source_tree_sha": "9db82033030dd05d46316c18b819e9b066f9eb56",
+  "license_spdx": "MIT",
+  "reuse_policy": "review_for_reuse",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "signal_sampler",
+      "name": "signal_sampler",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "trigger",
+      "name": "trigger",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "capture_ram",
+      "name": "capture_ram",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "uart_readout",
+      "name": "uart_readout",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "signal_sampler.out_data",
+      "to": "trigger.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "trigger.out_data",
+      "to": "capture_ram.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "capture_ram.out_data",
+      "to": "uart_readout.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}

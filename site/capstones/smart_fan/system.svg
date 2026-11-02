@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-label="Structured SoC block diagram">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#6b8197"/></marker></defs>
+<line x1="160" y1="49" x2="480" y2="49" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clock_reset.clk → cpu.clk</title></line>
+<line x1="160" y1="49" x2="480" y2="49" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clock_reset.rst → cpu.reset</title></line>
+<line x1="160" y1="49" x2="480" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clock_reset.clk → peripheral.clk</title></line>
+<line x1="160" y1="49" x2="480" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>clock_reset.rst → peripheral.rst</title></line>
+<line x1="480" y1="49" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>cpu.m_axi → interconnect.s_axi</title></line>
+<line x1="160" y1="167" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>interconnect.m_axi_ctrl → gpio_ctrl.s_axi</title></line>
+<line x1="160" y1="167" x2="160" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>interconnect.m_axi_status → gpio_status.s_axi</title></line>
+<line x1="480" y1="167" x2="480" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>gpio_ctrl.gpio_io_o → peripheral.duty</title></line>
+<line x1="480" y1="167" x2="480" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>gpio_ctrl.gpio_io_o → peripheral.enable</title></line>
+<line x1="480" y1="285" x2="160" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>peripheral.tach_pulses_per_sec → gpio_status.gpio_io_i</title></line>
+<line x1="480" y1="285" x2="160" y2="403" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>peripheral.pwm_out → external.pwm_in</title></line>
+<line x1="160" y1="403" x2="480" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>external.tach_out → peripheral.tach_in</title></line>
+<rect x="20" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="46" fill="#173b58" font-size="14" font-weight="600">basys3_clock_reset</text>
+<text x="32" y="64" fill="#47657c" font-size="11">clock_reset</text>
+<rect x="340" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="46" fill="#173b58" font-size="14" font-weight="600">microblaze_v</text>
+<text x="352" y="64" fill="#47657c" font-size="11">cpu</text>
+<rect x="20" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="164" fill="#173b58" font-size="14" font-weight="600">axi_interconnect</text>
+<text x="32" y="182" fill="#47657c" font-size="11">interconnect</text>
+<rect x="340" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="164" fill="#173b58" font-size="14" font-weight="600">axi_gpio_ctrl</text>
+<text x="352" y="182" fill="#47657c" font-size="11">gpio_ctrl</text>
+<rect x="20" y="260" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="282" fill="#173b58" font-size="14" font-weight="600">axi_gpio_status</text>
+<text x="32" y="300" fill="#47657c" font-size="11">gpio_status</text>
+<rect x="340" y="260" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="282" fill="#173b58" font-size="14" font-weight="600">smart_fan_peripheral</text>
+<text x="352" y="300" fill="#47657c" font-size="11">peripheral</text>
+<rect x="20" y="378" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="400" fill="#173b58" font-size="14" font-weight="600">external_fan_interface</text>
+<text x="32" y="418" fill="#47657c" font-size="11">external</text>
+</svg>

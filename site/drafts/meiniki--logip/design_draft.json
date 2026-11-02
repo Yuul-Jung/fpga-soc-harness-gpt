@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "meiniki--logip",
+  "source_url": "https://github.com/meiniKi/logIP",
+  "source_tree_sha": "d605ad54193c56a2857e27225a16144851acbad6",
+  "license_spdx": "GPL-3.0",
+  "reuse_policy": "reference_only",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "signal_sampler",
+      "name": "signal_sampler",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "trigger",
+      "name": "trigger",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "capture_ram",
+      "name": "capture_ram",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "uart_readout",
+      "name": "uart_readout",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "signal_sampler.out_data",
+      "to": "trigger.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "trigger.out_data",
+      "to": "capture_ram.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "capture_ram.out_data",
+      "to": "uart_readout.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}

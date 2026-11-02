@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "akifmohamed--aes-crypto-soc",
+  "source_url": "https://github.com/akifmohamed/AES-Crypto-SoC",
+  "source_tree_sha": "b7a0002bf507ebb5921085198481dab6e3c1d427",
+  "license_spdx": "UNKNOWN",
+  "reuse_policy": "reference_only",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "byte_stream",
+      "name": "byte_stream",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "crypto_accelerator",
+      "name": "crypto_accelerator",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "result_register",
+      "name": "result_register",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "byte_stream.out_data",
+      "to": "crypto_accelerator.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "crypto_accelerator.out_data",
+      "to": "result_register.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}

@@ -1,0 +1,14 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RSoleym/fpga-camera-pipeline draft</title><style>
+:root{color-scheme:light}body{font:16px/1.65 system-ui,sans-serif;background:#f5f7fa;color:#1e293b;margin:0}
+header{background:#163b5b;color:white;padding:16px max(16px,calc((100vw - 980px)/2))}
+header a{color:#fff}main{max-width:980px;margin:auto;padding:24px 16px 80px}
+section{background:white;border:1px solid #dce4ed;border-radius:12px;padding:20px;margin:18px 0}
+h1,h2,h3{line-height:1.3}table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{border:1px solid #dce4ed;padding:8px;text-align:left;vertical-align:top}
+th{background:#edf3f7}.scroll{overflow-x:auto}a{color:#1263a1}
+small,.muted{color:#607086}svg{max-width:100%;height:auto}code{background:#eef2f7;padding:2px 5px}
+.warning{border-left:4px solid #a36b1f;padding-left:12px}
+</style></head><body><header><a href= + esc(relative_home) + >FPGA SoC Capstone Harness</a></header>
+<main><h1>RSoleym/fpga-camera-pipeline</h1><section><h2>참고 원본</h2><p><a rel="noopener" href="https://github.com/RSoleym/fpga-camera-pipeline">https://github.com/RSoleym/fpga-camera-pipeline</a></p><p>Source tree SHA: <code>bce328efa309b11fba0687fd2b137ac86846576e</code></p><p>라이선스: UNKNOWN / reference_only</p></section><section><h2>자동 생성한 설계 구상도 (미검증)</h2><p class="warning">These names and connections are educational architecture proposals, not verified upstream source modules or physical wires.</p><img src="concept.svg" alt="Concept-only architecture"><p><a href="design_draft.json">Design IR 초안 JSON</a></p><div class="scroll"><table><thead><tr><th>제안 IP</th><th>개념 입력</th><th>개념 출력</th></tr></thead><tbody><tr><td>camera_capture</td><td></td><td>out_data</td></tr><tr><td>frame_buffer</td><td>in_data</td><td>out_data</td></tr><tr><td>filter_pipeline</td><td>in_data</td><td>out_data</td></tr><tr><td>video_output</td><td>in_data</td><td></td></tr></tbody></table></div></section><section><h2>진행 상태</h2><p>대상 보드 미선정 / 원본 포팅 미실시 / RTL 미생성 / 회로 배선 및 보드 검증 미실시</p></section></main></body></html>

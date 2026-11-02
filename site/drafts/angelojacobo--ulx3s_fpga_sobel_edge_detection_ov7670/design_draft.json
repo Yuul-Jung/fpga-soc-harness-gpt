@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "angelojacobo--ulx3s_fpga_sobel_edge_detection_ov7670",
+  "source_url": "https://github.com/AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
+  "source_tree_sha": "693dacba2f8450417d9944f1803255a44c842042",
+  "license_spdx": "MIT",
+  "reuse_policy": "review_for_reuse",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "camera_capture",
+      "name": "camera_capture",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "frame_buffer",
+      "name": "frame_buffer",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "filter_pipeline",
+      "name": "filter_pipeline",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "video_output",
+      "name": "video_output",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "camera_capture.out_data",
+      "to": "frame_buffer.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "frame_buffer.out_data",
+      "to": "filter_pipeline.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "filter_pipeline.out_data",
+      "to": "video_output.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}

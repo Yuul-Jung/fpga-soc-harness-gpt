@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "shubhayu-das--vl504-project",
+  "source_url": "https://github.com/Shubhayu-Das/VL504-project",
+  "source_tree_sha": "49ef56894501d2b3313bda5897c770ca753bdd64",
+  "license_spdx": "BSD-3-Clause",
+  "reuse_policy": "review_for_reuse",
+  "status": "CONCEPT_ONLY_NOT_PORTED",
+  "hardware_board": "UNASSIGNED",
+  "source_code_included": false,
+  "modules": [
+    {
+      "id": "camera_capture",
+      "name": "camera_capture",
+      "inputs": [],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "frame_buffer",
+      "name": "frame_buffer",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "filter_pipeline",
+      "name": "filter_pipeline",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": [
+        "out_data"
+      ]
+    },
+    {
+      "id": "video_output",
+      "name": "video_output",
+      "inputs": [
+        "in_data"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "camera_capture.out_data",
+      "to": "frame_buffer.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "frame_buffer.out_data",
+      "to": "filter_pipeline.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    },
+    {
+      "from": "filter_pipeline.out_data",
+      "to": "video_output.in_data",
+      "note": "Conceptual link only, not an actual RTL signal"
+    }
+  ],
+  "warning": "These names and connections are educational architecture proposals, not verified upstream source modules or physical wires."
+}
