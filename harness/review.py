@@ -53,10 +53,13 @@ def classify(item):
     # Repository purpose is more informative than filenames of generic IP
     # components. Example: adc.v in an oscilloscope should not turn the
     # whole project into a sensor-interface project.
-    main = (item.get("repository", "") + " " +
-            item.get("description", "")).lower()
+    title = item.get("repository", "").lower()
+    description = item.get("description", "").lower()
     files = " ".join(item.get("evidence", {}).get("hdl_examples", [])).lower()
-    strengths = {domain: sum((3 if term in main else 0)
+    # The repository title names the capstone. ADC/VGA are supporting IP,
+    # not the top-level application of an oscilloscope.
+    strengths = {domain: sum((6 if term in title else 0)
+                              + (2 if term in description else 0)
                               + (1 if term in files else 0)
                               for term in terms) for domain, terms in KEYS.items()}
     best = max(strengths, key=strengths.get)
