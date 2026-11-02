@@ -277,6 +277,13 @@ def render_capstone(folder):
 
 def main():
     SITE.mkdir(exist_ok=True)
+    # Canonical handoff lives in docs/ and is copied to site/ on every generation.
+    handoff = ROOT / "docs/CLAUDE_HANDOFF_fpga_soc_harness.html"
+    if not handoff.is_file():
+        raise FileNotFoundError("Required Claude handoff HTML missing: " + str(handoff))
+    handoff_dest = SITE / "docs"
+    handoff_dest.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(handoff, handoff_dest / handoff.name)
     catalog = json.loads((ROOT / "catalog/discovered.json").read_text(encoding="utf-8"))
     dirs = sorted((ROOT / "capstones").glob("*/design.json"))
     designs = [render_capstone(path.parent) for path in dirs]
@@ -321,7 +328,14 @@ def main():
                + metrics +
                '<div class="links"><a href="capstones/index.html">캡스톤 상세 목차</a>'
                '<a href="#drafts">연구 구상 확인</a>'
-               '<a href="#references">원본 자료 목록</a></div></div>')
+               '<a href="#references">원본 자료 목록</a>'
+               '<a href="docs/CLAUDE_HANDOFF_fpga_soc_harness.html">Claude 개발 인계서</a>'
+               '</div></div>')
+    content += ('<section id="handoff"><h2>하네스 개발 인계 문서</h2>'
+                '<p>기존 폴더 구성, 자동 자료수집·검증·캡스톤 생성 주기, '
+                'RTL/HTML 산출물 기준 및 Claude 독립 개발 규칙을 정리했습니다.</p>'
+                '<div class="links"><a href="docs/CLAUDE_HANDOFF_fpga_soc_harness.html">'
+                'Claude 개발 인계서 HTML 열기</a></div></section>')
     content += ('<section id="capstones"><h2>1. 캡스톤 과제별 HTML</h2>'
                 '<p>개별 페이지에서 구조도, 연결표, 전체 RTL/C 코드, BOM, 검증 결과를 '
                 '직접 열람하거나 다운로드할 수 있습니다.</p>'
@@ -337,9 +351,15 @@ def main():
                 + table(["저장소", "제조사(참고)", "분야", "라이선스", "자료 점수"],
                         reference_rows) + '</section>')
     (SITE / "index.html").write_text(
-        page("FPGA SoC 캡스톤 종합 자료실", content), encoding="utf-8")
+        page("FPGA SoC 캡스톤 종합 자료실", content, "index.html", [
+            ("전체 자료실", "index.html"), ("캡스톤 과제", "#capstones"),
+            ("설계 구상", "#drafts"), ("참고 소스", "#references"),
+            ("Claude 인계서", "docs/CLAUDE_HANDOFF_fpga_soc_harness.html")]),
+        encoding="utf-8")
 
-    capstone_nav = [("종합 자료실", "../index.html"), ("전체 캡스톤", "#list")]
+    capstone_nav = [("종합 자료실", "../index.html"),
+                    ("전체 캡스톤", "#list"),
+                    ("Claude 인계서", "../docs/CLAUDE_HANDOFF_fpga_soc_harness.html")]
     capstone_content = ('<div class="hero"><div class="eyebrow">CAPSTONE COLLECTION</div>'
                         '<h1>캡스톤 과제별 HTML 목차</h1>'
                         '<p>각 과제에 독립된 HTML, 모듈 구조도, 신호 연결표, '
