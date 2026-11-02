@@ -1,0 +1,142 @@
+{
+  "strategy": "rotating_cross_domain_hypotheses",
+  "boards": [
+    [
+      "Basys3",
+      "AMD/Xilinx"
+    ],
+    [
+      "Zybo Z7",
+      "AMD/Xilinx"
+    ],
+    [
+      "Artix-7",
+      "AMD/Xilinx"
+    ],
+    [
+      "DE10-Lite",
+      "Intel/Altera"
+    ],
+    [
+      "DE1-SoC",
+      "Intel/Altera"
+    ],
+    [
+      "Cyclone V",
+      "Intel/Altera"
+    ],
+    [
+      "ECP5",
+      "Lattice"
+    ],
+    [
+      "iCE40",
+      "Lattice"
+    ],
+    [
+      "Certus-NX",
+      "Lattice"
+    ]
+  ],
+  "domains": [
+    {
+      "category": "motor",
+      "terms": [
+        "motor encoder pid",
+        "robot arm servo pwm",
+        "stepper driver sensor",
+        "industrial actuator control"
+      ]
+    },
+    {
+      "category": "sensor",
+      "terms": [
+        "ultrasonic sensor distance",
+        "environment monitor adc",
+        "sensor fusion timestamp",
+        "temperature humidity control"
+      ]
+    },
+    {
+      "category": "instrument",
+      "terms": [
+        "oscilloscope adc trigger",
+        "logic analyzer uart",
+        "frequency counter pulse capture",
+        "spectrum analyzer audio"
+      ]
+    },
+    {
+      "category": "video",
+      "terms": [
+        "ov7670 camera vga",
+        "sobel edge detection",
+        "hdmi frame buffer",
+        "video image pipeline"
+      ]
+    },
+    {
+      "category": "communication",
+      "terms": [
+        "axi4 lite custom peripheral",
+        "spi i2c uart controller",
+        "ethernet udp packet",
+        "can bus controller"
+      ]
+    },
+    {
+      "category": "security",
+      "terms": [
+        "aes hardware accelerator",
+        "secure boot crypto",
+        "access control rfid",
+        "trng hardware entropy"
+      ]
+    },
+    {
+      "category": "automation",
+      "terms": [
+        "smart home relay sensor",
+        "greenhouse irrigation",
+        "parking assistant sonar",
+        "traffic light controller"
+      ]
+    }
+  ],
+  "research_modes": [
+    {
+      "name": "implementation",
+      "suffix": "verilog rtl github"
+    },
+    {
+      "name": "capstone",
+      "suffix": "fpga capstone project"
+    },
+    {
+      "name": "integration",
+      "suffix": "fpga soc peripheral"
+    },
+    {
+      "name": "evidence",
+      "suffix": "fpga testbench constraints"
+    }
+  ],
+  "anchor_queries": [
+    {
+      "q": "FPGA hardware peripheral capstone verilog",
+      "category": "automation"
+    },
+    {
+      "q": "microblaze AXI custom peripheral sensor",
+      "category": "communication"
+    },
+    {
+      "q": "intel altera fpga capstone motor",
+      "category": "motor"
+    },
+    {
+      "q": "lattice ec5 open source camera verilog",
+      "category": "video"
+    }
+  ]
+}
