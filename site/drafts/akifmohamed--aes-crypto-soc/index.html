@@ -1,14 +1,41 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>akifmohamed/AES-Crypto-SoC draft</title><style>
-:root{color-scheme:light}body{font:16px/1.65 system-ui,sans-serif;background:#f5f7fa;color:#1e293b;margin:0}
-header{background:#163b5b;color:white;padding:16px max(16px,calc((100vw - 980px)/2))}
-header a{color:#fff}main{max-width:980px;margin:auto;padding:24px 16px 80px}
-section{background:white;border:1px solid #dce4ed;border-radius:12px;padding:20px;margin:18px 0}
-h1,h2,h3{line-height:1.3}table{border-collapse:collapse;width:100%;font-size:.92rem}
-th,td{border:1px solid #dce4ed;padding:8px;text-align:left;vertical-align:top}
-th{background:#edf3f7}.scroll{overflow-x:auto}a{color:#1263a1}
-small,.muted{color:#607086}svg{max-width:100%;height:auto}code{background:#eef2f7;padding:2px 5px}
-.warning{border-left:4px solid #a36b1f;padding-left:12px}
-</style></head><body><header><a href='../../index.html'>FPGA SoC Capstone Harness</a></header>
-<main><h1>akifmohamed/AES-Crypto-SoC</h1><section><h2>참고 원본</h2><p><a rel="noopener" href="https://github.com/akifmohamed/AES-Crypto-SoC">https://github.com/akifmohamed/AES-Crypto-SoC</a></p><p>Source tree SHA: <code>b7a0002bf507ebb5921085198481dab6e3c1d427</code></p><p>라이선스: UNKNOWN / reference_only</p></section><section><h2>자동 생성한 설계 구상도 (미검증)</h2><p class="warning">These names and connections are educational architecture proposals, not verified upstream source modules or physical wires.</p><img src="concept.svg" alt="Concept-only architecture"><p><a href="design_draft.json">Design IR 초안 JSON</a></p><div class="scroll"><table><thead><tr><th>제안 IP</th><th>개념 입력</th><th>개념 출력</th></tr></thead><tbody><tr><td>byte_stream</td><td></td><td>out_data</td></tr><tr><td>crypto_accelerator</td><td>in_data</td><td>out_data</td></tr><tr><td>result_register</td><td>in_data</td><td></td></tr></tbody></table></div></section><section><h2>진행 상태</h2><p>대상 보드 미선정 / 원본 포팅 미실시 / RTL 미생성 / 회로 배선 및 보드 검증 미실시</p></section></main></body></html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>akifmohamed/AES-Crypto-SoC draft</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fa;color:#192e45;font-size:15px;line-height:1.7}
+a{color:#12639f;text-decoration:none}a:hover{text-decoration:underline}
+header{background:#183b58;color:#fff;padding:13px 20px;position:sticky;top:0;z-index:5}
+header a{color:#fff;font-weight:700}header small{font-weight:400;color:#cfdfec;margin-left:14px}
+.shell{display:grid;grid-template-columns:208px minmax(0,1fr);max-width:1300px;margin:auto}
+aside{border-right:1px solid #e0e7ef;padding:26px 14px;position:sticky;top:51px;align-self:start;max-height:calc(100vh - 52px);overflow:auto}
+aside strong{display:block;font-size:13px;color:#5b7186;margin:0 10px 12px}
+aside a{display:block;padding:7px 10px;border-radius:6px;font-size:13px;color:#34516b;overflow-wrap:anywhere}
+aside a:hover{background:#e7eff7;text-decoration:none}
+main{min-width:0;max-width:1050px;padding:28px 28px 90px;width:100%}
+h1{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.35;margin:0 0 12px}
+h2{font-size:1.2rem;margin:0 0 16px}h3{font-size:1rem;margin:0 0 10px}
+section{background:#fff;border:1px solid #dce6ee;border-radius:10px;padding:22px;margin:20px 0}
+.hero{padding:25px;border:1px solid #dbe5ee;background:#fff;border-radius:12px;margin-bottom:20px}
+.hero p{margin:8px 0 0}.muted,small{color:#5c7185}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;color:#486c8c;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.tile{border:1px solid #d9e4ed;border-radius:9px;padding:16px;background:#fff;display:block;color:inherit}
+.tile:hover{border-color:#6c98bb;text-decoration:none}
+.tile strong{display:block;font-size:15px;color:#24577f;overflow-wrap:anywhere}
+.tile span{font-size:12px;color:#64798b}.tile p{font-size:13px;line-height:1.5;margin:6px 0 0}
+.metric{font-size:27px;font-weight:750;line-height:1.2;color:#214f78}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:10px;margin:16px 0}
+.stats .tile{padding:12px 14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid #dce4ed;padding:9px 10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{background:#eff4f8}.scroll{overflow-x:auto}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+p code,td code{background:#edf3f8;padding:2px 5px;border-radius:4px}
+pre{white-space:pre;overflow:auto;max-height:650px;background:#f4f6f8;border:1px solid #d7e0e8;border-radius:7px;padding:14px;font-size:12px;line-height:1.55;color:#18354c}
+pre code{font-size:inherit}details{margin:10px 0;border:1px solid #dce5ed;border-radius:8px;padding:11px 13px}
+summary{font-weight:650;cursor:pointer;overflow-wrap:anywhere}
+img,svg{max-width:100%;height:auto}img.diagram{display:block;width:100%;max-width:780px;margin:auto;border:1px solid #e3e9ef;border-radius:8px;background:white}
+.notice{border-left:3px solid #c18b34;padding:10px 13px;background:#fff8ed;color:#684b20;margin:12px 0}
+.meta{font-size:13px;color:#566d82}
+.links{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}.links a{border:1px solid #bfd1df;background:#f6fafd;padding:6px 11px;border-radius:6px;font-size:13px}
+footer{margin-top:26px;color:#718194;font-size:12px}
+@media(max-width:780px){.shell{display:block}aside{position:static;max-height:none;border:0;border-bottom:1px solid #dfe6ee;padding:10px 14px;display:flex;flex-wrap:wrap;gap:2px}aside strong{width:100%;margin:0 8px 3px}aside a{padding:5px 8px}main{padding:18px 13px 65px}section{padding:15px}header small{display:none}}
+</style></head><body><header><a href="../../index.html">FPGA SoC CAPSTONE</a><small>RTL · 주변장치 · 실습자료</small></header><div class="shell"><aside><strong>자료 탐색</strong><a href="../../index.html">전체 자료실</a><a href="../../index.html#capstones">캡스톤 과제</a><a href="../../index.html#drafts">설계 구상</a><a href="../../index.html#references">참고 소스</a></aside><main><h1>akifmohamed/AES-Crypto-SoC</h1><section><h2>참고 원본</h2><p><a rel="noopener" href="https://github.com/akifmohamed/AES-Crypto-SoC">https://github.com/akifmohamed/AES-Crypto-SoC</a></p><p>Source tree SHA: <code>b7a0002bf507ebb5921085198481dab6e3c1d427</code></p><p>라이선스: UNKNOWN / reference_only</p></section><section><h2>자동 생성한 설계 구상도 (미검증)</h2><p class="warning">These names and connections are educational architecture proposals, not verified upstream source modules or physical wires.</p><img src="concept.svg" alt="Concept-only architecture"><p><a href="design_draft.json">Design IR 초안 JSON</a></p><div class="scroll"><table><thead><tr><th>제안 IP</th><th>개념 입력</th><th>개념 출력</th></tr></thead><tbody><tr><td>byte_stream</td><td></td><td>out_data</td></tr><tr><td>crypto_accelerator</td><td>in_data</td><td>out_data</td></tr><tr><td>result_register</td><td>in_data</td><td></td></tr></tbody></table></div></section><section><h2>진행 상태</h2><p>대상 보드 미선정 / 원본 포팅 미실시 / RTL 미생성 / 회로 배선 및 보드 검증 미실시</p></section><footer>설계 구상과 실제 FPGA 보드 검증은 구분됩니다. 출처·소스·검증 결과를 반드시 확인하세요.</footer></main></div></body></html>
