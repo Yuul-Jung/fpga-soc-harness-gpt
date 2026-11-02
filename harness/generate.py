@@ -281,27 +281,80 @@ def main():
     dirs = sorted((ROOT / "capstones").glob("*/design.json"))
     designs = [render_capstone(path.parent) for path in dirs]
     from .draft import render_drafts
-    proposal_file = ROOT / "catalog/proposals.json"
-    proposals = json.loads(proposal_file.read_text(encoding="utf-8"))
+    proposals = json.loads((ROOT / "catalog/proposals.json").read_text(encoding="utf-8"))
     draft_rows = render_drafts(proposals.get("proposals", []))
-    rows = [[f'<a href="capstones/{esc(d["id"])}/index.html">{esc(d["title"])}</a>',
-             esc(d["board"]), esc(d["status"])] for d in designs]
+
+    count = len(designs)
+    refs = len(catalog.get("results", []))
+    proposals_count = len(draft_rows)
+    def card(design, prefix):
+        return ('<a class="tile" href="' + prefix + esc(design["id"]) + '/index.html">'
+                '<span>CAPSTONE / ' + esc(design["id"]) + '</span>'
+                '<strong>' + esc(design["title"]) + '</strong>'
+                '<p>' + esc(design["board"]) + '</p>'
+                '<p>' + esc(design["status"]) + '</p></a>')
+    tiles = "".join(card(d, "capstones/") for d in designs)
+    if not tiles:
+        tiles = '<p class="notice">아직 승인된 실행소스 기반 캡스톤이 없습니다.</p>'
     reference_rows = []
     for item in catalog.get("results", []):
         safe_url = item["url"] if item["url"].startswith("https://github.com/") else "#"
-        reference_rows.append([f'<a rel="noopener" href="{esc(safe_url)}">{esc(item["repository"])}</a>',
-                               esc(item["vendor_hint"]), esc(item["license_spdx"]),
-                               esc(item["reuse_policy"]), esc(item["score"])])
-    content = "<h1>FPGA SoC 주변장치·캡스톤 자료실</h1>"
-    content += "<p>조사 자료, 검토 제안, 자체 제작 RTL 및 검증을 구분합니다. 검색 결과의 동작은 검증되지 않았습니다.</p>"
-    content += "<section><h2>실습 캡스톤</h2>" + table(
-        ["과제", "대상", "상태"], rows) + "</section>"
-    content += "<section><h2>자동 변환된 설계 구상도 (원본 RTL 미포팅)</h2>" + table(
-        ["후보 소스", "구상 유형", "승인 단계"], draft_rows) + "</section>"
-    content += "<section><h2>자동 수집 참고자료</h2><p>GitHub 소스 미복제 · 기초 검색 근거</p>" + table(
-        ["공개 원본", "유형(추정)", "SPDX", "재사용 정책", "자료 점수"], reference_rows) + "</section>"
-    (SITE / "index.html").write_text(page("FPGA SoC Capstone Harness", content), encoding="utf-8")
-    print("Generated HTML for", len(designs), "capstone(s) and", len(reference_rows), "references")
+        reference_rows.append([
+            '<a rel="noopener" href="' + esc(safe_url) + '">' +
+            esc(item["repository"]) + '</a>',
+            esc(item.get("vendor_family", "미확정")),
+            esc(item.get("vendor_hint", "")), esc(item.get("license_spdx", "UNKNOWN")),
+            esc(item.get("score", 0))])
+    metrics = ('<div class="stats">'
+               '<div class="tile"><div class="metric">' + str(count) +
+               '</div><span>실행소스 기반 캡스톤</span></div>'
+               '<div class="tile"><div class="metric">' + str(proposals_count) +
+               '</div><span>미검증 설계 구상</span></div>'
+               '<div class="tile"><div class="metric">' + str(refs) +
+               '</div><span>수집된 공개 소스</span></div></div>')
+
+    content = ('<div class="hero"><div class="eyebrow">FPGA SoC / HARDWARE APPLICATION</div>'
+               '<h1>FPGA SoC 주변장치·캡스톤 종합 자료실</h1>'
+               '<p>AMD/Xilinx, Intel/Altera, Lattice의 응용 프로젝트를 조사하고, '
+               '설계 구조도·실행소스·검증 상태를 과제별 HTML로 제공합니다. '
+               '완성된 RTL 실습과 미구현 연구 후보를 명확히 구분합니다.</p>'
+               + metrics +
+               '<div class="links"><a href="capstones/index.html">캡스톤 상세 목차</a>'
+               '<a href="#drafts">연구 구상 확인</a>'
+               '<a href="#references">원본 자료 목록</a></div></div>')
+    content += ('<section id="capstones"><h2>1. 캡스톤 과제별 HTML</h2>'
+                '<p>개별 페이지에서 구조도, 연결표, 전체 RTL/C 코드, BOM, 검증 결과를 '
+                '직접 열람하거나 다운로드할 수 있습니다.</p>'
+                '<div class="grid">' + tiles + '</div>'
+                '<p><a href="capstones/index.html">전체 캡스톤 목차 보기</a></p></section>')
+    content += ('<section id="drafts"><h2>2. 자동 수집·분석한 과제 구상</h2>'
+                '<p class="notice">아래 자료는 공개 프로젝트에 기반한 개념 설계 초안입니다. '
+                '실행 가능한 RTL·실물 배선·SoC 보드 검증이 완료된 과제가 아닙니다.</p>'
+                + table(["공개 소스·구상 HTML", "분야", "검토 상태"], draft_rows)
+                + '</section>')
+    content += ('<section id="references"><h2>3. 공개 참고자료 원본</h2>'
+                '<p>원본 저장소 링크, 예상 분야, 라이선스, 수집 근거를 확인할 수 있습니다.</p>'
+                + table(["저장소", "제조사(참고)", "분야", "라이선스", "자료 점수"],
+                        reference_rows) + '</section>')
+    (SITE / "index.html").write_text(
+        page("FPGA SoC 캡스톤 종합 자료실", content), encoding="utf-8")
+
+    capstone_nav = [("종합 자료실", "../index.html"), ("전체 캡스톤", "#list")]
+    capstone_content = ('<div class="hero"><div class="eyebrow">CAPSTONE COLLECTION</div>'
+                        '<h1>캡스톤 과제별 HTML 목차</h1>'
+                        '<p>각 과제에 독립된 HTML, 모듈 구조도, 신호 연결표, '
+                        '원본 소스 및 검증 기록을 제공합니다.</p></div>'
+                        '<section id="list"><h2>등록된 캡스톤 (' + str(count) +
+                        ')</h2><div class="grid">' +
+                        "".join(card(d, "") for d in designs) + '</div></section>'
+                        '<p><a href="../index.html">← 종합 자료실로 이동</a></p>')
+    out = SITE / "capstones"
+    out.mkdir(exist_ok=True)
+    (out / "index.html").write_text(page(
+        "FPGA SoC 캡스톤 목록", capstone_content, "../index.html", capstone_nav),
+        encoding="utf-8")
+    print("Generated browseable main and individual HTML:", count,
+          "capstones,", proposals_count, "drafts,", refs, "references")
 
 
 if __name__ == "__main__":
