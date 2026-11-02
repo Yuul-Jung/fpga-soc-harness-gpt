@@ -1,0 +1,128 @@
+name: Continuous FPGA SoC research and capstone maintenance
+
+on:
+  schedule:
+    # Coordinated UTC slots; Asia/Seoul is UTC+9.
+    # 1h research: xx:07 KST
+    - cron: '7 * * * *'
+    # 2h review: xx:17 KST, alternating hours
+    - cron: '17 */2 * * *'
+    # 4h capstone creation/improvement: xx:27 KST
+    - cron: '27 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Run one stage or the full pipeline"
+        type: choice
+        options: [all, research, review, factory]
+        default: all
+
+permissions:
+  contents: write
+
+concurrency:
+  group: continuous-fpga-soc-catalog-pipeline
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline RTL simulation tools
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Resolve current cadence
+        id: stage
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          REQUEST: ${{ inputs.stage }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$REQUEST" ]]; then
+            stage="$REQUEST"
+          else
+            case "$SCHEDULE" in
+              "7 * * * *") stage="research" ;;
+              "17 */2 * * *") stage="review" ;;
+              "27 */4 * * *") stage="factory" ;;
+              *) echo "Unknown schedule: $SCHEDULE"; exit 1 ;;
+            esac
+          fi
+          echo "stage=$stage" >> "$GITHUB_OUTPUT"
+          echo "Running stage: $stage"
+      - name: Execute selected stage and preserve audit artifacts
+        id: execute
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STAGE: ${{ steps.stage.outputs.stage }}
+        shell: bash
+        run: |
+          set -uo pipefail
+          result=0
+          case "$STAGE" in
+            research)
+              python -m harness.research || result=$?
+              ;;
+            review)
+              python -m harness.review || result=$?
+              if [ "$result" -eq 0 ]; then python -m harness.refine || result=$?; fi
+              if [ "$result" -eq 0 ]; then python -m harness.maintenance --stage review || result=$?; fi
+              ;;
+            factory)
+              python -m harness.factory || result=$?
+              if [ "$result" -eq 0 ]; then python -m harness.maintenance --stage factory || result=$?; fi
+              ;;
+            all)
+              python -m harness.research || result=$?
+              if [ "$result" -eq 0 ]; then python -m harness.review || result=$?; fi
+              if [ "$result" -eq 0 ]; then python -m harness.refine || result=$?; fi
+              if [ "$result" -eq 0 ]; then python -m harness.factory || result=$?; fi
+              if [ "$result" -eq 0 ]; then python -m harness.maintenance --stage factory || result=$?; fi
+              ;;
+            *) result=2 ;;
+          esac
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Save catalog, existing-material revisions and generated capstones
+        shell: bash
+        env:
+          STAGE: ${{ steps.stage.outputs.stage }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          case "$STAGE" in
+            research)
+              git add catalog/discovered.json catalog/research_history.json
+              ;;
+            review)
+              git add catalog/reviewed.json catalog/improvement_backlog.json catalog/proposals.json
+              git add catalog/material_audit.json catalog/material_audit_history.json site/
+              ;;
+            factory)
+              git add catalog/factory_history.json catalog/material_audit.json
+              git add catalog/material_audit_history.json capstones/ site/
+              ;;
+            all)
+              git add catalog/ capstones/ site/
+              ;;
+          esac
+          if ! git diff --cached --quiet; then
+            git commit -m "automation: $STAGE FPGA SoC research/review/capstone cycle"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Report stage validation failure after archiving evidence
+        if: steps.execute.outputs.result != '0'
+        env:
+          STAGE: ${{ steps.stage.outputs.stage }}
+          RESULT: ${{ steps.execute.outputs.result }}
+        run: |
+          echo "::error::$STAGE cycle failed with exit code $RESULT; inspect committed audit and run logs."
+          exit 1

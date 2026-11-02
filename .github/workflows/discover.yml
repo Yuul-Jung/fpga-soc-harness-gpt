@@ -1,45 +1,11 @@
-name: Scheduled FPGA capstone discovery
+# Replaced by continuous-pipeline.yml. Kept as manual entrypoint for compatibility.
+name: Legacy manual discovery (scheduled replacement active)
 on:
-  schedule:
-    # Monday 08:30 Asia/Seoul (Sunday 23:30 UTC); GitHub may delay schedules.
-    - cron: '30 23 * * 0'
   workflow_dispatch:
-
 permissions:
-  contents: write
-
-concurrency:
-  group: fpga-capstone-discovery
-  cancel-in-progress: false
-
+  contents: read
 jobs:
-  discover:
+  notice:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Public GitHub metadata search
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m harness.discover
-      - name: Draft profiles without copying third-party code
-        run: python -m harness.propose
-      - name: Render searchable HTML and structured outputs
-        run: |
-          python -m harness.generate
-          python -m harness.validate
-          python -m unittest discover -s tests -v
-      - name: Commit data and preview only
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog/discovered.json catalog/proposals.json site/
-          if ! git diff --cached --quiet; then
-            git commit -m "data: refresh FPGA SoC capstone research catalog"
-            git push origin "HEAD:$GITHUB_REF_NAME"
-          fi
+      - run: echo 'Use Continuous FPGA SoC research and capstone maintenance (hourly)'
