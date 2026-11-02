@@ -90,6 +90,13 @@ class HarnessTests(unittest.TestCase):
         self.assertEqual(design["test_spec"]["rtl_top"], "tb_pulse_event_meter")
 
 
+    def test_github_pages_root_routes_to_generated_main(self):
+        # With Pages' "deploy from branch" mode, the root is not site/index.html.
+        entry = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('http-equiv="refresh"', entry)
+        self.assertIn('url=site/index.html', entry)
+        self.assertIn('href="site/index.html"', entry)
+
     def test_browsable_main_and_per_capstone_html(self):
         # Generated pages must be directly linked and show full RTL sources.
         generate_site()

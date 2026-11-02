@@ -12,13 +12,13 @@ ChatGPT 저장소는 참고 구현이며 Claude는 별도 폴더·별도 Git 저
 
 ## HTML 온라인 교재 열람
 
-**전체 메인 HTML:** [종합 자료실 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/index.html) · [원본 index.html](site/index.html)
+**전체 메인 HTML:** [정식 메인 페이지](https://yuul-jung.github.io/fpga-soc-harness-gpt/) · [종합 자료실 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/index.html) · [원본 index.html](site/index.html)
 
 **캡스톤 목록:** [과제별 HTML 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/capstones/index.html) · [원본 목록](site/capstones/index.html)
 
 **예제: 스마트 팬·PWM:** [상세 HTML 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/capstones/smart_fan/index.html) · [원본](site/capstones/smart_fan/index.html)
 
-위 미리보기는 **공개 파일을 제3자 프리뷰 서비스로 가져오는 임시 방법**입니다. 공개 저장소 외 민감한 문서를 입력하지 마세요. 정식 사이트는 GitHub Pages를 활성화하면 `https://yuul-jung.github.io/fpga-soc-harness-gpt/`가 됩니다. **Pages가 활성화되었다는 확인 전까지 해당 주소를 운영 중이라고 단정하지 않습니다.**
+GitHub Pages **기본 주소**: **https://yuul-jung.github.io/fpga-soc-harness-gpt/**. 현재 Pages의 브랜치 배포 방식에서 저장소 최상단 `index.html`이 자료실 `site/index.html`로 자동 이동하도록 구성했습니다. 공개 미리보기는 외부 서비스이므로 민감한 문서를 입력하지 마세요. (배포 작업 성공 로그에서 실제 HTTPS Pages URL을 확인했습니다.)
 
 - 모든 `capstones/<id>/design.json`에서 `site/index.html`, `site/capstones/index.html`, `site/capstones/<id>/index.html`을 생성합니다.
 - 과제별 HTML에 전체 RTL·C 소스, 모듈 계통도 SVG, 신호 연결표, BOM, 검증 결과, `source_bundle.zip`을 수록합니다.
