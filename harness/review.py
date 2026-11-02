@@ -50,10 +50,15 @@ def guess_family(item):
 
 
 def classify(item):
-    text = (" ".join([item.get("repository", ""), item.get("description", "")]
-                   + item.get("evidence", {}).get("hdl_examples", []))).lower()
-    strengths = {domain: sum(1 for term in terms if term in text)
-                 for domain, terms in KEYS.items()}
+    # Repository purpose is more informative than filenames of generic IP
+    # components. Example: adc.v in an oscilloscope should not turn the
+    # whole project into a sensor-interface project.
+    main = (item.get("repository", "") + " " +
+            item.get("description", "")).lower()
+    files = " ".join(item.get("evidence", {}).get("hdl_examples", [])).lower()
+    strengths = {domain: sum((3 if term in main else 0)
+                              + (1 if term in files else 0)
+                              for term in terms) for domain, terms in KEYS.items()}
     best = max(strengths, key=strengths.get)
     if strengths[best] == 0:
         return item.get("vendor_hint") or "unknown", 0, "query_hint_only"
