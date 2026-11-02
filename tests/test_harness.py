@@ -7,6 +7,9 @@ from harness.discover import evidence, license_policy, score
 from harness.draft import make_draft
 from harness.generate import ROOT, safe_local, svg_diagram, validate_design
 from harness.propose import build_proposals
+from harness.research import compose_queries, load, ROOT as SEARCH_ROOT
+from harness.review import audit
+from harness.factory import instrument_design
 
 
 class HarnessTests(unittest.TestCase):
@@ -56,6 +59,34 @@ class HarnessTests(unittest.TestCase):
         self.assertFalse(draft["source_code_included"])
         self.assertEqual(draft["hardware_board"], "UNASSIGNED")
         self.assertEqual(len(draft["connections"]), len(draft["modules"]) - 1)
+
+    def test_rotating_search_diversity(self):
+        matrix = load(SEARCH_ROOT / "config/research_matrix.json", {})
+        q0 = compose_queries(matrix, 10001, [], 8)
+        q1 = compose_queries(matrix, 10002, [], 8)
+        self.assertEqual(len(q0), 8)
+        self.assertNotEqual([e["q"] for e in q0], [e["q"] for e in q1])
+        self.assertGreaterEqual(len({e["category"] for e in q0}), 4)
+
+    def test_source_review_is_metadata_only(self):
+        item = {"id":"x", "repository":"example/fpga-oscilloscope",
+            "url":"https://github.com/example/fpga-oscilloscope",
+            "description":"oscilloscope VGA capture trigger Verilog",
+            "source_tree_sha":"abc", "license_spdx":"MIT",
+            "vendor_hint":"instrument", "score":65,
+            "evidence":{"hdl_count":5, "hdl_examples":["rtl/top.v"],
+                        "evidence_files":["README.md", "board.qsf"],
+                        "has_constraints": True, "has_testbench": False}}
+        r = audit(item, remote_status="source_tree_sha_confirmed")
+        self.assertEqual(r["category"], "instrument")
+        self.assertFalse(r["source_rtl_tested"])
+        self.assertFalse(r["board_tested"])
+        self.assertIn("Create first-party self-checking simulation tests",r["improvements"])
+        self.assertEqual(r["readiness"],"metadata_reviewed_for_design_proposal")
+        design = instrument_design(r)
+        self.assertEqual(design["id"], "instrument_pulse_counter")
+        self.assertEqual(design["test_spec"]["rtl_top"], "tb_pulse_event_meter")
+
 
 
 if __name__ == "__main__":
