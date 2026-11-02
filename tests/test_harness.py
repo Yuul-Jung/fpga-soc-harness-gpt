@@ -1,11 +1,13 @@
 """Offline unit tests: all fixtures are first-party; no web dependency."""
 import json
 import unittest
+import zipfile
 from pathlib import Path
 
 from harness.discover import evidence, license_policy, score
 from harness.draft import make_draft
-from harness.generate import ROOT, safe_local, svg_diagram, validate_design
+from harness.generate import ROOT, SITE, safe_local, svg_diagram, validate_design, main as generate_site
+from harness.maintenance import inspect_site
 from harness.propose import build_proposals
 from harness.research import compose_queries, load, ROOT as SEARCH_ROOT
 from harness.review import audit
@@ -86,6 +88,28 @@ class HarnessTests(unittest.TestCase):
         design = instrument_design(r)
         self.assertEqual(design["id"], "instrument_pulse_counter")
         self.assertEqual(design["test_spec"]["rtl_top"], "tb_pulse_event_meter")
+
+
+    def test_browsable_main_and_per_capstone_html(self):
+        # Generated pages must be directly linked and show full RTL sources.
+        generate_site()
+        index = (SITE / "index.html").read_text(encoding="utf-8")
+        collection = (SITE / "capstones/index.html").read_text(encoding="utf-8")
+        detail = (SITE / "capstones/smart_fan/index.html").read_text(encoding="utf-8")
+        self.assertIn("capstones/smart_fan/index.html", index)
+        self.assertIn("smart_fan/index.html", collection)
+        self.assertIn("전체 실행소스 ZIP", detail)
+        self.assertIn("module smart_fan_peripheral", detail)
+        self.assertIn("verification.json", detail)
+        self.assertIn("system.svg", detail)
+        self.assertIn("BOM.csv", detail)
+        self.assertIn("← 전체 캡스톤 목차로", detail)
+        with zipfile.ZipFile(SITE / "capstones/smart_fan/source_bundle.zip") as bundle:
+            self.assertIn("smart_fan/rtl/smart_fan_peripheral.v", bundle.namelist())
+            self.assertIn("smart_fan/design.json", bundle.namelist())
+        errors, count = inspect_site()
+        self.assertGreaterEqual(count, 3)
+        self.assertEqual(errors, [])
 
 
 
