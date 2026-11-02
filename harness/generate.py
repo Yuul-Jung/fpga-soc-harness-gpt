@@ -143,6 +143,10 @@ def main():
     catalog = json.loads((ROOT / "catalog/discovered.json").read_text(encoding="utf-8"))
     dirs = sorted((ROOT / "capstones").glob("*/design.json"))
     designs = [render_capstone(path.parent) for path in dirs]
+    from .draft import render_drafts
+    proposal_file = ROOT / "catalog/proposals.json"
+    proposals = json.loads(proposal_file.read_text(encoding="utf-8"))
+    draft_rows = render_drafts(proposals.get("proposals", []))
     rows = [[f'<a href="capstones/{esc(d["id"])}/index.html">{esc(d["title"])}</a>',
              esc(d["board"]), esc(d["status"])] for d in designs]
     reference_rows = []
@@ -155,6 +159,8 @@ def main():
     content += "<p>조사 자료, 검토 제안, 자체 제작 RTL 및 검증을 구분합니다. 검색 결과의 동작은 검증되지 않았습니다.</p>"
     content += "<section><h2>실습 캡스톤</h2>" + table(
         ["과제", "대상", "상태"], rows) + "</section>"
+    content += "<section><h2>자동 변환된 설계 구상도 (원본 RTL 미포팅)</h2>" + table(
+        ["후보 소스", "구상 유형", "승인 단계"], draft_rows) + "</section>"
     content += "<section><h2>자동 수집 참고자료</h2><p>GitHub 소스 미복제 · 기초 검색 근거</p>" + table(
         ["공개 원본", "유형(추정)", "SPDX", "재사용 정책", "자료 점수"], reference_rows) + "</section>"
     (SITE / "index.html").write_text(page("FPGA SoC Capstone Harness", content), encoding="utf-8")
