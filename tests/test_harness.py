@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from harness.discover import evidence, license_policy, score
+from harness.draft import make_draft
 from harness.generate import ROOT, safe_local, svg_diagram, validate_design
 from harness.propose import build_proposals
 
@@ -50,6 +51,11 @@ class HarnessTests(unittest.TestCase):
         proposal = build_proposals(mock)["proposals"][0]
         self.assertEqual(proposal["approval_state"], "pending_review")
         self.assertEqual(proposal["rtl_source_status"], "not_ported")
+        draft = make_draft(proposal)
+        self.assertEqual(draft["status"], "CONCEPT_ONLY_NOT_PORTED")
+        self.assertFalse(draft["source_code_included"])
+        self.assertEqual(draft["hardware_board"], "UNASSIGNED")
+        self.assertEqual(len(draft["connections"]), len(draft["modules"]) - 1)
 
 
 if __name__ == "__main__":
