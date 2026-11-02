@@ -53,8 +53,7 @@ def discover():
     queries = json.loads((ROOT / "config/search_queries.json").read_text(encoding="utf-8"))
     results, errors, seen = [], [], set()
     for entry in queries:
-        q = urllib.parse.urlencode({"q": entry["q"], "sort": "best-match",
-                                     "per_page": POLICY["per_query"]})
+        q = urllib.parse.urlencode({"q": entry["q"], "per_page": POLICY["per_query"]})
         try:
             data = api("https://api.github.com/search/repositories?" + q)
         except (urllib.error.URLError, ValueError) as exc:
@@ -95,9 +94,23 @@ def discover():
             break
     if not results:
         raise RuntimeError("No HDL repositories found; retained previous catalog.")
-    results.sort(key=lambda r: (-r["score"], r["repository"].lower()))
-    return {"schema_version": 1, "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-            "results": results[:POLICY["max_catalog_entries"]], "errors": errors}
+    now = dt.datetime.now(dt.timezone.utc).isoformat()
+    old_path = ROOT / "catalog/discovered.json"
+    try:
+        old = json.loads(old_path.read_text(encoding="utf-8")).get("results", [])
+    except (OSError, ValueError):
+        old = []
+    # Preserve old discoveries, including hand-verified seed references.
+    merged = {item["repository"].lower(): item for item in old}
+    for item in results:
+        key = item["repository"].lower()
+        previous = merged.get(key, {})
+        item["first_seen"] = previous.get("first_seen", now)
+        item["last_seen"] = now
+        merged[key] = {**previous, **item}
+    combined = sorted(merged.values(), key=lambda r: (-r["score"], r["repository"].lower()))
+    return {"schema_version": 1, "generated_at": now,
+            "results": combined[:POLICY["max_catalog_entries"]], "errors": errors}
 
 
 def main():
