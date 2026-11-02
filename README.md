@@ -2,6 +2,14 @@
 
 AMD/Xilinx · Intel/Altera · Lattice의 **CPU 외 주변장치·캡스톤 자료**를 자동 조사하고, 축적한 결과를 반복 검증하여 구조화된 캡스톤을 만드는 하네스입니다.
 
+## Claude 독립 개발 인계서 (HTML)
+
+- **[Claude 개발 인계서 — HTML](site/docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — 실제 저장소 구조, 1h/2h/4h 자동화, 산출물·검증 기준, 독립 개발 지침.
+- **[인계서 원본 HTML](docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — 사이트 재생성 시 복사되는 기준 파일.
+- **[공개 HTML 화면 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — GitHub Pages 미활성화 시 임시 확인용 외부 프리뷰.
+
+ChatGPT 저장소는 참고 구현이며 Claude는 별도 폴더·별도 Git 저장소에서 독립 개발합니다. 자동 생성 프로그램은 매 실행마다 인계서 HTML을 보존하고 메인 자료실에 연결합니다.
+
 ## HTML 온라인 교재 열람
 
 **전체 메인 HTML:** [종합 자료실 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/index.html) · [원본 index.html](site/index.html)

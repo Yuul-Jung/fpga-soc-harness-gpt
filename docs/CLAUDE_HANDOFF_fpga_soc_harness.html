@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FPGA SoC 캡스톤 자동화 하네스의 Claude 독립 개발 인계서. 구조, 1·2·4시간 주기, RTL, 검증 및 HTML 산출물 가이드.">
+<title>Claude 개발 인계서 | FPGA SoC Capstone Harness</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#1c354b;background:#f4f7fb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;line-height:1.72;font-size:15px}
+a{color:#1663a0;text-decoration:none}a:hover{text-decoration:underline}
+header{background:#183b58;color:#fff;padding:14px 24px;position:sticky;top:0;z-index:10}
+header a{color:#fff;font-weight:700}header span{font-size:12px;color:#d6e5f1;margin-left:12px}
+.layout{max-width:1300px;margin:auto;display:grid;grid-template-columns:245px minmax(0,1fr)}
+nav{padding:26px 14px;align-self:start;position:sticky;top:55px;max-height:calc(100vh - 56px);overflow:auto;border-right:1px solid #dce5ee}
+nav strong{display:block;font-size:12px;color:#668098;letter-spacing:.04em;margin:0 9px 9px}
+nav a{display:block;padding:7px 10px;font-size:13px;border-radius:6px;color:#3e5b71}
+nav a:hover{background:#e5eff8;text-decoration:none}
+main{padding:30px 28px 80px;max-width:1000px;min-width:0}
+.hero,section{background:#fff;border:1px solid #dae4ed;border-radius:12px;padding:24px;margin-bottom:20px}
+.eyebrow{font-size:12px;letter-spacing:.1em;color:#547995;font-weight:700}
+h1{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.3;margin:10px 0}
+h2{font-size:1.25rem;line-height:1.4;margin:0 0 13px}
+h3{font-size:1.02rem;margin:19px 0 8px}
+p{margin:8px 0 14px}
+.meta{color:#506c80;font-size:13px}
+strong{font-weight:700}
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.pills a{padding:6px 10px;border:1px solid #c7d9e8;border-radius:7px;background:#f1f7fb;font-size:13px}
+.notice{border-left:4px solid #a67838;padding:13px 17px;background:#fff8ed;color:#5e482c;margin:14px 0}
+.good{border-left:4px solid #3a8c65;padding:13px 17px;background:#eff9f3;color:#255c42;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid #dae3eb;text-align:left;padding:9px 10px;vertical-align:top}
+th{background:#edf3f8}.scroll{overflow:auto}
+pre{padding:15px 17px;background:#f4f6f8;border:1px solid #dce4ed;border-radius:8px;overflow:auto;white-space:pre;line-height:1.55;font-size:12.5px;color:#203f59}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.91em}
+p code,li code,td code{background:#eef3f7;padding:2px 4px;border-radius:3px}
+ol,ul{padding-left:23px}li{margin:5px 0}
+small{color:#60798d}
+footer{color:#6d8496;font-size:12px;margin-top:30px}
+@media(max-width:820px){.layout{display:block}nav{position:static;max-height:none;display:flex;flex-wrap:wrap;padding:10px 12px;border-right:0;border-bottom:1px solid #dce5ee}nav strong{width:100%}nav a{padding:4px 8px}main{padding:14px 12px 55px}.hero,section{padding:18px}header span{display:none}}
+@media print{header,nav{display:none}.layout{display:block}main{max-width:100%;padding:0}section,.hero{break-inside:avoid;border:0;padding:10px 0}a{color:inherit}}
+</style>
+</head>
+<body>
+<header><a href="../index.html">FPGA SoC Capstone Harness</a><span>Claude 독립 개발 인계서 · 2026-11-02</span></header>
+<div class="layout">
+<nav aria-label="문서 목차">
+<strong>인계서 목차</strong>
+<a href="../index.html">← 전체 자료실</a>
+<a href="#purpose">1. 프로젝트 목적</a>
+<a href="#structure">2. 원본 파일 구성</a>
+<a href="#schedule">3. 자동 실행 주기</a>
+<a href="#status">4. 구현·미구현 구분</a>
+<a href="#principles">5. 독립 개발 원칙</a>
+<a href="#deliverables">6. 산출물 기준</a>
+<a href="#commands">7. 실행·검증 명령</a>
+<a href="#first-task">8. Claude의 첫 작업</a>
+<a href="#source-links">참조 링크</a>
+</nav>
+<main>
+<div class="hero">
+<div class="eyebrow">PROJECT HANDOFF / REFERENCE IMPLEMENTATION</div>
+<h1>Claude 개발 인계서<br>FPGA SoC 캡스톤 자동화 하네스</h1>
+<p>ChatGPT가 구축한 공개 하네스의 폴더 구조, 실제 수행 기능, 주기 실행 방식, 기술적 안전 게이트를 Claude에 전달하기 위한 독립형 HTML 문서입니다.</p>
+<div class="meta"><strong>기준일</strong> 2026-11-02 · <strong>참고 저장소</strong> <a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt">Yuul-Jung/fpga-soc-harness-gpt</a> · <strong>인계서 작성 시 확인 HEAD</strong> <code>e57d0966941fdbf4db8e4b28c701bc780c004a69</code></div>
+<div class="notice"><strong>작업 공간 분리:</strong> Claude는 ChatGPT와 다른 작업 폴더 및 독립 Git 저장소에서 개발합니다. 이 저장소는 검토용 참고 구현입니다. Claude의 수정 결과로 ChatGPT 원본 저장소를 덮어쓰지 않습니다.</div>
+<div class="pills"><a href="#structure">폴더 구성</a><a href="#schedule">1h·2h·4h 자동화</a><a href="#deliverables">HTML·RTL 산출물</a><a href="#first-task">Claude 작업 지침</a></div>
+</div>
+
+<section id="purpose">
+<h2>1. 프로젝트 목적</h2>
+<p>AMD/Xilinx, Intel/Altera, Lattice의 공개 FPGA 주변장치 및 종합설계 자료를 조사합니다. CPU 단독 설계보다 센서·계측·모터·로봇·영상·통신·보안 등 <strong>실제 SoC 주변장치 응용</strong>에 집중합니다.</p>
+<p><strong>자료 조사 → 출처·라이선스 추적 → 검토·개선 → Design IR(설계 중간표현) → RTL·소프트웨어·구조도·HTML 생성 → 자동 검증 → 게시·이력 축적</strong></p>
+<p>최종 산출물은 전체 메인 HTML, 캡스톤별 독립 HTML, 구조화 디지털 계통도, 신호 연결표, 실제 실행 가능한 RTL 및 소프트웨어, 테스트벤치, BOM(부품 목록), 검증 기록입니다.</p>
+</section>
+
+<section id="structure">
+<h2>2. 현재 ChatGPT 하네스의 파일 구성</h2>
+<p>다음은 인계 당시 저장소에서 확인된 주요 원본과 자동 생성물입니다. 실제 최신 상태는 GitHub의 <code>main</code>을 다시 확인해야 합니다.</p>
+<pre><code>fpga-soc-harness-gpt/
+├── README.md
+├── LICENSE
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── VALIDATION_GATES.md
+│   ├── SCHEDULED_PIPELINE.md
+│   └── OPERATIONS.md
+├── config/
+│   ├── policy.json
+│   ├── research_matrix.json
+│   └── search_queries.json
+├── harness/
+│   ├── discover.py
+│   ├── research.py
+│   ├── review.py
+│   ├── refine.py
+│   ├── propose.py
+│   ├── draft.py
+│   ├── factory.py
+│   ├── generate.py
+│   ├── validate.py
+│   ├── maintenance.py
+│   └── __init__.py
+├── catalog/
+│   ├── discovered.json
+│   ├── proposals.json
+│   ├── reviewed.json
+│   ├── improvement_backlog.json
+│   ├── research_history.json
+│   ├── factory_history.json
+│   ├── material_audit.json
+│   └── material_audit_history.json
+├── library/
+│   ├── rtl/pulse_event_meter.v
+│   ├── tb/tb_pulse_event_meter.v
+│   ├── sw/pulse_meter_mmio.c
+│   └── README.md
+├── capstones/smart_fan/
+│   ├── design.json
+│   ├── INTEGRATION.md
+│   ├── rtl/smart_fan_peripheral.v
+│   ├── tb/tb_smart_fan_peripheral.v
+│   └── sw/fan_mmio.c
+├── site/
+│   ├── index.html
+│   ├── capstones/index.html
+│   ├── capstones/smart_fan/
+│   │   ├── index.html
+│   │   ├── system.svg
+│   │   ├── connections.json
+│   │   ├── design.json
+│   │   ├── bom.csv
+│   │   ├── source/
+│   │   ├── source_bundle.zip
+│   │   ├── source_manifest.json
+│   │   └── verification.json
+│   └── drafts/&lt;source-id&gt;/
+├── tests/test_harness.py
+└── .github/workflows/
+    ├── continuous-pipeline.yml
+    ├── verify.yml
+    ├── sync-site.yml
+    ├── pages.yml
+    └── discover.yml</code></pre>
+<div class="scroll"><table>
+<thead><tr><th>주요 경로</th><th>기능</th></tr></thead>
+<tbody>
+<tr><td><code>docs/</code></td><td>설계 원칙, 검증·승인 단계, 주기 운영 지침</td></tr>
+<tr><td><code>config/</code></td><td>제조사·보드·주제 검색 매트릭스, 검색·라이선스 정책</td></tr>
+<tr><td><code>harness/research.py</code></td><td>1시간 회전 검색, 분류 다양성 확보, 후보 축적</td></tr>
+<tr><td><code>harness/review.py</code> · <code>refine.py</code></td><td>2시간 출처·증거 검토, 개선 과제 및 설계 제안 정리</td></tr>
+<tr><td><code>harness/factory.py</code></td><td>검토된 후보에 대응하는 내부 RTL 템플릿으로 캡스톤 과제화</td></tr>
+<tr><td><code>harness/generate.py</code></td><td>전체·과제별 HTML, 구조도, 연결정보, BOM, ZIP 생성</td></tr>
+<tr><td><code>harness/maintenance.py</code> · <code>validate.py</code></td><td>기존 HTML/신호/소스 해시/RTL·C 코드 회귀검증</td></tr>
+<tr><td><code>catalog/</code></td><td>수집·분류·검증·개선·변경 이력</td></tr>
+<tr><td><code>library/</code> · <code>capstones/</code></td><td>원본 RTL 템플릿과 실제 캡스톤 설계 기준</td></tr>
+<tr><td><code>site/</code></td><td>웹에서 직접 확인할 문서·구상도·실행소스</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="schedule">
+<h2>3. GitHub Actions의 1h / 2h / 4h 자동 실행</h2>
+<div class="scroll"><table>
+<thead><tr><th>주기</th><th>단계</th><th>수행 내용</th><th>한국 시간</th></tr></thead>
+<tbody>
+<tr><td><strong>1시간</strong></td><td><code>research</code></td><td>새로운 FPGA 응용 공개자료 검색, 저장소 중복 제거 및 출처 추적, 기존 HTML·SVG·소스 회귀검증</td><td>매시 07분</td></tr>
+<tr><td><strong>2시간</strong></td><td><code>review</code></td><td>전체 수집 자료의 메타데이터·라이선스·증거 재검토, 제안 개선, 기존 제작 자료 재검증</td><td>09:17, 11:17, 13:17…</td></tr>
+<tr><td><strong>4시간</strong></td><td><code>factory</code></td><td>검증 게이트를 통과한 내부 템플릿으로 과제화, 전체 HTML·구조도·테스트벤치 검증 및 갱신</td><td>09:27, 13:27, 17:27…</td></tr>
+</tbody></table></div>
+<pre><code># UTC cron
+7 * * * *       # 매시간 조사
+17 */2 * * *    # 2시간마다 검토
+27 */4 * * *    # 4시간마다 캡스톤 과제화</code></pre>
+<p>중앙 실행 파일은 <a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/.github/workflows/continuous-pipeline.yml"><code>continuous-pipeline.yml</code></a>입니다. GitHub Actions 예약 실행은 지연되거나 누락될 수 있으므로 정확한 시간에 실행됨을 보장하지 않습니다.</p>
+<div class="notice"><strong>핵심 구분:</strong> 4시간마다 반드시 새로운 과제가 완성되는 것은 아닙니다. 재사용 가능한 원본 RTL 템플릿과 검증된 설계 근거가 있을 때만 신규 과제를 생성합니다. 검색 방식은 회전형 Python 휴리스틱이며, 매시간 LLM이 자율적으로 코드를 작성하는 에이전트는 아닙니다.</div>
+</section>
+
+<section id="status">
+<h2>4. 구현 완료와 미구현 사항의 구별</h2>
+<h3>현재 구현한 기능</h3>
+<ul>
+<li>공개 GitHub 저장소 메타데이터, HDL 파일 트리, 라이선스 및 소스 트리 SHA 조사</li>
+<li>제조사·보드·응용·검증 관점 회전 검색 및 기존 목록의 축적</li>
+<li>초기 공개 프로젝트 11건에 대한 참고 목록과 설계 구상 페이지</li>
+<li>Design IR(JSON) 기반 HTML·SVG·연결정보·BOM·자체 소스 및 ZIP 생성</li>
+<li>메인 HTML, 캡스톤 목차 및 과제별 상세 HTML을 연결한 자료실</li>
+<li>자체 RTL 시뮬레이션, C 자체 테스트, 기존 HTML 링크·구조도·해시 회귀검증</li>
+<li><code>smart_fan</code> 독립 RTL·테스트벤치·C 샘플 및 <code>pulse_event_meter</code> 내부 템플릿</li>
+</ul>
+<h3>아직 완료하지 않은 기능</h3>
+<ul>
+<li>제3자 저장소 RTL을 일괄 해석하고 자동으로 Basys3/MicroBlaze V에 포팅하는 AI 에이전트</li>
+<li>모든 후보에 대한 Vivado/Quartus/Radiant 실제 합성 및 타이밍 결과</li>
+<li>MicroBlaze V, AXI Block Design, XDC, 주소맵, Vitis 프로그램을 결합한 보드 재현 프로젝트</li>
+<li>KiCad 전기 계통도·넷리스트 생성과 ERC(전기 규칙 검사)</li>
+<li>모터·센서 실물 배선 및 Basys3 보드 정상 동작 입증</li>
+<li>정식 GitHub Pages 게시: 인계서 작성 당시 배포 작업이 건너뛰어진 상태여서 별도 활성화 확인 필요</li>
+</ul>
+<div class="notice">확인된 정식 캡스톤 원본은 인계 당시 <code>capstones/smart_fan</code> 1건입니다. <code>instrument_pulse_counter</code>는 검토 조건을 만족할 때 생성할 수 있는 템플릿입니다. 이후 실제 등록 여부는 최신 GitHub 트리를 확인해야 합니다.</div>
+</section>
+
+<section id="principles">
+<h2>5. Claude 독립 개발·RTL 설계 원칙</h2>
+<ol>
+<li><strong>폴더 및 저장소 분리:</strong> Claude 전용 로컬 폴더와 독립 Git 저장소에서 개발하고 ChatGPT 저장소에 직접 push하지 않습니다.</li>
+<li><strong>검증 우선:</strong> 정상 코드를 경쟁 목적으로 재작성하지 않습니다. 실제 오류·선택적 개선·향후 확장을 명확하게 구분합니다.</li>
+<li><strong>Shell/Wrapper Top:</strong> Top Module에는 보드 핀과 상수·단순 배선 및 모듈 인스턴스만 배치하고 기능 정책은 Controller/IP에 구현합니다.</li>
+<li><strong>주 대상:</strong> Basys3 + MicroBlaze V SoC, AXI4-Lite 기반 Register Map 및 재사용 가능한 RTL 주변장치입니다.</li>
+<li><strong>다중 제조사:</strong> Intel Avalon, Lattice 및 AMD AXI 주변장치 이식은 업체별 어댑터를 구분합니다.</li>
+<li><strong>저렴한 범용 부품:</strong> Digilent 전용 Pmod를 필수 조건으로 삼지 않고 Arduino 호환 센서·액추에이터를 우선 검토합니다.</li>
+<li><strong>전기 안전:</strong> Basys3 디지털 I/O의 3.3V 기준을 준수하고 5V·12V 및 모터·릴레이 코일을 FPGA 핀에 직접 연결하지 않습니다.</li>
+<li><strong>명칭 일치:</strong> 코드와 다이어그램의 모듈명·포트명·Clock·Reset·비트 폭이 일치해야 합니다.</li>
+<li><strong>라이선스:</strong> 출처·SPDX·의존성·사진 권리를 검토하지 않은 외부 RTL/그림을 무단 재배포하지 않습니다.</li>
+<li><strong>증거 기반 발표:</strong> Simulation → Synthesis → Implementation → Timing → Board Test를 구분하고 미실시를 성공으로 표시하지 않습니다.</li>
+<li><strong>누적 재검증:</strong> 1h·2h·4h 각 실행마다 기존 모든 자료도 확인하되, 승인된 원본 RTL·XDC는 자동 덮어쓰지 않습니다.</li>
+</ol>
+</section>
+
+<section id="deliverables">
+<h2>6. Claude 하네스의 최종 산출물 규격</h2>
+<h3>전체 웹 자료실</h3>
+<div class="scroll"><table>
+<thead><tr><th>파일·경로</th><th>역할</th></tr></thead><tbody>
+<tr><td><code>site/index.html</code></td><td>분야·보드·진행·검증 상태별 전체 탐색</td></tr>
+<tr><td><code>site/capstones/index.html</code></td><td>실행 가능한 캡스톤별 HTML 목차</td></tr>
+<tr><td><code>site/drafts/…</code></td><td>미구현·미검증 원본 구상은 완성 과제와 분리해 표시</td></tr>
+</tbody></table></div>
+<h3>캡스톤별 폴더</h3>
+<pre><code>site/capstones/&lt;id&gt;/
+├── index.html          # 과제 개요·전체 코드·검증 결과
+├── design.json         # 설계 기준 원본, Design IR
+├── system.svg          # 정확한 RTL 명칭 기반 디지털 계통도
+├── connections.json    # 포트 방향·연결·비트 폭
+├── bom.csv             # 부품·전원·구매/배선 주의사항
+├── source/             # Verilog · Testbench · C 등
+├── source_bundle.zip   # 다운로드 묶음
+└── verification.json   # 시뮬레이션·합성·보드 검증 구분</code></pre>
+<p>실제 전기회로도, KiCad ERC·넷리스트, 보드 핀 XDC, Vivado/Vitis 프로젝트는 검증된 자료가 확보되면 별도로 추가합니다. 현재의 <code>system.svg</code>는 <strong>디지털 모듈 구조도</strong>이며 물리적 배선이 검증된 전기회로도가 아닙니다.</p>
+</section>
+
+<section id="commands">
+<h2>7. 참고용 원본 복제 및 검증 명령</h2>
+<p>ChatGPT 저장소는 참고 폴더에 복제하고 Claude 프로젝트는 별도 폴더에 생성합니다.</p>
+<pre><code># 공개 ChatGPT 참고 저장소를 분석 전용으로 복제
+git clone --depth 1 https://github.com/Yuul-Jung/fpga-soc-harness-gpt.git ~/fpga-soc-harness-gpt-reference
+
+# 독립 Claude 작업 폴더 생성
+mkdir -p ~/fpga-soc-harness-claude
+cd ~/fpga-soc-harness-claude
+git init -b main</code></pre>
+<h3>Ubuntu에서 참고 하네스 테스트</h3>
+<pre><code># 필요한 도구 설치
+sudo apt update
+sudo apt install -y python3 iverilog gcc
+
+# 반드시 참고 폴더에서 실행
+cd ~/fpga-soc-harness-gpt-reference
+
+python3 -m unittest discover -s tests -v
+python3 -m harness.review --offline
+python3 -m harness.refine
+python3 -m harness.factory
+python3 -m harness.maintenance --stage factory
+
+# 메인/캡스톤별 HTML 열람
+python3 -m http.server 8000 --directory site</code></pre>
+<p>로컬 서버가 실행 중일 때 <a href="http://localhost:8000/">http://localhost:8000/</a>을 방문합니다. 원본 참고 폴더에서 수행하는 <code>factory</code> 명령은 조건에 따라 새 과제 폴더를 만들 수 있으므로, 보존이 필요하면 사본에서 실행합니다.</p>
+</section>
+
+<section id="first-task">
+<h2>8. Claude의 첫 작업 지시</h2>
+<ol>
+<li>GitHub의 <code>main</code> 파일을 읽고 본 인계서의 구조·구현 상태와 일치하는지 확인합니다.</li>
+<li>Python, GitHub Actions, HTML 생성기의 실제 오류·보안·유지보수성을 검증하되 가짜 결함이나 불필요한 기능 변경을 만들지 않습니다.</li>
+<li>Claude 전용 하네스의 독립 폴더·저장소 및 1h·2h·4h 자동화를 설계하고 기존 자료 누적 검증을 구현합니다.</li>
+<li>메인 HTML과 과제별 HTML을 사용자가 클릭해 열람할 수 있도록 구성합니다.</li>
+<li>원본 공개 프로젝트의 실제 소스·포트·Clock·Reset·데이터폭을 분석하는 기능을 추가하되 라이선스와 실행 검증을 분리합니다.</li>
+<li>각 과제에서 전기적 연결과 디지털 구조도를 구분하고, 소스·테스트벤치·검증 증빙을 함께 제공합니다.</li>
+<li>수집 품질·재현성·회로 정확성·캡스톤 완성도·HTML 접근성을 공통 평가 축으로 삼되 상대 하네스의 정상 코드를 고의로 트집잡지 않습니다.</li>
+</ol>
+<div class="good"><strong>최종 목표:</strong> 두 하네스를 서로 다른 폴더·저장소에서 독립 발전시키면서 같은 기준으로 평가합니다. 자료 수집만 자동화하는 것이 아니라 재현 가능한 FPGA SoC 캡스톤의 HTML 교재·구조도·전기 계통도·실행소스·검증 기록까지 체계적으로 축적합니다.</div>
+</section>
+
+<section id="source-links">
+<h2>원본 파일 및 운영 이력 바로가기</h2>
+<ul>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt">GitHub 저장소 홈</a></li>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/README.md">README.md — 전체 안내</a></li>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md — 설계 구조</a></li>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/docs/VALIDATION_GATES.md">VALIDATION_GATES.md — 검증 게이트</a></li>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/docs/SCHEDULED_PIPELINE.md">SCHEDULED_PIPELINE.md — 1h·2h·4h 실행</a></li>
+<li><a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/.github/workflows/continuous-pipeline.yml">continuous-pipeline.yml — 스케줄러</a></li>
+<li><a href="../index.html">메인 HTML 자료실로 돌아가기</a></li>
+</ul>
+</section>
+<footer>기준일: 2026-11-02 · 참고용 독립 개발 인계 자료 · 제3자 소스의 권리와 실제 보드 검증 상태는 별도 확인</footer>
+</main></div>
+</body></html>
