@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_night_corridor",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "decdbcf50607c690e93b8f5c08f1c5f0f1590c1c5dab2f9c7bb09dc7659f3996",
+      "origin": "first_party_local"
+    }
+  ]
+}

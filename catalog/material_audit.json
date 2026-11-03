@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
   "stage": "factory",
-  "timestamp": "2026-11-03T19:57:37.989818+00:00",
-  "existing_capstones_rechecked": 7,
-  "pages_and_diagrams_checked": 46,
+  "timestamp": "2026-11-03T21:10:51.686547+00:00",
+  "existing_capstones_rechecked": 8,
+  "pages_and_diagrams_checked": 49,
   "generated_outputs_regenerated": 10,
   "changed_generated_paths": [
     "index.html",
     "capstones/index.html",
-    "capstones/creative_water_leak_alarm/connections.json",
-    "capstones/creative_water_leak_alarm/source_manifest.json",
-    "capstones/creative_water_leak_alarm/system.svg",
-    "capstones/creative_water_leak_alarm/bom.csv",
-    "capstones/creative_water_leak_alarm/source_bundle.zip",
-    "capstones/creative_water_leak_alarm/design.json",
-    "capstones/creative_water_leak_alarm/index.html",
-    "capstones/creative_water_leak_alarm/source/INTEGRATION.md"
+    "capstones/creative_night_corridor/connections.json",
+    "capstones/creative_night_corridor/source_manifest.json",
+    "capstones/creative_night_corridor/system.svg",
+    "capstones/creative_night_corridor/bom.csv",
+    "capstones/creative_night_corridor/source_bundle.zip",
+    "capstones/creative_night_corridor/design.json",
+    "capstones/creative_night_corridor/index.html",
+    "capstones/creative_night_corridor/source/INTEGRATION.md"
   ],
   "source_rtl_modified": false,
   "publication_gate": {
@@ -32,6 +32,13 @@
     },
     {
       "id": "creative_greenhouse_fan",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_night_corridor",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
