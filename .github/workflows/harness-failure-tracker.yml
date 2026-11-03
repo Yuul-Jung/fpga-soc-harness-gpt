@@ -1,0 +1,54 @@
+name: FPGA SoC harness regression issue tracker
+
+on:
+  # (추가) 실패한 자동 복구/검증을 한 건의 Issue로 추적한다.
+  workflow_run:
+    workflows:
+      - Update committed HTML artifacts
+      - Verify capstone harness
+      - Continuous FPGA SoC research and capstone maintenance
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  track:
+    if: >-
+      ${{ github.event.workflow_run.head_branch == 'main' &&
+          github.event.workflow_run.event != 'pull_request' &&
+          (github.event.workflow_run.conclusion == 'success' ||
+           github.event.workflow_run.conclusion == 'failure' ||
+           github.event.workflow_run.conclusion == 'timed_out') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record regression or close it after recovery
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          WORKFLOW: ${{ github.event.workflow_run.name }}
+          RESULT: ${{ github.event.workflow_run.conclusion }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          title="[Harness] ${WORKFLOW} regression"
+          issue="$(gh issue list --state open --limit 500 --json number,title |
+            jq -r --arg title "$title" '.[] | select(.title == $title) | .number' | head -n 1)"
+          if [[ "$RESULT" == "success" ]]; then
+            if [[ -n "$issue" ]]; then
+              gh issue close "$issue" --comment "전체 재검증 통과: $RUN_URL (SHA: $HEAD_SHA)"
+            fi
+            echo "PASS: $WORKFLOW"
+            exit 0
+          fi
+          if [[ -n "$issue" ]]; then
+            echo "::warning::Open regression issue #$issue; latest failing run: $RUN_URL"
+            exit 0
+          fi
+          body="$(mktemp)"
+          printf '자동 하네스 검증 실패: **%s**\n\n- 결과: %s\n- 실행: %s\n- 커밋: %s\n\n생성 HTML/SVG/BOM/연결표만 자동 재생성합니다. RTL, 설계 원본, XDC, 실제 보드 전압/핀맵은 검토 없이 수정하지 않습니다.\n' \
+            "$WORKFLOW" "$RESULT" "$RUN_URL" "$HEAD_SHA" > "$body"
+          gh issue create --title "$title" --body-file "$body"
