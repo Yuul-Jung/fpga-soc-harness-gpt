@@ -1,10 +1,12 @@
 # 1h / 90m / 150m FPGA SoC self-maintaining harness
 
 ## Cadence
-GitHub Actions `continuous-pipeline.yml` is the sole scheduled orchestrator.
+GitHub Actions `continuous-pipeline.yml` orchestrates research/review/factory. `sync-site.yml` independently repairs generated artifacts every 30 minutes, and `verify.yml` runs a full independent regression every two hours.
 
 | Schedule | UTC cron | KST time (UTC+9) | Stage |
 |---|---|---|---|
+| Every 30 minutes | `15,45 * * * *` | every hour :15 and :45 | Independent safe generated-site repair, RTL/C and source/link checks |
+| Every 2 hours | `25 */2 * * *` | 09:25, 11:25, ... | Independent Python/RTL and legacy-material regression |
 | Every hour | `7 * * * *` | every hour :07 | New source exploration **and full existing-material regression/repair** |
 | Every 90 minutes | `17 0-23/3 * * *` + `47 1-23/3 * * *` | 09:17, 10:47, 12:17, ... | Verify discoveries and **all prior courseware** |
 | Every 150 minutes | `27 0,5,10,15,20 * * *` + `57 2,7,12,17,22 * * *` | 09:27, 11:57, 14:27, ... | Make/review capstone deliverables and recheck **all older projects** |

@@ -22,16 +22,16 @@ GitHub Pages **기본 주소**: **https://yuul-jung.github.io/fpga-soc-harness-g
 
 - 모든 `capstones/<id>/design.json`에서 `site/index.html`, `site/capstones/index.html`, `site/capstones/<id>/index.html`을 생성합니다.
 - 과제별 HTML에 전체 RTL·C 소스, 모듈 계통도 SVG, 신호 연결표, BOM, 검증 결과, `source_bundle.zip`을 수록합니다.
-- GitHub Actions 1h/2h/4h 실행 때 해당 HTML과 과거 자료를 다시 생성·검증합니다.
+- GitHub Actions의 30분 상시 복구·2시간 독립 회귀검사와 1시간/90분/150분 조사·검증·캡스톤 순환에서 기존 자료를 다시 생성·검증합니다.
 - 실사용 웹사이트 활성화: 저장소 **Settings → Pages → Source: GitHub Actions**, **Settings → Secrets and variables → Actions → Variables → ENABLE_PAGES=true** 설정.
 
-## 1h → 2h → 4h 자동 순환
+## 1시간 → 90분 → 150분 자동 순환
 
 | 단계 | 실행 주기 | 주요 결과 |
 |---|---|---|
 | Creative Research | 매시간 | 새로운 GitHub 자료 검색·중복 제거, SHA·라이선스 이력, **기존 자료 전체 회귀검증 및 파생 문서 자동 보수** |
-| Review & Improve | 2시간마다 | 과거 자료 전체 재검토, 소스·제약·테스트벤치/라이선스 평가, 기존 HTML/구조도/소스 회귀 검증 및 안전한 문서 수정 |
-| Capstone Factory | 4시간마다 | 검증된 내부 IP 템플릿 기반 과제화; **기존 과제 전체도 항상 재검증·개선** |
+| Review & Improve | 90분마다 | 과거 자료 전체 재검토, 소스·제약·테스트벤치/라이선스 평가, 기존 HTML/구조도/소스 회귀 검증 및 안전한 문서 수정 |
+| Capstone Factory | 150분마다 | 검증된 내부 IP 템플릿 기반 과제화; **기존 과제 전체도 항상 재검증·개선** |
 
 모든 자동 실행은 GitHub Actions에서 수행하며 PC가 꺼져 있어도 동작합니다. GitHub 예약 작업은 실행 시각 지연/누락 가능성이 있습니다.
 
