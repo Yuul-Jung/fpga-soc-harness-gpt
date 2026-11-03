@@ -5,10 +5,12 @@ on:
     # Coordinated UTC slots; Asia/Seoul is UTC+9.
     # 1h research: xx:07 KST
     - cron: '7 * * * *'
-    # 2h review: xx:17 KST, alternating hours
-    - cron: '17 */2 * * *'
-    # 4h capstone creation/improvement: xx:27 KST
-    - cron: '27 */4 * * *'
+    # 90-minute review, UTC anchors: 00:17, 01:47, 03:17, 04:47 ...
+    - cron: '17 0-23/3 * * *'
+    - cron: '47 1-23/3 * * *'
+    # 150-minute factory, UTC anchors: 00:27, 02:57, 05:27 ...
+    - cron: '27 0,5,10,15,20 * * *'
+    - cron: '57 2,7,12,17,22 * * *'
   workflow_dispatch:
     inputs:
       stage:
@@ -50,8 +52,8 @@ jobs:
           else
             case "$SCHEDULE" in
               "7 * * * *") stage="research" ;;
-              "17 */2 * * *") stage="review" ;;
-              "27 */4 * * *") stage="factory" ;;
+              "17 0-23/3 * * *"|"47 1-23/3 * * *") stage="review" ;;
+              "27 0,5,10,15,20 * * *"|"57 2,7,12,17,22 * * *") stage="factory" ;;
               *) echo "Unknown schedule: $SCHEDULE"; exit 1 ;;
             esac
           fi

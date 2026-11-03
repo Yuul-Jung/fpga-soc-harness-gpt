@@ -4,7 +4,7 @@ AMD/Xilinx · Intel/Altera · Lattice의 **CPU 외 주변장치·캡스톤 자�
 
 ## Claude 독립 개발 인계서 (HTML)
 
-- **[Claude 개발 인계서 — HTML](site/docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — 실제 저장소 구조, 1h/2h/4h 자동화, 산출물·검증 기준, 독립 개발 지침.
+- **[Claude 개발 인계서 — HTML](site/docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — 실제 저장소 구조, 1h/90m/150m 자동화, 산출물·검증 기준, 독립 개발 지침.
 - **[인계서 원본 HTML](docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — 사이트 재생성 시 복사되는 기준 파일.
 - **[공개 HTML 화면 미리보기](https://htmlpreview.github.io/?https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/site/docs/CLAUDE_HANDOFF_fpga_soc_harness.html)** — GitHub Pages 미활성화 시 임시 확인용 외부 프리뷰.
 
@@ -71,3 +71,11 @@ RTL 테스트 Ubuntu 도구: `sudo apt install iverilog`. 생성된 사이트는
 GitHub Pages 배포는 저장소 Settings에서 별도 활성화해야 합니다. 자동 생성된 SVG는 디지털 **모듈 계통도**이며 실제 KiCad 회로도/ERC 인증은 별도의 목표입니다.
 
 본 저장소의 MIT 라이선스는 자체 작성 코드에만 적용하며 제3자 소스 저작권은 별도 유지합니다.
+
+## 2026-11-03 예약 운영 정책
+
+- 자료 수집: 1시간마다
+- 기존 자료 적대적 검증·개선: 90분마다
+- 캡스톤 생성·HTML 문서화: 150분마다 **신규 캡스톤 1개 이상 필수**. 구현된 RTL이 없는 경우 별도 설계안으로 명시하고, 후보가 소진되면 실패를 보고하며 가짜 성공을 만들지 않음
+- 사용자가 중지할 때까지 반복. GitHub Actions 예약 지연·누락 가능
+- Arduino는 별도 `Yuul-Jung/dev-board` ChatGPT 예약: 갱신·검증 70분, 신규 캡스톤 문서화 3시간

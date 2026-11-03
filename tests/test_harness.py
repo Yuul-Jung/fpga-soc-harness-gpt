@@ -11,10 +11,34 @@ from harness.maintenance import inspect_site
 from harness.propose import build_proposals
 from harness.research import compose_queries, load, ROOT as SEARCH_ROOT
 from harness.review import audit
-from harness.factory import instrument_design
+from harness.factory import instrument_design, create_design_only_capstone
 
 
 class HarnessTests(unittest.TestCase):
+    def test_capstone_policy_requires_unique_document(self):
+        from unittest.mock import patch
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            import harness.factory as factory
+            proposal = {
+                "id": "example--sensor-project",
+                "reference": "example/sensor-project",
+                "source_url": "https://github.com/example/sensor-project",
+                "source_tree_sha": "abc",
+                "license_spdx": "MIT",
+                "reuse_policy": "review_for_reuse",
+                "audit_readiness": "metadata_reviewed_for_design_proposal",
+                "suggested_ip": ["sensor_rx", "event_counter", "status_out"],
+            }
+            with patch.object(factory, "ROOT", Path(tmp)):
+                ident = create_design_only_capstone([proposal])
+                self.assertEqual(ident, "study_example--sensor-project")
+                self.assertIsNone(create_design_only_capstone([proposal]))
+                d = json.loads((Path(tmp) / "capstones" / ident / "design.json").read_text())
+                self.assertIn("DESIGN_ONLY", d["status"])
+                self.assertNotIn("test_spec", d)
+                self.assertEqual(d["source_files"], ["INTEGRATION.md"])
+
     def test_license_gate(self):
         self.assertEqual(license_policy("MIT"), "review_for_reuse")
         self.assertEqual(license_policy("GPL-3.0"), "reference_only")

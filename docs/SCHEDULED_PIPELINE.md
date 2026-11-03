@@ -1,4 +1,4 @@
-# 1h / 2h / 4h FPGA SoC self-maintaining harness
+# 1h / 90m / 150m FPGA SoC self-maintaining harness
 
 ## Cadence
 GitHub Actions `continuous-pipeline.yml` is the sole scheduled orchestrator.
@@ -6,8 +6,8 @@ GitHub Actions `continuous-pipeline.yml` is the sole scheduled orchestrator.
 | Schedule | UTC cron | KST time (UTC+9) | Stage |
 |---|---|---|---|
 | Every hour | `7 * * * *` | every hour :07 | New source exploration **and full existing-material regression/repair** |
-| Every 2 hours | `17 */2 * * *` | 09:17, 11:17, 13:17, ... | Verify discoveries and **all prior courseware** |
-| Every 4 hours | `27 */4 * * *` | 09:27, 13:27, 17:27, ... | Make/review capstone deliverables and recheck **all older projects** |
+| Every 90 minutes | `17 0-23/3 * * *` + `47 1-23/3 * * *` | 09:17, 10:47, 12:17, ... | Verify discoveries and **all prior courseware** |
+| Every 150 minutes | `27 0,5,10,15,20 * * *` + `57 2,7,12,17,22 * * *` | 09:27, 11:57, 14:27, ... | Make/review capstone deliverables and recheck **all older projects** |
 
 Schedules are GitHub-hosted, may execute late or skip during GitHub outages, and are not a guaranteed real-time timer. Jobs serialize via `concurrency`. Failures appear in Actions; results in `catalog/*history.json`.
 
@@ -16,9 +16,9 @@ The search intentionally rotates four complementary lenses: implementation, caps
 
 `catalog/research_history.json` contains each query set, counts and search errors. `config/research_matrix.json` is expandable.
 
-Every hourly research run also executes the existing capstone HTML/SVG/source regression and safely regenerates all derived artifacts. The 2h stage additionally evaluates and improves all collected references and proposals.
+Every hourly research run also executes the existing capstone HTML/SVG/source regression and safely regenerates all derived artifacts. The 90m stage additionally evaluates and improves all collected references and proposals.
 
-## Every 2 hours: verification + safe improvement of old work
+## Every 90 minutes: verification + safe improvement of old work
 1. Audit **every** known reference for source inventory, license, board, application and evidence.
 2. Recheck upstream commit tree SHA for a rotating subset of sources; changed upstream revisions are not adopted automatically.
 3. Update improvement backlog and human-safe capstone proposals.
@@ -27,10 +27,10 @@ Every hourly research run also executes the existing capstone HTML/SVG/source re
 6. Check links, SVG syntax, structure port connections and compiled source results; save a material audit report and history.
 7. Correct *derivative outputs* only through canonical Design IR, preserving original hand-authored RTL, XDC, register map and manually verified evidence.
 
-## Every 4 hours: capstone generation + recurrence
+## Every 150 minutes: capstone generation + recurrence
 1. Only sources marked reviewed and suitably documented are eligible as inspiration for first-party templates.
-2. Create **at most one** new real RTL starter per cycle, and only for an already implemented/tested template. At v1 the available starter is pulse-frequency meter; one instance is created and will not be duplicated on later cycles.
-3. Require genuine local Verilog + testbench + simple C integration helper; never generate fake working IP/RTL by randomly renaming signal names.
+2. **Require at least one new unique capstone per cycle.** Prefer a genuinely new reviewed first-party RTL template. When no new RTL template exists, generate one distinct capstone **design-only brief** from an unused reviewed proposal, explicitly marked unimplemented. If eligible unique proposals run out, fail visibly; never duplicate a project or invent verified RTL.
+3. Implemented capstones require genuine Verilog, testbench and C helper. Design-only briefs must not claim any of those are implemented. Never fabricate working IP/RTL by renaming signals.
 4. Generate HTML, source copies, module diagram SVG, machine-readable connections JSON, BOM CSV, verification JSON.
 5. **Recheck and repair all existing published materials** each cycle; regression failures make the workflow fail and preserve audit logs.
 6. Physical KiCad netlists, XDC pin assignments, AXI Block Designs and real board test are gated until real hardware metadata and reproducible vendor builds are available.
@@ -50,7 +50,10 @@ python3 -m unittest discover -s tests -v
 
 ## Important limitations
 - This is **scheduled deterministic Python automation**, not a continuously reasoning autonomous LLM agent. Creative search uses diversity/feedback heuristics, not LLM generation.
-- The 2h stage verifies metadata and first-party working examples; it does not actually synthesize downloaded third-party HDL.
+- The 90m stage verifies metadata and first-party working examples; it does not actually synthesize downloaded third-party HDL.
 - The initial structured "계통도" is digital module topology, **not KiCad electrical schematic or physical wire proof**. Existing first-party RTL is not rewritten automatically.
 - Full SoC outputs require a real Vivado IP Block Design, verified address map, board XDC and tested firmware. Unverified steps are clearly labeled.
 - Automatic changes to approved RTL or external source code require explicit human review and new evidence.
+
+## Persistent policy (2026-11-03)
+Run indefinitely until the user requests a stop. Every 150-minute factory run must create at least one new unique capstone document, with implementation status explicit. If the vetted candidate pool is exhausted, the run must fail and report the missing prerequisite rather than falsely claim success. Cron runs can be delayed or skipped by GitHub; this is not a real-time guarantee.
