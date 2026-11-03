@@ -79,3 +79,18 @@ GitHub Pages 배포는 저장소 Settings에서 별도 활성화해야 합니다
 - 캡스톤 생성·HTML 문서화: 150분마다 **신규 캡스톤 1개 이상 필수**. 구현된 RTL이 없는 경우 별도 설계안으로 명시하고, 후보가 소진되면 실패를 보고하며 가짜 성공을 만들지 않음
 - 사용자가 중지할 때까지 반복. GitHub Actions 예약 지연·누락 가능
 - Arduino는 별도 `Yuul-Jung/dev-board` ChatGPT 예약: 갱신·검증 70분, 신규 캡스톤 문서화 3시간
+
+## 상시 오류 검증·자동 정정 루프 (2026-11-03)
+
+| 시점 | 검사 | 정정·후속 |
+|---|---|---|
+| **매 30분 (:15, :45 UTC)** | `sync-site.yml`: 모든 기존 캡스톤, RTL/C 자체 시험, 소스 해시, HTML/SVG/JSON 연결 및 Python 단위시험 | `harness.maintenance --stage review`로 생성 가능한 HTML·SVG·BOM·소스 번들을 다시 만든 후 검증하고, 실제 생성물 변화만 게시 |
+| **매 2시간** | `verify.yml`: Python 테스트·RTL 시뮬레이션·기존 자료 재검토·검증 상태 | 실패 시 오류 증거를 남기고 원본 RTL은 보존 |
+| **자료·소스 변경 시** | 기존 push/PR 검증, 파생 페이지 생성 | 정상 검증 후 안전한 생성물만 반영 |
+| **실패/복구 시** | `harness-failure-tracker.yml`: 자동 검증 실행 결과 | 워크플로별 중복 없는 Issue 생성, 동일 검사 재통과 시 종료 |
+
+**자동 정정 허용:** `design.json`과 승인된 로컬 소스를 기준으로 생성하는 HTML·SVG·BOM·connections.json·소스 번들. 커밋 충돌 시 최신 `main`에서 다시 생성·검증하며 최대 3회 재시도한다. 단순 검증 시각(timestamp)만 바뀐 경우 무의미한 커밋을 만들지 않는다.
+
+**자동 정정 금지:** 원본 RTL·테스트벤치·C 드라이버·XDC·보드 전압/핀맵·합성/타이밍 판정. 실패하면 검증 로그·`catalog/material_audit.json`·실행 아티팩트와 Issue를 남긴다. GitHub Actions 예약은 실행 지연 또는 누락될 수 있다.
+
+**실제 보드 검증과의 구분:** CI의 RTL 시뮬레이션·C 호스트 테스트·문서 검사는 Vivado 합성, Implementation, Timing, Basys3 실물 시험을 대체하지 않는다. 기존 자료 조사 60분, 검증 90분, 캡스톤 150분 주기는 유지한다.
