@@ -32,7 +32,32 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/
-          if ! git diff --cached --quiet; then
-            git commit -m "docs: publish generated capstone HTML, diagrams and verification"
-            git push origin "HEAD:$GITHUB_REF_NAME"
+          if git diff --cached --quiet; then
+            echo "Generated site is already current."
+            exit 0
           fi
+          git commit -m "docs: publish generated capstone HTML, diagrams and verification"
+          if git push origin "HEAD:$GITHUB_REF_NAME"; then
+            exit 0
+          fi
+          # Another factory cycle may have pushed newer site files. Regenerate
+          # from the new HEAD; never force-push stale generated HTML.
+          for attempt in 1 2 3; do
+            echo "Remote advanced; regenerate from current main (attempt $attempt)"
+            git fetch origin main
+            git reset --hard origin/main
+            python -m harness.generate
+            python -m harness.validate
+            python -m harness.generate
+            git add site/
+            if git diff --cached --quiet; then
+              echo "Latest site already contains all generated artifacts."
+              exit 0
+            fi
+            git commit -m "docs: refresh generated capstone HTML after concurrent update"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+          done
+          echo "ERROR: Site publication retries exhausted" >&2
+          exit 1
