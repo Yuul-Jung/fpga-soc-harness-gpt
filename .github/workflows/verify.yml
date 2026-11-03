@@ -1,5 +1,8 @@
 name: Verify capstone harness
 on:
+  # (추가) 정기 적대적 검증: 2시간마다 Python·RTL·소스 해시·HTML 회귀검사.
+  schedule:
+    - cron: '25 */2 * * *'
   push:
     branches: [main, feature/capstone-harness-v1]
   pull_request:
