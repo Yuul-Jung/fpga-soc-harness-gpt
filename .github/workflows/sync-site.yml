@@ -24,7 +24,7 @@ jobs:
           python-version: '3.11'
       - name: Install RTL simulator
         run: sudo apt-get update && sudo apt-get install -y iverilog
-      # (변경) 생성→RTL/C 검증→HTML 재생성→링크/SVG/연결 검사까지 1회 수행.
+      # (변경) 생성→RTL/C 검증→HTML 재생성→링크/SVG/연결 검사.
       # 실패 시 원본 RTL/design.json은 수정하지 않고 실패 증거를 보존한다.
       - name: Detect and safely repair generated HTML / SVG / manifests
         run: |
@@ -47,7 +47,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/
           # (추가) 검증 JSON의 매 실행 timestamp만 달라졌으면 무의미한 커밋 금지.
-          if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\\.json
+          if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\.json$' >/dev/null; then
+            echo "No substantive generated site changes; skip timestamp-only commit."
+            exit 0
+          fi
           git commit -m "docs: publish generated capstone HTML, diagrams and verification"
           if git push origin "HEAD:$GITHUB_REF_NAME"; then
             exit 0
@@ -61,74 +64,8 @@ jobs:
             python -m harness.maintenance --stage review
             python -m unittest discover -s tests -v
             git add site/
-            if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\\.json
-            git commit -m "docs: refresh generated capstone HTML after concurrent update"
-            if git push origin "HEAD:$GITHUB_REF_NAME"; then
-              exit 0
-            fi
-          done
-          echo "ERROR: Site publication retries exhausted" >&2
-          exit 1
- >/dev/null; then
-            echo "No substantive generated site changes; skip timestamp-only commit."
-            exit 0
-          fi
-          git commit -m "docs: publish generated capstone HTML, diagrams and verification"
-          if git push origin "HEAD:$GITHUB_REF_NAME"; then
-            exit 0
-          fi
-          # Another factory cycle may have pushed newer site files. Regenerate
-          # from the new HEAD; never force-push stale generated HTML.
-          for attempt in 1 2 3; do
-            echo "Remote advanced; regenerate from current main (attempt $attempt)"
-            git fetch origin main
-            git reset --hard origin/main
-            python -m harness.generate
-            python -m harness.validate
-            python -m harness.generate
-            git add site/
-            if git diff --cached --quiet; then
-              echo "Latest site already contains all generated artifacts."
-              exit 0
-            fi
-            git commit -m "docs: refresh generated capstone HTML after concurrent update"
-            if git push origin "HEAD:$GITHUB_REF_NAME"; then
-              exit 0
-            fi
-          done
-          echo "ERROR: Site publication retries exhausted" >&2
-          exit 1
- >/dev/null; then
+            if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\.json$' >/dev/null; then
               echo "Latest site already contains matching generated artifacts."
-              exit 0
-            fi
-            git commit -m "docs: refresh generated capstone HTML after concurrent update"
-            if git push origin "HEAD:$GITHUB_REF_NAME"; then
-              exit 0
-            fi
-          done
-          echo "ERROR: Site publication retries exhausted" >&2
-          exit 1
- >/dev/null; then
-            echo "No substantive generated site changes; skip timestamp-only commit."
-            exit 0
-          fi
-          git commit -m "docs: publish generated capstone HTML, diagrams and verification"
-          if git push origin "HEAD:$GITHUB_REF_NAME"; then
-            exit 0
-          fi
-          # Another factory cycle may have pushed newer site files. Regenerate
-          # from the new HEAD; never force-push stale generated HTML.
-          for attempt in 1 2 3; do
-            echo "Remote advanced; regenerate from current main (attempt $attempt)"
-            git fetch origin main
-            git reset --hard origin/main
-            python -m harness.generate
-            python -m harness.validate
-            python -m harness.generate
-            git add site/
-            if git diff --cached --quiet; then
-              echo "Latest site already contains all generated artifacts."
               exit 0
             fi
             git commit -m "docs: refresh generated capstone HTML after concurrent update"
