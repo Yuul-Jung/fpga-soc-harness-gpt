@@ -195,6 +195,71 @@
       "results_found": 0,
       "total_unique": 11,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-03T08:38:09.676522+00:00",
+      "queries": [
+        {
+          "q": "Certus-NX parking assistant sonar verilog rtl github",
+          "category": "automation",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "implementation"
+        },
+        {
+          "q": "DE1-SoC temperature humidity control fpga capstone project",
+          "category": "sensor",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Basys3 aes hardware accelerator fpga soc peripheral",
+          "category": "security",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "Cyclone V spi i2c uart controller fpga testbench constraints",
+          "category": "communication",
+          "board_hint": "Cyclone V",
+          "vendor_family": "Intel/Altera",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Zybo Z7 stepper driver sensor verilog rtl github",
+          "category": "motor",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "implementation"
+        },
+        {
+          "q": "ECP5 spectrum analyzer audio fpga capstone project",
+          "category": "instrument",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "FPGA hardware peripheral capstone verilog",
+          "category": "automation",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "microblaze AXI custom peripheral sensor",
+          "category": "communication",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 11,
+      "failed_queries": 0
     }
   ]
 }

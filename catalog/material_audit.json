@@ -1,13 +1,31 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-03T08:37:07.233307+00:00",
-  "existing_capstones_rechecked": 3,
-  "pages_and_diagrams_checked": 34,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-03T08:38:14.921180+00:00",
+  "existing_capstones_rechecked": 4,
+  "pages_and_diagrams_checked": 37,
+  "generated_outputs_regenerated": 10,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/creative_smart_parking/connections.json",
+    "capstones/creative_smart_parking/source_manifest.json",
+    "capstones/creative_smart_parking/system.svg",
+    "capstones/creative_smart_parking/bom.csv",
+    "capstones/creative_smart_parking/source_bundle.zip",
+    "capstones/creative_smart_parking/design.json",
+    "capstones/creative_smart_parking/index.html",
+    "capstones/creative_smart_parking/source/INTEGRATION.md"
+  ],
   "source_rtl_modified": false,
   "capstones": [
+    {
+      "id": "creative_smart_parking",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
     {
       "id": "creative_warehouse_access",
       "rtl": "not_run",

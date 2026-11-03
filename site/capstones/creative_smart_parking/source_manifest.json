@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_smart_parking",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "fa382a549413840bc897d55fd9e995cc9c52c67ae3078eeec5bce17027f5347b",
+      "origin": "first_party_local"
+    }
+  ]
+}
