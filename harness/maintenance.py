@@ -13,6 +13,8 @@ import xml.etree.ElementTree as ET
 from .generate import ROOT, SITE, main as regenerate
 from .validate import validate_project
 from .research import load
+# (추가) 생성 결과의 시각화·구조화·목차 연결을 게시 전에 검사
+from .publication_gate import audit as audit_publication
 
 REPORT = ROOT / "catalog/material_audit.json"
 HISTORY = ROOT / "catalog/material_audit_history.json"
@@ -111,6 +113,9 @@ def perform(stage="review", now=None):
     repaired_or_updated = [p for p in after if before.get(p) != after[p]]
     link_errors, html_svg_items = inspect_site()
     problems.extend(link_errors)
+    # (추가) V/S/O 품질 게이트는 기존 RTL 검증과 별개로 반드시 통과해야 한다.
+    publication_errors = audit_publication()
+    problems.extend(publication_errors)
     report = {
         "schema_version": 1, "stage": stage, "timestamp": now.isoformat(),
         "existing_capstones_rechecked": len(capstone_results),
@@ -118,6 +123,9 @@ def perform(stage="review", now=None):
         "generated_outputs_regenerated": len(repaired_or_updated),
         "changed_generated_paths": repaired_or_updated[:100],
         "source_rtl_modified": False,
+        "publication_gate": {"visualization_structure_organization":
+                             "PASS" if not publication_errors else "FAIL",
+                             "errors": publication_errors},
         "capstones": capstone_results, "errors": problems,
         "status": "PASS" if not problems else "FAIL",
         "next_improvements": [

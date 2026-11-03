@@ -94,3 +94,7 @@ GitHub Pages 배포는 저장소 Settings에서 별도 활성화해야 합니다
 **자동 정정 금지:** 원본 RTL·테스트벤치·C 드라이버·XDC·보드 전압/핀맵·합성/타이밍 판정. 실패하면 검증 로그·`catalog/material_audit.json`·실행 아티팩트와 Issue를 남긴다. GitHub Actions 예약은 실행 지연 또는 누락될 수 있다.
 
 **실제 보드 검증과의 구분:** CI의 RTL 시뮬레이션·C 호스트 테스트·문서 검사는 Vivado 합성, Implementation, Timing, Basys3 실물 시험을 대체하지 않는다. 기존 자료 조사 60분, 검증 90분, 캡스톤 150분 주기는 유지한다.
+
+## 산출물 시각화·구조화·체계화 의무
+
+**모든 신규/갱신 결과물은 V/S/O 3대 품질 게이트를 통과해야 게시 성공으로 판정합니다.** 각 캡스톤에는 실제 Design IR과 일치하는 SVG 구조도, 신호·모듈 연결표, BOM, 구조화 JSON, 전체 소스·검증 단계, 메인 → 목록 → 상세 페이지 탐색 링크를 제공합니다. `python3 -m harness.publication_gate`로 별도 검사할 수 있으며 정기 `harness.maintenance`에서도 자동 실행됩니다. 실패 시 게시를 중단하고 오류 근거를 남깁니다. 상세: [검증 게이트](docs/VALIDATION_GATES.md).
