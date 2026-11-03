@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_greenhouse_fan",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "c7d1233e74e040379f52632d7a8de8eb15d626b9bc2ce8ffb88967ddf4f66292",
+      "origin": "first_party_local"
+    }
+  ]
+}
