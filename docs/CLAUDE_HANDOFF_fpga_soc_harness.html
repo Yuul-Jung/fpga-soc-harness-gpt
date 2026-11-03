@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="FPGA SoC 캡스톤 자동화 하네스의 Claude 독립 개발 인계서. 구조, 1·2·4시간 주기, RTL, 검증 및 HTML 산출물 가이드.">
+<meta name="description" content="FPGA SoC 캡스톤 자동화 하네스의 Claude 독립 개발 인계서. 구조, 1·2·150분 주기, RTL, 검증 및 HTML 산출물 가이드.">
 <title>Claude 개발 인계서 | FPGA SoC Capstone Harness</title>
 <style>
 :root{color-scheme:light;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#1c354b;background:#f4f7fb}
@@ -149,7 +149,7 @@ footer{color:#6d8496;font-size:12px;margin-top:30px}
 <tr><td><code>docs/</code></td><td>설계 원칙, 검증·승인 단계, 주기 운영 지침</td></tr>
 <tr><td><code>config/</code></td><td>제조사·보드·주제 검색 매트릭스, 검색·라이선스 정책</td></tr>
 <tr><td><code>harness/research.py</code></td><td>1시간 회전 검색, 분류 다양성 확보, 후보 축적</td></tr>
-<tr><td><code>harness/review.py</code> · <code>refine.py</code></td><td>2시간 출처·증거 검토, 개선 과제 및 설계 제안 정리</td></tr>
+<tr><td><code>harness/review.py</code> · <code>refine.py</code></td><td>90분 출처·증거 검토, 개선 과제 및 설계 제안 정리</td></tr>
 <tr><td><code>harness/factory.py</code></td><td>검토된 후보에 대응하는 내부 RTL 템플릿으로 캡스톤 과제화</td></tr>
 <tr><td><code>harness/generate.py</code></td><td>전체·과제별 HTML, 구조도, 연결정보, BOM, ZIP 생성</td></tr>
 <tr><td><code>harness/maintenance.py</code> · <code>validate.py</code></td><td>기존 HTML/신호/소스 해시/RTL·C 코드 회귀검증</td></tr>
@@ -160,20 +160,20 @@ footer{color:#6d8496;font-size:12px;margin-top:30px}
 </section>
 
 <section id="schedule">
-<h2>3. GitHub Actions의 1h / 2h / 4h 자동 실행</h2>
+<h2>3. GitHub Actions의 1h / 90m / 150m 자동 실행</h2>
 <div class="scroll"><table>
 <thead><tr><th>주기</th><th>단계</th><th>수행 내용</th><th>한국 시간</th></tr></thead>
 <tbody>
 <tr><td><strong>1시간</strong></td><td><code>research</code></td><td>새로운 FPGA 응용 공개자료 검색, 저장소 중복 제거 및 출처 추적, 기존 HTML·SVG·소스 회귀검증</td><td>매시 07분</td></tr>
-<tr><td><strong>2시간</strong></td><td><code>review</code></td><td>전체 수집 자료의 메타데이터·라이선스·증거 재검토, 제안 개선, 기존 제작 자료 재검증</td><td>09:17, 11:17, 13:17…</td></tr>
-<tr><td><strong>4시간</strong></td><td><code>factory</code></td><td>검증 게이트를 통과한 내부 템플릿으로 과제화, 전체 HTML·구조도·테스트벤치 검증 및 갱신</td><td>09:27, 13:27, 17:27…</td></tr>
+<tr><td><strong>90분</strong></td><td><code>review</code></td><td>전체 수집 자료의 메타데이터·라이선스·증거 재검토, 제안 개선, 기존 제작 자료 재검증</td><td>09:17, 11:17, 13:17…</td></tr>
+<tr><td><strong>150분</strong></td><td><code>factory</code></td><td>검증 게이트를 통과한 내부 템플릿으로 과제화, 전체 HTML·구조도·테스트벤치 검증 및 갱신</td><td>09:27, 13:27, 17:27…</td></tr>
 </tbody></table></div>
 <pre><code># UTC cron
 7 * * * *       # 매시간 조사
-17 */2 * * *    # 2시간마다 검토
-27 */4 * * *    # 4시간마다 캡스톤 과제화</code></pre>
+17 */2 * * *    # 90분마다 검토
+27 */4 * * *    # 150분마다 캡스톤 과제화</code></pre>
 <p>중앙 실행 파일은 <a href="https://github.com/Yuul-Jung/fpga-soc-harness-gpt/blob/main/.github/workflows/continuous-pipeline.yml"><code>continuous-pipeline.yml</code></a>입니다. GitHub Actions 예약 실행은 지연되거나 누락될 수 있으므로 정확한 시간에 실행됨을 보장하지 않습니다.</p>
-<div class="notice"><strong>핵심 구분:</strong> 4시간마다 반드시 새로운 과제가 완성되는 것은 아닙니다. 재사용 가능한 원본 RTL 템플릿과 검증된 설계 근거가 있을 때만 신규 과제를 생성합니다. 검색 방식은 회전형 Python 휴리스틱이며, 매시간 LLM이 자율적으로 코드를 작성하는 에이전트는 아닙니다.</div>
+<div class="notice"><strong>핵심 구분:</strong> 150분마다 반드시 새로운 과제가 완성되는 것은 아닙니다. 재사용 가능한 원본 RTL 템플릿과 검증된 설계 근거가 있을 때만 신규 과제를 생성합니다. 검색 방식은 회전형 Python 휴리스틱이며, 매시간 LLM이 자율적으로 코드를 작성하는 에이전트는 아닙니다.</div>
 </section>
 
 <section id="status">
