@@ -39,6 +39,22 @@ class HarnessTests(unittest.TestCase):
                 self.assertNotIn("test_spec", d)
                 self.assertEqual(d["source_files"], ["INTEGRATION.md"])
 
+    def test_creative_factory_generates_distinct_projects(self):
+        import tempfile
+        from harness.creative import create_creative_capstone
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            first = create_creative_capstone(root)
+            second = create_creative_capstone(root)
+            self.assertNotEqual(first, second)
+            for ident in (first, second):
+                folder = root / "capstones" / ident
+                d = json.loads((folder / "design.json").read_text(encoding="utf-8"))
+                validate_design(d, folder)
+                self.assertIn("DESIGN_ONLY", d["status"])
+                self.assertNotIn("test_spec", d)
+                self.assertTrue((folder / "INTEGRATION.md").is_file())
+
     def test_license_gate(self):
         self.assertEqual(license_policy("MIT"), "review_for_reuse")
         self.assertEqual(license_policy("GPL-3.0"), "reference_only")

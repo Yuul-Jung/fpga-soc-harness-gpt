@@ -13,6 +13,7 @@ import shutil
 import re
 
 from .generate import ROOT
+from .creative import create_creative_capstone
 from .research import load
 
 FACTORY_HISTORY = ROOT / "catalog/factory_history.json"
@@ -228,10 +229,16 @@ def run(now=None):
         # Preserve reviewed RTL/design and do not overwrite existing implementation.
         needs_research.append("Template already exists: regenerate and regress existing project")
     if not created:
+        # Always create a functionally distinct original project, even without new
+        # upstream references or an approved RTL template.
+        creative_id = create_creative_capstone(ROOT)
+        created.append(creative_id)
+        needs_research.append("Original creative capstone brief; RTL, synthesis and board not run.")
+    if not created:
         design_only = create_design_only_capstone(proposals)
         if design_only:
             created.append(design_only)
-            needs_research.append("New capstone is a design brief only; no RTL test claim.")
+            needs_research.append("Metadata-inspired design brief; no RTL test claim.")
     if not created:
         raise RuntimeError(
             "Required >=1 new capstone per factory cycle, but no eligible unique "

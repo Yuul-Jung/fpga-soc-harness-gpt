@@ -57,3 +57,6 @@ python3 -m unittest discover -s tests -v
 
 ## Persistent policy (2026-11-03)
 Run indefinitely until the user requests a stop. Every 150-minute factory run must create at least one new unique capstone document, with implementation status explicit. If the vetted candidate pool is exhausted, the run must fail and report the missing prerequisite rather than falsely claim success. Cron runs can be delayed or skipped by GitHub; this is not a real-time guarantee.
+
+## Creative capstone fallback (2026-11-03)
+Every factory run must produce at least one new, genuinely distinct capstone. After approved first-party RTL templates, use the curated original scenario bank and then distinct combinations of two inputs, output, controller policy and telemetry. A design brief is a deliverable, **not** verified RTL. Do not block generation waiting for third-party source metadata; continue to run existing RTL/C regression tests and publish HTML. The pool is large but finite; if exhausted, report failure and expand the catalog rather than fabricate a duplicate.
