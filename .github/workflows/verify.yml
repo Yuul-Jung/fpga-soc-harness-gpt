@@ -31,6 +31,8 @@ jobs:
           python -m harness.refine
           python -m harness.factory
           python -m harness.maintenance --stage factory
+      - name: Verify visual diagrams, structured data and navigation
+        run: python -m harness.publication_gate
       - name: Validate source and simulate first-party RTL
         run: |
           python -m harness.validate
