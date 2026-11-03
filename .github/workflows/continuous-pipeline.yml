@@ -1,6 +1,9 @@
 name: Continuous FPGA SoC research and capstone maintenance
 
 on:
+  push:
+    branches: [main]
+    paths: [harness/creative.py]
   schedule:
     # Coordinated UTC slots; Asia/Seoul is UTC+9.
     # 1h research: xx:07 KST
@@ -44,10 +47,13 @@ jobs:
         env:
           SCHEDULE: ${{ github.event.schedule }}
           REQUEST: ${{ inputs.stage }}
+          EVENT: ${{ github.event_name }}
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -n "$REQUEST" ]]; then
+          if [[ "$EVENT" == "push" ]]; then
+            stage="factory"
+          elif [[ -n "$REQUEST" ]]; then
             stage="$REQUEST"
           else
             case "$SCHEDULE" in
