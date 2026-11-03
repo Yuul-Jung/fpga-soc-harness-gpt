@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_bike_safety_light",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "57ef5642bad998780a56b0ba8288676b5271955d8e3c27f222df8494ed7d56d0",
+      "origin": "first_party_local"
+    }
+  ]
+}
