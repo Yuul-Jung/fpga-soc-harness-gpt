@@ -1,5 +1,8 @@
 name: Update committed HTML artifacts
 on:
+  # (추가) 30분마다 전체 기존 캡스톤을 점검하고 안전한 파생 산출물만 복구한다.
+  schedule:
+    - cron: '15,45 * * * *'
   push:
     branches: [main]
   workflow_dispatch:
@@ -21,19 +24,33 @@ jobs:
           python-version: '3.11'
       - name: Install RTL simulator
         run: sudo apt-get update && sudo apt-get install -y iverilog
-      - name: Generate and verify HTML / SVG / source bundle
+      # (변경) 생성→RTL/C 검증→HTML 재생성→링크/SVG/연결 검사.
+      # 실패 시 원본 RTL/design.json은 수정하지 않고 실패 증거를 보존한다.
+      - name: Detect and safely repair generated HTML / SVG / manifests
         run: |
-          python -m harness.generate
-          python -m harness.validate
-          python -m harness.generate  # embed fresh RTL/C result into each HTML manual
+          python -m harness.maintenance --stage review
           python -m unittest discover -s tests -v
+      - name: Preserve audit evidence even when validation fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harness-self-heal-evidence
+          path: |
+            catalog/material_audit.json
+            catalog/material_audit_history.json
+            site/capstones/*/verification.json
+          if-no-files-found: warn
+          retention-days: 7
       - name: Commit generated site
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/
-          if git diff --cached --quiet; then
-            echo "Generated site is already current."
+          # (추가) 검증 JSON의 매 실행 timestamp만 달라졌으면 무의미한 커밋 금지.
+          if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\.json$' >/dev/null; then
+            echo "No substantive generated site changes; skip timestamp-only commit."
             exit 0
           fi
           git commit -m "docs: publish generated capstone HTML, diagrams and verification"
@@ -46,12 +63,11 @@ jobs:
             echo "Remote advanced; regenerate from current main (attempt $attempt)"
             git fetch origin main
             git reset --hard origin/main
-            python -m harness.generate
-            python -m harness.validate
-            python -m harness.generate
+            python -m harness.maintenance --stage review
+            python -m unittest discover -s tests -v
             git add site/
-            if git diff --cached --quiet; then
-              echo "Latest site already contains all generated artifacts."
+            if ! git diff --cached --name-only | grep -Ev '^site/capstones/[^/]+/verification\.json$' >/dev/null; then
+              echo "Latest site already contains matching generated artifacts."
               exit 0
             fi
             git commit -m "docs: refresh generated capstone HTML after concurrent update"
