@@ -1,22 +1,11 @@
 {
   "schema_version": 1,
-  "stage": "factory",
-  "timestamp": "2026-11-03T12:56:05.445890+00:00",
+  "stage": "review",
+  "timestamp": "2026-11-03T18:04:35.530337+00:00",
   "existing_capstones_rechecked": 6,
   "pages_and_diagrams_checked": 43,
-  "generated_outputs_regenerated": 10,
-  "changed_generated_paths": [
-    "index.html",
-    "capstones/index.html",
-    "capstones/creative_bike_safety_light/connections.json",
-    "capstones/creative_bike_safety_light/source_manifest.json",
-    "capstones/creative_bike_safety_light/system.svg",
-    "capstones/creative_bike_safety_light/bom.csv",
-    "capstones/creative_bike_safety_light/source_bundle.zip",
-    "capstones/creative_bike_safety_light/design.json",
-    "capstones/creative_bike_safety_light/index.html",
-    "capstones/creative_bike_safety_light/source/INTEGRATION.md"
-  ],
+  "generated_outputs_regenerated": 0,
+  "changed_generated_paths": [],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
