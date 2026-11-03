@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_water_leak_alarm",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "e862622fa0ffcacff260232774eeba145f6a737781551e13ae3c60303b785739",
+      "origin": "first_party_local"
+    }
+  ]
+}

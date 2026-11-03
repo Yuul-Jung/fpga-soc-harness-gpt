@@ -1,11 +1,22 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-03T19:35:26.189576+00:00",
-  "existing_capstones_rechecked": 6,
-  "pages_and_diagrams_checked": 43,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-03T19:57:37.989818+00:00",
+  "existing_capstones_rechecked": 7,
+  "pages_and_diagrams_checked": 46,
+  "generated_outputs_regenerated": 10,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/creative_water_leak_alarm/connections.json",
+    "capstones/creative_water_leak_alarm/source_manifest.json",
+    "capstones/creative_water_leak_alarm/system.svg",
+    "capstones/creative_water_leak_alarm/bom.csv",
+    "capstones/creative_water_leak_alarm/source_bundle.zip",
+    "capstones/creative_water_leak_alarm/design.json",
+    "capstones/creative_water_leak_alarm/index.html",
+    "capstones/creative_water_leak_alarm/source/INTEGRATION.md"
+  ],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
@@ -35,6 +46,13 @@
     },
     {
       "id": "creative_warehouse_access",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_water_leak_alarm",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
