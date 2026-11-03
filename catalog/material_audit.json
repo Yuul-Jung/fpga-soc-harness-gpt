@@ -1,22 +1,11 @@
 {
   "schema_version": 1,
-  "stage": "factory",
-  "timestamp": "2026-11-03T05:04:25.785056+00:00",
+  "stage": "review",
+  "timestamp": "2026-11-03T08:37:07.233307+00:00",
   "existing_capstones_rechecked": 3,
   "pages_and_diagrams_checked": 34,
-  "generated_outputs_regenerated": 10,
-  "changed_generated_paths": [
-    "index.html",
-    "capstones/index.html",
-    "capstones/creative_warehouse_access/connections.json",
-    "capstones/creative_warehouse_access/source_manifest.json",
-    "capstones/creative_warehouse_access/system.svg",
-    "capstones/creative_warehouse_access/bom.csv",
-    "capstones/creative_warehouse_access/source_bundle.zip",
-    "capstones/creative_warehouse_access/design.json",
-    "capstones/creative_warehouse_access/index.html",
-    "capstones/creative_warehouse_access/source/INTEGRATION.md"
-  ],
+  "generated_outputs_regenerated": 0,
+  "changed_generated_paths": [],
   "source_rtl_modified": false,
   "capstones": [
     {
