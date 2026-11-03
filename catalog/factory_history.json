@@ -22,6 +22,21 @@
       "notes": [
         "Template already exists: regenerate and regress existing project"
       ]
+    },
+    {
+      "timestamp": "2026-11-03T05:04:25.633925+00:00",
+      "new_projects": [
+        "creative_warehouse_access"
+      ],
+      "reviewed_existing": [
+        "creative_warehouse_access",
+        "instrument_pulse_counter",
+        "smart_fan"
+      ],
+      "notes": [
+        "Template already exists: regenerate and regress existing project",
+        "Original creative capstone brief; RTL, synthesis and board not run."
+      ]
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_warehouse_access",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "10a52401efea2ecc89a59232f9bf226fa0a3207a0064ef5efe3f72dfa9e48234",
+      "origin": "first_party_local"
+    }
+  ]
+}
