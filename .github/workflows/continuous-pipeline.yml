@@ -3,7 +3,10 @@ name: Continuous FPGA SoC research and capstone maintenance
 on:
   push:
     branches: [main]
-    paths: [harness/creative.py]
+    # (변경) 정책/워크플로 수정 시 조사→검증→신규 캡스톤 전체 재실행.
+    paths:
+      - harness/creative.py
+      - .github/workflows/continuous-pipeline.yml
   schedule:
     # Coordinated UTC slots; Asia/Seoul is UTC+9.
     # 1h research: xx:07 KST
@@ -52,7 +55,8 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT" == "push" ]]; then
-            stage="factory"
+            # (변경) 수동 코드 수정 후 전체 파이프라인을 즉시 재검증한다.
+            stage="all"
           elif [[ -n "$REQUEST" ]]; then
             stage="$REQUEST"
           else
