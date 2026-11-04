@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-04T00:13:44.528368+00:00",
+  "generated_at": "2026-11-04T01:28:04.350690+00:00",
   "proposals": [
     {
       "id": "shubhayu-das--vl504-project",
@@ -36,7 +36,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "Basys3",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -76,7 +76,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "Basys3",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -116,7 +116,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "Basys3",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -155,7 +155,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "Basys3",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -195,7 +195,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "ULX3S",
       "vendor_family": "Lattice",
       "metadata_verified_only": true
@@ -236,7 +236,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "DE1-SoC",
       "vendor_family": "Intel/Altera",
       "metadata_verified_only": true
@@ -276,7 +276,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "Basys3",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -316,7 +316,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "DE1-SoC",
       "vendor_family": "Intel/Altera",
       "metadata_verified_only": true
@@ -358,7 +358,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "UNSPECIFIED",
       "vendor_family": "AMD/Xilinx",
       "metadata_verified_only": true
@@ -399,7 +399,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "UNSPECIFIED",
       "vendor_family": "Intel/Altera",
       "metadata_verified_only": true
@@ -441,7 +441,7 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "reviewed_at": "2026-11-04T00:13:40.775783+00:00",
+      "reviewed_at": "2026-11-04T01:28:01.133828+00:00",
       "board_hint": "DE1-SoC",
       "vendor_family": "Intel/Altera",
       "metadata_verified_only": true
