@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_motor_vibration_guard",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "f9115b8f7fe77fa3549d119c341a289b0d6bfb36c3c5e6a65052d6876b4bd5bd",
+      "origin": "first_party_local"
+    }
+  ]
+}
