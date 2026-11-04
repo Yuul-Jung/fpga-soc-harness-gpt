@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_door_timeout",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "7bcd59027f34e126d2822aa2fcf6cb612742ac35627f1634a294da5826410545",
+      "origin": "first_party_local"
+    }
+  ]
+}

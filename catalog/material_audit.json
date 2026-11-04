@@ -1,11 +1,22 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-04T19:53:06.196512+00:00",
-  "existing_capstones_rechecked": 12,
-  "pages_and_diagrams_checked": 61,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-04T20:17:41.938833+00:00",
+  "existing_capstones_rechecked": 13,
+  "pages_and_diagrams_checked": 64,
+  "generated_outputs_regenerated": 10,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/creative_door_timeout/connections.json",
+    "capstones/creative_door_timeout/source_manifest.json",
+    "capstones/creative_door_timeout/system.svg",
+    "capstones/creative_door_timeout/bom.csv",
+    "capstones/creative_door_timeout/source_bundle.zip",
+    "capstones/creative_door_timeout/design.json",
+    "capstones/creative_door_timeout/index.html",
+    "capstones/creative_door_timeout/source/INTEGRATION.md"
+  ],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
@@ -14,6 +25,13 @@
   "capstones": [
     {
       "id": "creative_bike_safety_light",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_door_timeout",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
