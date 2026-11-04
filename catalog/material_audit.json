@@ -1,22 +1,11 @@
 {
   "schema_version": 1,
-  "stage": "factory",
-  "timestamp": "2026-11-04T10:44:17.281863+00:00",
+  "stage": "review",
+  "timestamp": "2026-11-04T11:08:18.248272+00:00",
   "existing_capstones_rechecked": 11,
   "pages_and_diagrams_checked": 58,
-  "generated_outputs_regenerated": 10,
-  "changed_generated_paths": [
-    "index.html",
-    "capstones/index.html",
-    "capstones/creative_smart_planter/connections.json",
-    "capstones/creative_smart_planter/source_manifest.json",
-    "capstones/creative_smart_planter/system.svg",
-    "capstones/creative_smart_planter/bom.csv",
-    "capstones/creative_smart_planter/source_bundle.zip",
-    "capstones/creative_smart_planter/design.json",
-    "capstones/creative_smart_planter/index.html",
-    "capstones/creative_smart_planter/source/INTEGRATION.md"
-  ],
+  "generated_outputs_regenerated": 0,
+  "changed_generated_paths": [],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
