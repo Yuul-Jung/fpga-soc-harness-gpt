@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_smart_planter",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "f7ccc27e75033ba1293e3d5c0310813c66ca0ac4951a9fffcb792a2d5a6cf2f4",
+      "origin": "first_party_local"
+    }
+  ]
+}
