@@ -585,6 +585,71 @@
       "results_found": 0,
       "total_unique": 11,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-04T21:13:13.209098+00:00",
+      "queries": [
+        {
+          "q": "Basys3 traffic light controller fpga soc peripheral",
+          "category": "automation",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "Cyclone V ultrasonic sensor distance fpga testbench constraints",
+          "category": "sensor",
+          "board_hint": "Cyclone V",
+          "vendor_family": "Intel/Altera",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Zybo Z7 secure boot crypto verilog rtl github",
+          "category": "security",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "implementation"
+        },
+        {
+          "q": "ECP5 ethernet udp packet fpga capstone project",
+          "category": "communication",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Artix-7 industrial actuator control fpga soc peripheral",
+          "category": "motor",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "iCE40 oscilloscope adc trigger fpga testbench constraints",
+          "category": "instrument",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "microblaze AXI custom peripheral sensor",
+          "category": "communication",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "intel altera fpga capstone motor",
+          "category": "motor",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 11,
+      "failed_queries": 0
     }
   ]
 }
