@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_queue_counter",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "7b3b7b1052b75d77e328674ea8c8bb0dde050a1caed9b3772c656e0df853b17b",
+      "origin": "first_party_local"
+    }
+  ]
+}
