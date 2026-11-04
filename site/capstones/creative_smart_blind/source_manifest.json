@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_smart_blind",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "48841b0012a8778691731686b0bc7483ad0e7a7973e01d93a967674b992598fd",
+      "origin": "first_party_local"
+    }
+  ]
+}

@@ -1,11 +1,22 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-04T01:28:04.704570+00:00",
-  "existing_capstones_rechecked": 8,
-  "pages_and_diagrams_checked": 49,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-04T02:55:14.924555+00:00",
+  "existing_capstones_rechecked": 9,
+  "pages_and_diagrams_checked": 52,
+  "generated_outputs_regenerated": 10,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/creative_smart_blind/connections.json",
+    "capstones/creative_smart_blind/index.html",
+    "capstones/creative_smart_blind/design.json",
+    "capstones/creative_smart_blind/bom.csv",
+    "capstones/creative_smart_blind/system.svg",
+    "capstones/creative_smart_blind/source_manifest.json",
+    "capstones/creative_smart_blind/source_bundle.zip",
+    "capstones/creative_smart_blind/source/INTEGRATION.md"
+  ],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
@@ -28,6 +39,13 @@
     },
     {
       "id": "creative_night_corridor",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_smart_blind",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
