@@ -240,6 +240,14 @@
       "existing_capstones": 12,
       "errors": [],
       "generated_outputs_regenerated": 10
+    },
+    {
+      "timestamp": "2026-11-04T18:15:33.788568+00:00",
+      "stage": "review",
+      "status": "PASS",
+      "existing_capstones": 12,
+      "errors": [],
+      "generated_outputs_regenerated": 0
     }
   ]
 }
