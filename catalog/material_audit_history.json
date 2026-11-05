@@ -352,6 +352,14 @@
       "existing_capstones": 17,
       "errors": [],
       "generated_outputs_regenerated": 10
+    },
+    {
+      "timestamp": "2026-11-05T18:18:03.860899+00:00",
+      "stage": "review",
+      "status": "PASS",
+      "existing_capstones": 17,
+      "errors": [],
+      "generated_outputs_regenerated": 0
     }
   ]
 }
