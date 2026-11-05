@@ -1,0 +1,10 @@
+{
+  "design_id": "creative_pulse_quality",
+  "source_files": [
+    {
+      "path": "INTEGRATION.md",
+      "sha256": "a7eb6e38f32407f3d8b5bae3ebf3f91a7f7936d967f879ec192271b888e0ad38",
+      "origin": "first_party_local"
+    }
+  ]
+}
