@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "id": "sensor_a",
+      "name": "PIR 움직임 (설계용 인터페이스)",
+      "inputs": [],
+      "outputs": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sensor_b",
+      "name": "BH1750 조도 (설계용 인터페이스)",
+      "inputs": [],
+      "outputs": [
+        "sample"
+      ]
+    },
+    {
+      "id": "controller",
+      "name": "capstone_controller (신규 제안)",
+      "inputs": [
+        "sample_a",
+        "sample_b"
+      ],
+      "outputs": [
+        "command",
+        "status"
+      ]
+    },
+    {
+      "id": "actuator",
+      "name": "TFT 상태 표시 (출력 드라이버)",
+      "inputs": [
+        "command"
+      ],
+      "outputs": []
+    },
+    {
+      "id": "telemetry",
+      "name": "상태 레지스터 (진단 출력)",
+      "inputs": [
+        "status"
+      ],
+      "outputs": []
+    }
+  ],
+  "connections": [
+    {
+      "from": "sensor_a.sample",
+      "to": "controller.sample_a",
+      "note": "Conceptual only; define real width, valid and CDC"
+    },
+    {
+      "from": "sensor_b.sample",
+      "to": "controller.sample_b",
+      "note": "Conceptual only; define real width, valid and CDC"
+    },
+    {
+      "from": "controller.command",
+      "to": "actuator.command",
+      "note": "No physical driver implemented"
+    },
+    {
+      "from": "controller.status",
+      "to": "telemetry.status",
+      "note": "Status mapping not yet implemented"
+    }
+  ]
+}
