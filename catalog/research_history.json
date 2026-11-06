@@ -910,6 +910,71 @@
       "results_found": 0,
       "total_unique": 11,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-06T06:06:52.452451+00:00",
+      "queries": [
+        {
+          "q": "ECP5 smart home relay sensor fpga testbench constraints",
+          "category": "automation",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Artix-7 environment monitor adc verilog rtl github",
+          "category": "sensor",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "implementation"
+        },
+        {
+          "q": "iCE40 access control rfid fpga capstone project",
+          "category": "security",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "DE10-Lite can bus controller fpga soc peripheral",
+          "category": "communication",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "integration"
+        },
+        {
+          "q": "Certus-NX motor encoder pid fpga testbench constraints",
+          "category": "motor",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "DE1-SoC logic analyzer uart verilog rtl github",
+          "category": "instrument",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "intel altera fpga capstone motor",
+          "category": "motor",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "lattice ec5 open source camera verilog",
+          "category": "video",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 11,
+      "failed_queries": 0
     }
   ]
 }
