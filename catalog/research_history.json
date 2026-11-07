@@ -1365,6 +1365,71 @@
       "results_found": 0,
       "total_unique": 11,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-07T22:37:43.036110+00:00",
+      "queries": [
+        {
+          "q": "Zybo Z7 sensor fusion timestamp fpga testbench constraints",
+          "category": "sensor",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "evidence"
+        },
+        {
+          "q": "ECP5 traffic light controller verilog rtl github",
+          "category": "automation",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Artix-7 aes hardware accelerator fpga capstone project",
+          "category": "security",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "capstone"
+        },
+        {
+          "q": "iCE40 robot arm servo pwm fpga soc peripheral",
+          "category": "motor",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "integration"
+        },
+        {
+          "q": "DE10-Lite ethernet udp packet fpga testbench constraints",
+          "category": "communication",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Certus-NX spectrum analyzer audio verilog rtl github",
+          "category": "instrument",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "implementation"
+        },
+        {
+          "q": "intel altera fpga capstone motor",
+          "category": "motor",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "lattice ec5 open source camera verilog",
+          "category": "video",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 11,
+      "failed_queries": 0
     }
   ]
 }
