@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T07:49:23.359449+00:00",
+  "generated_at": "2026-11-07T10:25:16.332656+00:00",
   "metadata_only": true,
   "remote_audit_errors": [],
   "reviews": [
@@ -9,7 +9,7 @@
       "reference": "Shubhayu-Das/VL504-project",
       "source_url": "https://github.com/Shubhayu-Das/VL504-project",
       "source_tree_sha": "49ef56894501d2b3313bda5897c770ca753bdd64",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "Basys3",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "AMD/Xilinx",
@@ -31,14 +31,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T07:49:23.359449+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "meiniki--logip",
       "reference": "meiniKi/logIP",
       "source_url": "https://github.com/meiniKi/logIP",
       "source_tree_sha": "d605ad54193c56a2857e27225a16144851acbad6",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "Basys3",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "AMD/Xilinx",
@@ -61,14 +61,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T07:49:23.359449+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "rsoleym--fpga-camera-pipeline",
       "reference": "RSoleym/fpga-camera-pipeline",
       "source_url": "https://github.com/RSoleym/fpga-camera-pipeline",
       "source_tree_sha": "bce328efa309b11fba0687fd2b137ac86846576e",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "Basys3",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "AMD/Xilinx",
@@ -91,14 +91,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T07:49:23.359449+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "taeseong-dev--axi4-lite-custom-peripherals",
       "reference": "taeseong-dev/axi4-lite-custom-peripherals",
       "source_url": "https://github.com/taeseong-dev/axi4-lite-custom-peripherals",
       "source_tree_sha": "54ffdafd138ec594500b5c33f5f6cede2558bc4a",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "Basys3",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "AMD/Xilinx",
@@ -121,14 +121,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T07:49:23.359449+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "angelojacobo--ulx3s_fpga_sobel_edge_detection_ov7670",
       "reference": "AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
       "source_url": "https://github.com/AngeloJacobo/ULX3S_FPGA_Sobel_Edge_Detection_OV7670",
       "source_tree_sha": "693dacba2f8450417d9944f1803255a44c842042",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "ULX3S",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "Lattice",
@@ -151,14 +151,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T07:49:23.359449+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "mert137--an-fpga-based-oscilloscope",
       "reference": "mert137/An-FPGA-Based-Oscilloscope",
       "source_url": "https://github.com/mert137/An-FPGA-Based-Oscilloscope",
       "source_tree_sha": "67da0cd616e5bca8295d47b97c81a768ece69aab",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "DE1-SoC",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "Intel/Altera",
@@ -181,14 +181,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T00:59:13.875014+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "akifmohamed--aes-crypto-soc",
       "reference": "akifmohamed/AES-Crypto-SoC",
       "source_url": "https://github.com/akifmohamed/AES-Crypto-SoC",
       "source_tree_sha": "b7a0002bf507ebb5921085198481dab6e3c1d427",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "Basys3",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "AMD/Xilinx",
@@ -212,14 +212,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T00:59:13.875014+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "yifeistarwang-coder--robomotion-fpga",
       "reference": "yifeistarwang-coder/RoboMotion-FPGA",
       "source_url": "https://github.com/yifeistarwang-coder/RoboMotion-FPGA",
       "source_tree_sha": "4b47a68aefca3c9d8b02c1cd4f0398830418058d",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "UNSPECIFIED",
       "board_basis": "research_hint_unverified",
       "vendor_family": "AMD/Xilinx",
@@ -251,7 +251,7 @@
       "reference": "JSSaucedo/FPGA-Elevator-Controller",
       "source_url": "https://github.com/JSSaucedo/FPGA-Elevator-Controller",
       "source_tree_sha": "5a385440cdebbac140fad7bb6aedb302b99b1eb9",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "UNSPECIFIED",
       "board_basis": "research_hint_unverified",
       "vendor_family": "Intel/Altera",
@@ -282,7 +282,7 @@
       "reference": "jagumiel/Guitar-Pedal-Effects-on-FPGA",
       "source_url": "https://github.com/jagumiel/Guitar-Pedal-Effects-on-FPGA",
       "source_tree_sha": "9db82033030dd05d46316c18b819e9b066f9eb56",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "DE1-SoC",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "Intel/Altera",
@@ -306,14 +306,14 @@
         "Extract port widths and reset polarity before RTL adaptation",
         "Separate RTL simulation, synthesis, timing and physical board evidence"
       ],
-      "upstream_verified_at": "2026-11-07T00:59:13.875014+00:00"
+      "upstream_verified_at": "2026-11-07T10:25:16.332656+00:00"
     },
     {
       "id": "frobino--de1-soc",
       "reference": "frobino/de1-soc",
       "source_url": "https://github.com/frobino/de1-soc",
       "source_tree_sha": "af886dd1b5056bc7807e852e2b7248ee5e135df0",
-      "checked_at": "2026-11-07T07:49:23.359449+00:00",
+      "checked_at": "2026-11-07T10:25:16.332656+00:00",
       "board": "DE1-SoC",
       "board_basis": "evidence_filename_or_description",
       "vendor_family": "Intel/Altera",
