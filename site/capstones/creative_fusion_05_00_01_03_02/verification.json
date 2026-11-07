@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-11-07T17:56:51.038854+00:00",
+  "static_design": "pass",
+  "rtl_simulation": "not_run",
+  "software_test": "not_run",
+  "synthesis": "not_run",
+  "implementation": "not_run",
+  "timing": "not_run",
+  "board_test": "not_run",
+  "evidence": []
+}
