@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 402" role="img" aria-label="Structured SoC block diagram">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#6b8197"/></marker></defs>
+<line x1="160" y1="49" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>sensor_a.sample → controller.sample_a</title></line>
+<line x1="480" y1="49" x2="160" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>sensor_b.sample → controller.sample_b</title></line>
+<line x1="160" y1="167" x2="480" y2="167" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>controller.command → actuator.command</title></line>
+<line x1="160" y1="167" x2="160" y2="285" stroke="#8296ab" stroke-width="1.3" marker-end="url(#arrow)"><title>controller.status → telemetry.status</title></line>
+<rect x="20" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="46" fill="#173b58" font-size="14" font-weight="600">진동 스위치 (설계용 인터페이스)</text>
+<text x="32" y="64" fill="#47657c" font-size="11">sensor_a</text>
+<rect x="340" y="24" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="46" fill="#173b58" font-size="14" font-weight="600">로터리 엔코더 (설계용 인터페이스)</text>
+<text x="352" y="64" fill="#47657c" font-size="11">sensor_b</text>
+<rect x="20" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="164" fill="#173b58" font-size="14" font-weight="600">capstone_controller (신규 제안)</text>
+<text x="32" y="182" fill="#47657c" font-size="11">controller</text>
+<rect x="340" y="142" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="352" y="164" fill="#173b58" font-size="14" font-weight="600">릴레이 제어 (출력 드라이버)</text>
+<text x="352" y="182" fill="#47657c" font-size="11">actuator</text>
+<rect x="20" y="260" width="280" height="52" rx="7" fill="#e6f0fa" stroke="#4277a8"/>
+<text x="32" y="282" fill="#173b58" font-size="14" font-weight="600">상태 레지스터 (진단 출력)</text>
+<text x="32" y="300" fill="#47657c" font-size="11">telemetry</text>
+</svg>
