@@ -1,0 +1,77 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>복합 주변장치 제어 — TTP223 터치 + HC-SR04 거리 → LED PWM</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fa;color:#192e45;font-size:15px;line-height:1.7}
+a{color:#12639f;text-decoration:none}a:hover{text-decoration:underline}
+header{background:#183b58;color:#fff;padding:13px 20px;position:sticky;top:0;z-index:5}
+header a{color:#fff;font-weight:700}header small{font-weight:400;color:#cfdfec;margin-left:14px}
+.shell{display:grid;grid-template-columns:208px minmax(0,1fr);max-width:1300px;margin:auto}
+aside{border-right:1px solid #e0e7ef;padding:26px 14px;position:sticky;top:51px;align-self:start;max-height:calc(100vh - 52px);overflow:auto}
+aside strong{display:block;font-size:13px;color:#5b7186;margin:0 10px 12px}
+aside a{display:block;padding:7px 10px;border-radius:6px;font-size:13px;color:#34516b;overflow-wrap:anywhere}
+aside a:hover{background:#e7eff7;text-decoration:none}
+main{min-width:0;max-width:1050px;padding:28px 28px 90px;width:100%}
+h1{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.35;margin:0 0 12px}
+h2{font-size:1.2rem;margin:0 0 16px}h3{font-size:1rem;margin:0 0 10px}
+section{background:#fff;border:1px solid #dce6ee;border-radius:10px;padding:22px;margin:20px 0}
+.hero{padding:25px;border:1px solid #dbe5ee;background:#fff;border-radius:12px;margin-bottom:20px}
+.hero p{margin:8px 0 0}.muted,small{color:#5c7185}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;color:#486c8c;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.tile{border:1px solid #d9e4ed;border-radius:9px;padding:16px;background:#fff;display:block;color:inherit}
+.tile:hover{border-color:#6c98bb;text-decoration:none}
+.tile strong{display:block;font-size:15px;color:#24577f;overflow-wrap:anywhere}
+.tile span{font-size:12px;color:#64798b}.tile p{font-size:13px;line-height:1.5;margin:6px 0 0}
+.metric{font-size:27px;font-weight:750;line-height:1.2;color:#214f78}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:10px;margin:16px 0}
+.stats .tile{padding:12px 14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid #dce4ed;padding:9px 10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{background:#eff4f8}.scroll{overflow-x:auto}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+p code,td code{background:#edf3f8;padding:2px 5px;border-radius:4px}
+pre{white-space:pre;overflow:auto;max-height:650px;background:#f4f6f8;border:1px solid #d7e0e8;border-radius:7px;padding:14px;font-size:12px;line-height:1.55;color:#18354c}
+pre code{font-size:inherit}details{margin:10px 0;border:1px solid #dce5ed;border-radius:8px;padding:11px 13px}
+summary{font-weight:650;cursor:pointer;overflow-wrap:anywhere}
+img,svg{max-width:100%;height:auto}img.diagram{display:block;width:100%;max-width:780px;margin:auto;border:1px solid #e3e9ef;border-radius:8px;background:white}
+.notice{border-left:3px solid #c18b34;padding:10px 13px;background:#fff8ed;color:#684b20;margin:12px 0}
+.meta{font-size:13px;color:#566d82}
+.links{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}.links a{border:1px solid #bfd1df;background:#f6fafd;padding:6px 11px;border-radius:6px;font-size:13px}
+footer{margin-top:26px;color:#718194;font-size:12px}
+@media(max-width:780px){.shell{display:block}aside{position:static;max-height:none;border:0;border-bottom:1px solid #dfe6ee;padding:10px 14px;display:flex;flex-wrap:wrap;gap:2px}aside strong{width:100%;margin:0 8px 3px}aside a{padding:5px 8px}main{padding:18px 13px 65px}section{padding:15px}header small{display:none}}
+</style></head><body><header><a href="../../index.html">FPGA SoC CAPSTONE</a><small>RTL · 주변장치 · 실습자료</small></header><div class="shell"><aside><strong>자료 탐색</strong><a href="../../index.html">전체 자료실</a><a href="../index.html">모든 캡스톤</a><a href="#overview">과제 개요</a><a href="#diagram">시스템 구조도</a><a href="#signals">신호 연결표</a><a href="#hardware">하드웨어·부품</a><a href="#source">전체 실행 소스</a><a href="#verification">검증 결과</a><a href="#provenance">출처·유의사항</a></aside><main><div class="hero" id="overview"><div class="eyebrow">CAPSTONE / creative_fusion_06_01_00_00_01</div><h1>복합 주변장치 제어 — TTP223 터치 + HC-SR04 거리 → LED PWM</h1><p>자체 창작 캡스톤: TTP223 터치와 HC-SR04 거리를 조합해 이중 조건 일치 시 동작 정책으로 LED PWM를 제어하고 상태 레지스터로 상태를 제공한다. 독립적인 신규 과제 설계서이며 구현 검증은 별도 단계다.</p><p class="meta"><strong>대상:</strong> Basys3 / MicroBlaze V 확장 후보 (실제 핀·전압·자원 미확정) · <strong>단계:</strong> DESIGN_ONLY_NOT_IMPLEMENTED (RTL·합성·보드 검증 미실시)</p></div><div class="links"><a href="source_bundle.zip" download>전체 실행소스 ZIP</a><a href="system.svg">구조도 SVG</a><a href="connections.json">연결정보 JSON</a><a href="design.json">Design IR</a><a href="verification.json">검증 원본 JSON</a></div><section id="diagram"><h2>1. 전체 시스템 구조도</h2><p class="muted">모듈·신호의 논리적 연결을 표시합니다. FPGA 외부 전기회로도나 실제 보드 핀 배선도는 아닙니다.</p><a href="system.svg" title="원본 구조도 보기"><img class="diagram" src="system.svg" alt="캡스톤 디지털 시스템 연결 구조도"></a><h3>모듈별 입출력</h3><div class="scroll"><table><thead><tr><th>모듈 ID</th><th>모듈명</th><th>입력</th><th>출력</th></tr></thead><tbody><tr><td>sensor_a</td><td>TTP223 터치 (설계용 인터페이스)</td><td></td><td>sample</td></tr><tr><td>sensor_b</td><td>HC-SR04 거리 (설계용 인터페이스)</td><td></td><td>sample</td></tr><tr><td>controller</td><td>capstone_controller (신규 제안)</td><td>sample_a, sample_b</td><td>command, status</td></tr><tr><td>actuator</td><td>LED PWM (출력 드라이버)</td><td>command</td><td></td></tr><tr><td>telemetry</td><td>상태 레지스터 (진단 출력)</td><td>status</td><td></td></tr></tbody></table></div></section><section id="signals"><h2>2. 신호 연결표</h2><div class="scroll"><table><thead><tr><th>송신 포트</th><th>수신 포트</th><th>설계 및 검증 조건</th></tr></thead><tbody><tr><td>sensor_a.sample</td><td>controller.sample_a</td><td>Conceptual only; define real width, valid and CDC</td></tr><tr><td>sensor_b.sample</td><td>controller.sample_b</td><td>Conceptual only; define real width, valid and CDC</td></tr><tr><td>controller.command</td><td>actuator.command</td><td>No physical driver implemented</td></tr><tr><td>controller.status</td><td>telemetry.status</td><td>Status mapping not yet implemented</td></tr></tbody></table></div><p><a href="connections.json">구조화된 신호 연결정보 다운로드</a></p></section><section id="hardware"><h2>3. 하드웨어 구성·부품</h2><div class="scroll"><table><thead><tr><th>부품</th><th>수량</th><th>신호·전원</th><th>확인 사항</th></tr></thead><tbody><tr><td>Basys3</td><td>1</td><td>3.3V FPGA I/O</td><td>핀·XDC·리소스 확인 필요</td></tr><tr><td>TTP223 터치</td><td>1</td><td>모듈별 확인 필요</td><td>전원과 FPGA 입력 전압 구분</td></tr><tr><td>HC-SR04 거리</td><td>1</td><td>모듈별 확인 필요</td><td>데이터시트·풀업·레벨 확인</td></tr><tr><td>LED PWM</td><td>1</td><td>드라이버/전원 확인 필요</td><td>부하를 FPGA 핀에 직접 연결하지 않음</td></tr></tbody></table></div><p><a href="bom.csv">BOM.csv 다운로드</a></p></section><section id="source"><h2>4. 실행소스 전체 보기</h2><p>코드 원본은 보존합니다. 아래에서 펼쳐 읽거나 파일별로 열 수 있습니다. <a href="source_bundle.zip" download>전체 소스 ZIP 받기</a></p><details open><summary>INTEGRATION.md</summary><p><a href="source/INTEGRATION.md" download>개별 원본 파일 받기</a></p><pre><code># 복합 주변장치 제어 — TTP223 터치 + HC-SR04 거리 → LED PWM
+
+## 구현 수준
+독립 캡스톤 설계안. RTL·테스트벤치·C·AXI·Vivado·실물 보드는 미구현/미검증.
+
+## 기능 요구사항
+- 입력 1: TTP223 터치 (전기적 특성·출력 신호·샘플 유효 조건을 확인한 뒤 연결)
+- 입력 2: HC-SR04 거리 (서로 다른 샘플 주기와 비동기 이벤트를 구분)
+- 제어 정책: 이중 조건 일치 시 동작. Reset과 타임아웃/센서 오류의 안전 상태 정의
+- 출력: LED PWM (전원/구동 회로 별도 검토)
+- 진단: 상태 레지스터 (유효값, 오류, 마지막 이벤트와 상태 구분)
+
+## 회로 구조 (모듈명은 신규 제안, 실제 RTL 포트 아님)
+TTP223 터치 → sensor_a.sample → capstone_controller.sample_a
+HC-SR04 거리 → sensor_b.sample → capstone_controller.sample_b
+capstone_controller.command → LED PWM
+capstone_controller.status → 상태 레지스터
+
+## 구현 절차
+1. 모듈별 실제 데이터시트·핀·3.3V 호환성 및 외부 부하 전원 검토
+2. 두 입력의 샘플 시점, 이벤트 펄스, 클럭 도메인·Reset 정의
+3. Controller FSM과 입력 유효성·타임아웃·우선순위 규칙 확정
+4. 독립 RTL 및 자기검증 테스트벤치 작성 후 시뮬레이션
+5. 필요한 경우 AXI GPIO/사용자 AXI IP로 MicroBlaze V 연결
+6. Vivado 합성·타이밍·XDC·실물 보드 검증을 각각 별도 기록
+
+## 검증 시나리오
+- Reset 후 출력 안전 상태
+- 입력 1만 발생 / 입력 2만 발생 / 두 입력 동시 발생
+- 입력 변화 순서 반대 / 바운스 / 입력 무효 및 타임아웃
+- 출력 구동 중 재입력 / 긴급 중지 / 복귀 동작
+- 표시 및 레지스터 값과 실제 이벤트의 일치
+
+## 안전 및 출처
+Basys3 GPIO 3.3V, XADC 단극성 입력 0~1V. 5V 신호·모터·릴레이·서보 부하 직결 금지. 실제 보드별 전압 변환 및 구동회로 검증 필요.
+독립적으로 작성한 설계안. 외부 코드·이미지 복제 없음.
+</code></pre></details></section><section id="verification"><h2>5. 검증 결과</h2><p class="notice">교육용 설계안만 생성. 실제 RTL, 시뮬레이션, AXI, 합성, 타이밍, 보드 시험 미실시.</p><div class="scroll"><table><thead><tr><th>검증 항목</th><th>현재 기록</th></tr></thead><tbody><tr><td>설계 구조·연결 검사</td><td>통과</td></tr><tr><td>Verilog RTL 시뮬레이션</td><td>미실시</td></tr><tr><td>C 프로그램 자체 테스트</td><td>미실시</td></tr><tr><td>RTL 합성</td><td>미실시</td></tr><tr><td>FPGA 구현</td><td>미실시</td></tr><tr><td>타이밍 검사</td><td>미실시</td></tr><tr><td>실제 FPGA 보드 테스트</td><td>미실시</td></tr></tbody></table></div><p class="meta">검증 상태는 실행 기록에 근거하며, 시뮬레이션 통과가 보드에서의 동작을 보증하지 않습니다.</p><p><a href="verification.json">검증 로그·명령 및 증거 확인</a></p></section><section id="provenance"><h2>6. 출처·연결 안전</h2><h3>참고 및 작성 근거</h3><p>Original educational concept; no external source code or image copied.</p><h3>전기적 안전·제약</h3><p class="notice">Basys3 GPIO 3.3V, XADC 단극성 입력 0~1V. 5V 신호·모터·릴레이·서보 부하 직결 금지. 실제 보드별 전압 변환 및 구동회로 검증 필요.</p><p><a href="source_manifest.json">소스 파일 해시·작성 근거</a></p></section><p><a href="../index.html">← 전체 캡스톤 목차로</a></p><footer>설계 구상과 실제 FPGA 보드 검증은 구분됩니다. 출처·소스·검증 결과를 반드시 확인하세요.</footer></main></div></body></html>

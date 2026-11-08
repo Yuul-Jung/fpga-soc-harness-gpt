@@ -1,11 +1,22 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-08T01:52:25.156468+00:00",
-  "existing_capstones_rechecked": 31,
-  "pages_and_diagrams_checked": 118,
-  "generated_outputs_regenerated": 0,
-  "changed_generated_paths": [],
+  "stage": "factory",
+  "timestamp": "2026-11-08T02:03:52.059347+00:00",
+  "existing_capstones_rechecked": 32,
+  "pages_and_diagrams_checked": 121,
+  "generated_outputs_regenerated": 10,
+  "changed_generated_paths": [
+    "index.html",
+    "capstones/index.html",
+    "capstones/creative_fusion_06_01_00_00_01/connections.json",
+    "capstones/creative_fusion_06_01_00_00_01/index.html",
+    "capstones/creative_fusion_06_01_00_00_01/design.json",
+    "capstones/creative_fusion_06_01_00_00_01/bom.csv",
+    "capstones/creative_fusion_06_01_00_00_01/system.svg",
+    "capstones/creative_fusion_06_01_00_00_01/source_manifest.json",
+    "capstones/creative_fusion_06_01_00_00_01/source_bundle.zip",
+    "capstones/creative_fusion_06_01_00_00_01/source/INTEGRATION.md"
+  ],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
@@ -140,6 +151,13 @@
     },
     {
       "id": "creative_fusion_05_09_00_04_00",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_fusion_06_01_00_00_01",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
