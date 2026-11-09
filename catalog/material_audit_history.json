@@ -888,6 +888,14 @@
       "existing_capstones": 41,
       "errors": [],
       "generated_outputs_regenerated": 10
+    },
+    {
+      "timestamp": "2026-11-09T21:07:34.927626+00:00",
+      "stage": "review",
+      "status": "PASS",
+      "existing_capstones": 41,
+      "errors": [],
+      "generated_outputs_regenerated": 0
     }
   ]
 }
