@@ -1,15 +1,21 @@
 {
   "schema_version": 1,
-  "stage": "review",
-  "timestamp": "2026-11-13T19:51:17.313314+00:00",
-  "existing_capstones_rechecked": 61,
-  "pages_and_diagrams_checked": 210,
-  "generated_outputs_regenerated": 4,
+  "stage": "factory",
+  "timestamp": "2026-11-13T20:20:04.212138+00:00",
+  "existing_capstones_rechecked": 62,
+  "pages_and_diagrams_checked": 213,
+  "generated_outputs_regenerated": 10,
   "changed_generated_paths": [
     "index.html",
-    "drafts/minbeddedsystem--axi_peripheral/concept.svg",
-    "drafts/minbeddedsystem--axi_peripheral/index.html",
-    "drafts/minbeddedsystem--axi_peripheral/design_draft.json"
+    "capstones/index.html",
+    "capstones/creative_fusion_04_10_01_07_03/connections.json",
+    "capstones/creative_fusion_04_10_01_07_03/index.html",
+    "capstones/creative_fusion_04_10_01_07_03/design.json",
+    "capstones/creative_fusion_04_10_01_07_03/bom.csv",
+    "capstones/creative_fusion_04_10_01_07_03/system.svg",
+    "capstones/creative_fusion_04_10_01_07_03/source_manifest.json",
+    "capstones/creative_fusion_04_10_01_07_03/source_bundle.zip",
+    "capstones/creative_fusion_04_10_01_07_03/source/INTEGRATION.md"
   ],
   "source_rtl_modified": false,
   "publication_gate": {
@@ -215,6 +221,13 @@
     },
     {
       "id": "creative_fusion_04_08_01_07_01",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_fusion_04_10_01_07_03",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
