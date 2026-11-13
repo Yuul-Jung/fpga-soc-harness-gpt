@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-13T06:10:43.955484+00:00",
-  "total_unique": 11,
-  "new_count": 0,
+  "generated_at": "2026-11-13T15:15:16.701933+00:00",
+  "total_unique": 12,
+  "new_count": 1,
   "results": [
     {
       "id": "shubhayu-das--vl504-project",
@@ -268,6 +268,51 @@
       "score": 38,
       "first_seen": "2026-11-02",
       "last_seen": "2026-11-02"
+    },
+    {
+      "id": "minbeddedsystem--axi_peripheral",
+      "repository": "minbeddedsystem/AXI_Peripheral",
+      "url": "https://github.com/minbeddedsystem/AXI_Peripheral",
+      "description": "MicroBlaze + AXI4-Lite 기반 SoC — Custom AXI I2C Master IP 설계, Reaction Test 앱(HW/SW Co-Design), UVM 검증(Functional Coverage 100%)",
+      "vendor_hint": "communication",
+      "board_hint": "Basys3",
+      "vendor_family": "AMD/Xilinx",
+      "research_strategy": "integration",
+      "classification_method": "query_hypothesis_not_hardware_verification",
+      "license_spdx": "UNKNOWN",
+      "reuse_policy": "reference_only",
+      "default_branch": "main",
+      "source_tree_sha": "be3e2b22dcd3278300f10ce318aca5aeed436c46",
+      "last_upstream_update": "2026-08-11T12:08:17Z",
+      "board_verified": false,
+      "evidence": {
+        "hdl_count": 16,
+        "hdl_examples": [
+          "rtl/I2C_Master.v",
+          "rtl/i2c_master_v1_0.v",
+          "rtl/i2c_master_v1_0_S00_AXI.v",
+          "rtl/myip_v1_0.v",
+          "rtl/myip_v1_0_S00_AXI.v",
+          "verification/gpio_agent.sv",
+          "verification/gpio_coverage.sv",
+          "verification/gpio_driver.sv",
+          "verification/gpio_env.sv",
+          "verification/gpio_if.sv",
+          "verification/gpio_monitor.sv",
+          "verification/gpio_scoreboard.sv"
+        ],
+        "evidence_files": [
+          "README.md",
+          "images/tb_top_result.png",
+          "verification/tb_top.sv"
+        ],
+        "has_constraints": false,
+        "has_testbench": true
+      },
+      "score": 38,
+      "first_seen": "2026-11-13T15:15:16.701933+00:00",
+      "last_seen": "2026-11-13T15:15:16.701933+00:00",
+      "discovery_count": 1
     },
     {
       "id": "yifeistarwang-coder--robomotion-fpga",
