@@ -1352,6 +1352,14 @@
       "existing_capstones": 62,
       "errors": [],
       "generated_outputs_regenerated": 0
+    },
+    {
+      "timestamp": "2026-11-13T21:28:48.025063+00:00",
+      "stage": "factory",
+      "status": "PASS",
+      "existing_capstones": 63,
+      "errors": [],
+      "generated_outputs_regenerated": 10
     }
   ]
 }
