@@ -1,12 +1,15 @@
 {
   "schema_version": 1,
-  "stage": "research",
-  "timestamp": "2026-11-13T15:15:23.718603+00:00",
+  "stage": "review",
+  "timestamp": "2026-11-13T19:51:17.313314+00:00",
   "existing_capstones_rechecked": 61,
-  "pages_and_diagrams_checked": 208,
-  "generated_outputs_regenerated": 1,
+  "pages_and_diagrams_checked": 210,
+  "generated_outputs_regenerated": 4,
   "changed_generated_paths": [
-    "index.html"
+    "index.html",
+    "drafts/minbeddedsystem--axi_peripheral/concept.svg",
+    "drafts/minbeddedsystem--axi_peripheral/index.html",
+    "drafts/minbeddedsystem--axi_peripheral/design_draft.json"
   ],
   "source_rtl_modified": false,
   "publication_gate": {
