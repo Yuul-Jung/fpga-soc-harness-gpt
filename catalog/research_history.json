@@ -2860,6 +2860,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-14T10:01:42.616962+00:00",
+      "queries": [
+        {
+          "q": "DE1-SoC smart home relay sensor fpga capstone project",
+          "category": "automation",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Basys3 environment monitor adc fpga soc peripheral",
+          "category": "sensor",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "Cyclone V access control rfid fpga testbench constraints",
+          "category": "security",
+          "board_hint": "Cyclone V",
+          "vendor_family": "Intel/Altera",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Zybo Z7 industrial actuator control verilog rtl github",
+          "category": "motor",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "implementation"
+        },
+        {
+          "q": "ECP5 oscilloscope adc trigger fpga capstone project",
+          "category": "instrument",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Artix-7 sobel edge detection fpga soc peripheral",
+          "category": "video",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "intel altera fpga capstone motor",
+          "category": "motor",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "lattice ec5 open source camera verilog",
+          "category": "video",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
