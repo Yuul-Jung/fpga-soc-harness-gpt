@@ -1,22 +1,11 @@
 {
   "schema_version": 1,
-  "stage": "factory",
-  "timestamp": "2026-11-15T00:00:45.833332+00:00",
+  "stage": "research",
+  "timestamp": "2026-11-15T01:42:15.109430+00:00",
   "existing_capstones_rechecked": 69,
   "pages_and_diagrams_checked": 234,
-  "generated_outputs_regenerated": 10,
-  "changed_generated_paths": [
-    "index.html",
-    "capstones/index.html",
-    "capstones/creative_fusion_07_03_06_05_02/connections.json",
-    "capstones/creative_fusion_07_03_06_05_02/index.html",
-    "capstones/creative_fusion_07_03_06_05_02/design.json",
-    "capstones/creative_fusion_07_03_06_05_02/bom.csv",
-    "capstones/creative_fusion_07_03_06_05_02/system.svg",
-    "capstones/creative_fusion_07_03_06_05_02/source_manifest.json",
-    "capstones/creative_fusion_07_03_06_05_02/source_bundle.zip",
-    "capstones/creative_fusion_07_03_06_05_02/source/INTEGRATION.md"
-  ],
+  "generated_outputs_regenerated": 0,
+  "changed_generated_paths": [],
   "source_rtl_modified": false,
   "publication_gate": {
     "visualization_structure_organization": "PASS",
