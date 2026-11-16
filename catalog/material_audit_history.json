@@ -1728,6 +1728,14 @@
       "existing_capstones": 79,
       "errors": [],
       "generated_outputs_regenerated": 0
+    },
+    {
+      "timestamp": "2026-11-16T22:44:24.514520+00:00",
+      "stage": "factory",
+      "status": "PASS",
+      "existing_capstones": 80,
+      "errors": [],
+      "generated_outputs_regenerated": 10
     }
   ]
 }
