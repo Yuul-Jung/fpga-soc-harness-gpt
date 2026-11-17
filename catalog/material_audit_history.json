@@ -1768,6 +1768,14 @@
       "existing_capstones": 81,
       "errors": [],
       "generated_outputs_regenerated": 10
+    },
+    {
+      "timestamp": "2026-11-17T08:14:45.289370+00:00",
+      "stage": "factory",
+      "status": "PASS",
+      "existing_capstones": 82,
+      "errors": [],
+      "generated_outputs_regenerated": 10
     }
   ]
 }
