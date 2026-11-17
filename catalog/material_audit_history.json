@@ -1800,6 +1800,14 @@
       "existing_capstones": 82,
       "errors": [],
       "generated_outputs_regenerated": 0
+    },
+    {
+      "timestamp": "2026-11-17T17:24:25.779308+00:00",
+      "stage": "factory",
+      "status": "PASS",
+      "existing_capstones": 83,
+      "errors": [],
+      "generated_outputs_regenerated": 10
     }
   ]
 }
