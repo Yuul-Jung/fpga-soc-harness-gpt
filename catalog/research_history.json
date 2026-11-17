@@ -3575,6 +3575,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-17T12:59:48.982411+00:00",
+      "queries": [
+        {
+          "q": "ECP5 parking assistant sonar fpga soc peripheral",
+          "category": "automation",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "integration"
+        },
+        {
+          "q": "Artix-7 temperature humidity control fpga testbench constraints",
+          "category": "sensor",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "evidence"
+        },
+        {
+          "q": "iCE40 aes hardware accelerator verilog rtl github",
+          "category": "security",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "implementation"
+        },
+        {
+          "q": "DE10-Lite robot arm servo pwm fpga capstone project",
+          "category": "motor",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Certus-NX frequency counter pulse capture fpga soc peripheral",
+          "category": "instrument",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "integration"
+        },
+        {
+          "q": "DE1-SoC video image pipeline fpga testbench constraints",
+          "category": "video",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "evidence"
+        },
+        {
+          "q": "FPGA hardware peripheral capstone verilog",
+          "category": "automation",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "microblaze AXI custom peripheral sensor",
+          "category": "communication",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
