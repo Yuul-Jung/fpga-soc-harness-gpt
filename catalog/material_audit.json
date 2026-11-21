@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
   "stage": "factory",
-  "timestamp": "2026-11-21T03:45:41.113382+00:00",
-  "existing_capstones_rechecked": 101,
-  "pages_and_diagrams_checked": 330,
+  "timestamp": "2026-11-21T07:31:37.606702+00:00",
+  "existing_capstones_rechecked": 102,
+  "pages_and_diagrams_checked": 333,
   "generated_outputs_regenerated": 10,
   "changed_generated_paths": [
     "index.html",
     "capstones/index.html",
-    "capstones/creative_fusion_06_09_07_05_02/bom.csv",
-    "capstones/creative_fusion_06_09_07_05_02/index.html",
-    "capstones/creative_fusion_06_09_07_05_02/source_manifest.json",
-    "capstones/creative_fusion_06_09_07_05_02/design.json",
-    "capstones/creative_fusion_06_09_07_05_02/system.svg",
-    "capstones/creative_fusion_06_09_07_05_02/connections.json",
-    "capstones/creative_fusion_06_09_07_05_02/source_bundle.zip",
-    "capstones/creative_fusion_06_09_07_05_02/source/INTEGRATION.md"
+    "capstones/creative_fusion_07_01_07_01_03/bom.csv",
+    "capstones/creative_fusion_07_01_07_01_03/index.html",
+    "capstones/creative_fusion_07_01_07_01_03/source_manifest.json",
+    "capstones/creative_fusion_07_01_07_01_03/design.json",
+    "capstones/creative_fusion_07_01_07_01_03/system.svg",
+    "capstones/creative_fusion_07_01_07_01_03/connections.json",
+    "capstones/creative_fusion_07_01_07_01_03/source_bundle.zip",
+    "capstones/creative_fusion_07_01_07_01_03/source/INTEGRATION.md"
   ],
   "source_rtl_modified": false,
   "publication_gate": {
@@ -459,6 +459,13 @@
     },
     {
       "id": "creative_fusion_07_01_06_05_00",
+      "rtl": "not_run",
+      "software": "not_run",
+      "board": "not_run",
+      "result": "pass"
+    },
+    {
+      "id": "creative_fusion_07_01_07_01_03",
       "rtl": "not_run",
       "software": "not_run",
       "board": "not_run",
