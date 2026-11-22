@@ -4680,6 +4680,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-22T18:23:17.291924+00:00",
+      "queries": [
+        {
+          "q": "ECP5 smart home relay sensor fpga capstone project",
+          "category": "automation",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Artix-7 environment monitor adc fpga soc peripheral",
+          "category": "sensor",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "integration"
+        },
+        {
+          "q": "iCE40 access control rfid fpga testbench constraints",
+          "category": "security",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "DE10-Lite industrial actuator control verilog rtl github",
+          "category": "motor",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Certus-NX oscilloscope adc trigger fpga capstone project",
+          "category": "instrument",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "DE1-SoC sobel edge detection fpga soc peripheral",
+          "category": "video",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "integration"
+        },
+        {
+          "q": "intel altera fpga capstone motor",
+          "category": "motor",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "lattice ec5 open source camera verilog",
+          "category": "video",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
