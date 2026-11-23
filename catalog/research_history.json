@@ -4745,6 +4745,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-23T00:08:22.179424+00:00",
+      "queries": [
+        {
+          "q": "DE10-Lite greenhouse irrigation verilog rtl github",
+          "category": "automation",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Certus-NX sensor fusion timestamp fpga capstone project",
+          "category": "sensor",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "DE1-SoC trng hardware entropy fpga soc peripheral",
+          "category": "security",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "integration"
+        },
+        {
+          "q": "Basys3 motor encoder pid fpga testbench constraints",
+          "category": "motor",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "evidence"
+        },
+        {
+          "q": "Cyclone V logic analyzer uart verilog rtl github",
+          "category": "instrument",
+          "board_hint": "Cyclone V",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Zybo Z7 hdmi frame buffer fpga capstone project",
+          "category": "video",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "capstone"
+        },
+        {
+          "q": "FPGA hardware peripheral capstone verilog",
+          "category": "automation",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "microblaze AXI custom peripheral sensor",
+          "category": "communication",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
