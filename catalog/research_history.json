@@ -4810,6 +4810,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-23T08:50:26.940443+00:00",
+      "queries": [
+        {
+          "q": "Artix-7 parking assistant sonar verilog rtl github",
+          "category": "automation",
+          "board_hint": "Artix-7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "implementation"
+        },
+        {
+          "q": "iCE40 temperature humidity control fpga capstone project",
+          "category": "sensor",
+          "board_hint": "iCE40",
+          "vendor_family": "Lattice",
+          "strategy": "capstone"
+        },
+        {
+          "q": "DE10-Lite aes hardware accelerator fpga soc peripheral",
+          "category": "security",
+          "board_hint": "DE10-Lite",
+          "vendor_family": "Intel/Altera",
+          "strategy": "integration"
+        },
+        {
+          "q": "Certus-NX robot arm servo pwm fpga testbench constraints",
+          "category": "motor",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "DE1-SoC frequency counter pulse capture verilog rtl github",
+          "category": "instrument",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Basys3 video image pipeline fpga capstone project",
+          "category": "video",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "capstone"
+        },
+        {
+          "q": "FPGA hardware peripheral capstone verilog",
+          "category": "automation",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "microblaze AXI custom peripheral sensor",
+          "category": "communication",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
