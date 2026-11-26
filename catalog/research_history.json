@@ -5395,6 +5395,71 @@
       "results_found": 0,
       "total_unique": 12,
       "failed_queries": 0
+    },
+    {
+      "timestamp": "2026-11-26T23:39:34.740114+00:00",
+      "queries": [
+        {
+          "q": "Certus-NX traffic light controller fpga testbench constraints",
+          "category": "automation",
+          "board_hint": "Certus-NX",
+          "vendor_family": "Lattice",
+          "strategy": "evidence"
+        },
+        {
+          "q": "DE1-SoC ultrasonic sensor distance verilog rtl github",
+          "category": "sensor",
+          "board_hint": "DE1-SoC",
+          "vendor_family": "Intel/Altera",
+          "strategy": "implementation"
+        },
+        {
+          "q": "Basys3 secure boot crypto fpga capstone project",
+          "category": "security",
+          "board_hint": "Basys3",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "capstone"
+        },
+        {
+          "q": "Cyclone V stepper driver sensor fpga soc peripheral",
+          "category": "motor",
+          "board_hint": "Cyclone V",
+          "vendor_family": "Intel/Altera",
+          "strategy": "integration"
+        },
+        {
+          "q": "Zybo Z7 spectrum analyzer audio fpga testbench constraints",
+          "category": "instrument",
+          "board_hint": "Zybo Z7",
+          "vendor_family": "AMD/Xilinx",
+          "strategy": "evidence"
+        },
+        {
+          "q": "ECP5 ov7670 camera vga verilog rtl github",
+          "category": "video",
+          "board_hint": "ECP5",
+          "vendor_family": "Lattice",
+          "strategy": "implementation"
+        },
+        {
+          "q": "lattice ec5 open source camera verilog",
+          "category": "video",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        },
+        {
+          "q": "FPGA hardware peripheral capstone verilog",
+          "category": "automation",
+          "board_hint": "UNSPECIFIED",
+          "vendor_family": "CROSS_VENDOR",
+          "strategy": "anchor"
+        }
+      ],
+      "new_count": 0,
+      "results_found": 0,
+      "total_unique": 12,
+      "failed_queries": 0
     }
   ]
 }
