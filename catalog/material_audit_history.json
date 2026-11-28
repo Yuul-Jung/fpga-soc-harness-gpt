@@ -2,14 +2,6 @@
   "schema_version": 1,
   "runs": [
     {
-      "timestamp": "2026-11-10T07:35:32.487263+00:00",
-      "stage": "factory",
-      "status": "PASS",
-      "existing_capstones": 44,
-      "errors": [],
-      "generated_outputs_regenerated": 10
-    },
-    {
       "timestamp": "2026-11-10T09:34:18.344431+00:00",
       "stage": "research",
       "status": "PASS",
@@ -1920,6 +1912,14 @@
       "existing_capstones": 132,
       "errors": [],
       "generated_outputs_regenerated": 10
+    },
+    {
+      "timestamp": "2026-11-28T00:15:06.830272+00:00",
+      "stage": "review",
+      "status": "PASS",
+      "existing_capstones": 132,
+      "errors": [],
+      "generated_outputs_regenerated": 0
     }
   ]
 }
